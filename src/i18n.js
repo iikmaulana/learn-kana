@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { kanaCharacters } from './kanaCharacters';
+import { sentences } from './sentences';
 
 export const LANGUAGES = [
   { code: 'en', label: 'EN' },
@@ -24,8 +25,10 @@ const translations = {
     dakutenKana: 'Dakuten Kana',
     menuSummaryNone: 'Select at least one group to start',
     menuSummaryNoWords: 'No words with these groups yet, select more',
+    menuSummaryNoSentences: 'No sentences with these groups yet, select more',
     menuSummaryMixed: ({ kanas, kanji, words }) => `Mixed: ${kanas} kana · ${kanji} kanji · ${words} words`,
     menuSummaryWords: ({ words, groups }) => `${words} word${words === 1 ? '' : 's'} from ${groups} group${groups === 1 ? '' : 's'}`,
+    menuSummaryLong: ({ count }) => `Sentences: ${count} available`,
     menuSummaryCharacters: ({ groups, kanas, kanji }) =>
       [`${groups} group${groups === 1 ? '' : 's'}`, kanas && `${kanas} kana`, kanji && `${kanji} kanji`].filter(Boolean).join(' · '),
     menuStart: "Let's start!",
@@ -48,6 +51,7 @@ const translations = {
     practiceWords: 'Words',
     practiceKanji: 'Kanji',
     practiceMixed: 'Mixed',
+    practiceLong: 'Sentences',
     kanjiShowAll: 'Show all',
     kanjiShowLess: 'Show less',
     kanjiSrsDue: ({ count }) => `${count} kanji ready for review`,
@@ -60,7 +64,7 @@ const translations = {
     answerByLabel: 'Answer by',
     answerTyping: 'Typing',
     answerMultipleChoice: 'Multiple choice',
-    answerMultipleChoiceDisabled: 'Not available for word or mixed practice',
+    answerMultipleChoiceDisabled: 'Not available for word, mixed or sentence practice',
     optionHints: 'Hints',
     optionHandwrittenFonts: 'Handwritten Fonts',
     optionAutoNext: 'Auto Next',
@@ -146,8 +150,10 @@ const translations = {
     dakutenKana: 'Kana Dakuten',
     menuSummaryNone: 'Pilih minimal satu grup untuk mulai',
     menuSummaryNoWords: 'Belum ada kata untuk grup ini, pilih grup lain',
+    menuSummaryNoSentences: 'Belum ada kalimat untuk grup ini, pilih grup lain',
     menuSummaryMixed: ({ kanas, kanji, words }) => `Campuran: ${kanas} kana · ${kanji} kanji · ${words} kata`,
     menuSummaryWords: ({ words, groups }) => `${words} kata dari ${groups} grup`,
+    menuSummaryLong: ({ count }) => `Kalimat: ${count} tersedia`,
     menuSummaryCharacters: ({ groups, kanas, kanji }) =>
       [`${groups} grup`, kanas && `${kanas} kana`, kanji && `${kanji} kanji`].filter(Boolean).join(' · '),
     menuStart: 'Ayo mulai!',
@@ -169,6 +175,7 @@ const translations = {
     practiceWords: 'Kata',
     practiceKanji: 'Kanji',
     practiceMixed: 'Campuran',
+    practiceLong: 'Kalimat',
     kanjiShowAll: 'Tampilkan semua',
     kanjiShowLess: 'Tampilkan lebih sedikit',
     kanjiSrsDue: ({ count }) => `${count} kanji siap diulang`,
@@ -181,7 +188,7 @@ const translations = {
     answerByLabel: 'Jawab dengan',
     answerTyping: 'Mengetik',
     answerMultipleChoice: 'Pilihan ganda',
-    answerMultipleChoiceDisabled: 'Tidak tersedia untuk latihan kata atau campuran',
+    answerMultipleChoiceDisabled: 'Tidak tersedia untuk latihan kata, campuran, atau kalimat',
     optionHints: 'Petunjuk',
     optionHandwrittenFonts: 'Font tulisan tangan',
     optionAutoNext: 'Lanjut otomatis',
@@ -280,6 +287,11 @@ for (const group of Object.values(kanaCharacters.kanji)) {
     if (character.usage?.meaning_id) {
       indonesianMeanings[character.usage.word] = character.usage.meaning_id;
     }
+  }
+}
+for (const sentence of sentences) {
+  if (sentence.meaning_id) {
+    indonesianMeanings[sentence.jp_character] = sentence.meaning_id;
   }
 }
 

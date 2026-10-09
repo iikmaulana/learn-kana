@@ -339,6 +339,11 @@ html.in-game-scroll-lock body {
   margin: 0px;
 }
 
+/* Particles (は, を, に...) are shown in black so they stand out from the rest of the sentence */
+.in-game-kana-character .in-game-particle {
+  color: #000000;
+}
+
 .in-game-kana-character>p.kanji-reading-question-prompt {
   white-space: nowrap;
   padding-inline: 0.38em;

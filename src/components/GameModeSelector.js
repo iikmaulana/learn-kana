@@ -43,19 +43,19 @@ export default function GameModeSelector(props) {
       (localStorage.getItem("game-mode-word") === "true" ? "words" : "characters");
     // "kanji" and "srs" used to be practice types: kanji now come with "characters"
     // and SRS reviews are started from the menu (review banner / Kanji tab)
-    return ['words', 'mixed'].includes(stored) ? stored : 'characters';
+    return ['words', 'mixed', 'long'].includes(stored) ? stored : 'characters';
   });
   const [answerBy, setAnswerBy] = useState(() => {
     const storedTouch = localStorage.getItem("game-mode-touch");
     const useTouch = storedTouch === null ? touchDefault : storedTouch === "true";
-    return useTouch && !['words', 'mixed'].includes(practice) ? "touch" : "typing";
+    return useTouch && !['words', 'mixed', 'long'].includes(practice) ? "touch" : "typing";
   });
 
   React.useEffect(() => {
     localStorage.setItem("game-mode-practice", practice);
     localStorage.setItem("game-mode-srs", "false");
     localStorage.setItem("game-mode-word", practice === "words");
-    if (['words', 'mixed'].includes(practice) && answerBy === 'touch') {
+    if (['words', 'mixed', 'long'].includes(practice) && answerBy === 'touch') {
       setAnswerBy('typing');
     }
     localStorage.setItem("game-mode-touch", answerBy === "touch");
@@ -67,7 +67,7 @@ export default function GameModeSelector(props) {
 
   const handlePracticeChange = (value) => {
     setPractice(value);
-    if (['words', 'mixed'].includes(value)) {
+    if (['words', 'mixed', 'long'].includes(value)) {
       setAnswerBy("typing");
     }
   };
@@ -144,6 +144,7 @@ export default function GameModeSelector(props) {
             { value: "characters", label: t('practiceCharacters') },
             { value: "words", label: t('practiceWords') },
             { value: "mixed", label: t('practiceMixed') },
+            { value: "long", label: t('practiceLong') },
           ]}
         />
         <SegmentedControl
@@ -153,7 +154,7 @@ export default function GameModeSelector(props) {
           onChange={setAnswerBy}
           options={[
             { value: "typing", label: t('answerTyping') },
-            { value: "touch", label: t('answerMultipleChoice'), disabled: ['words', 'mixed'].includes(practice), disabledReason: t('answerMultipleChoiceDisabled') },
+            { value: "touch", label: t('answerMultipleChoice'), disabled: ['words', 'mixed', 'long'].includes(practice), disabledReason: t('answerMultipleChoiceDisabled') },
           ]}
         />
       </div>

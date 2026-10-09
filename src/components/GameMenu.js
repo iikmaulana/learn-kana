@@ -4,6 +4,7 @@ import GameModeSelector from './GameModeSelector'
 import ProgressStatsModal from './ProgressStatsModal'
 import { Link } from "react-router-dom";
 import { kanaCharacters } from '../kanaCharacters.js'
+import { getReadableSentences } from '../sentences.js'
 import { getDueReviewCount, getSelectedKanjiGroupTitles, getSrsKanjiCharacters } from '../kanjiSrs.js'
 import { useLanguage } from '../i18n'
 
@@ -91,8 +92,10 @@ function getSelectionSummary() {
   const wordCount = Object.values(kanaCharacters.words).filter(word =>
     [...word.hiragana_groups, ...word.katakana_groups].every(group => checkedKanas.includes(group))
   ).length;
+  // Sentence practice only offers the sentences readable with the selected groups
+  const sentenceCount = getReadableSentences(checkedKanas).length;
 
-  return { kanaGroupCount, kanjiGroupCount, kanaCount, kanjiCount, wordCount };
+  return { kanaGroupCount, kanjiGroupCount, kanaCount, kanjiCount, wordCount, sentenceCount };
 }
 
 export default function GameMenu() {
@@ -118,11 +121,11 @@ export default function GameMenu() {
   }
   migrateKanjiGroupSelections();
 
-  const { kanaGroupCount, kanjiGroupCount, kanaCount, kanjiCount, wordCount } = getSelectionSummary();
+  const { kanaGroupCount, kanjiGroupCount, kanaCount, kanjiCount, wordCount, sentenceCount } = getSelectionSummary();
   const storedPractice = localStorage.getItem('game-mode-practice') ||
     (localStorage.getItem('game-mode-word') === 'true' ? 'words' : 'characters');
   // Older "kanji" / "srs" values count as "characters", like in GameModeSelector
-  const practice = ['words', 'mixed'].includes(storedPractice) ? storedPractice : 'characters';
+  const practice = ['words', 'mixed', 'long'].includes(storedPractice) ? storedPractice : 'characters';
   const selectedKanjiGroups = useMemo(
     () => getSelectedKanjiGroupTitles(),
     [settingsVersion]
@@ -148,10 +151,15 @@ export default function GameMenu() {
   } else if (practice === 'characters' && kanaCount + kanjiCount === 0) {
     summaryText = t('menuSummaryNone');
     canStart = false;
+  } else if (practice === 'long' && sentenceCount === 0) {
+    summaryText = t('menuSummaryNoSentences');
+    canStart = false;
   } else if (practice === 'words') {
     summaryText = t('menuSummaryWords', { words: wordCount, groups: kanaGroupCount });
   } else if (practice === 'mixed') {
     summaryText = t('menuSummaryMixed', { kanas: kanaCount, kanji: kanjiCount, words: wordCount });
+  } else if (practice === 'long') {
+    summaryText = t('menuSummaryLong', { count: sentenceCount });
   } else {
     summaryText = t('menuSummaryCharacters', {
       groups: kanaGroupCount + kanjiGroupCount,

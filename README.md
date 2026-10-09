@@ -18,10 +18,11 @@ Practice hiragana and katakana right in the browser, on desktop or phone. Pick t
 **Choosing what to practice**
 - Pick any hiragana / katakana group, main kana and dakuten (`が`, `ぱ`, ...).
 - Hover a group to see all of its characters (`あ` → あ い う え お).
-- See how many characters (or words) your selection gives you before starting.
+- See how many characters, words or sentences your selection gives you before starting.
 
 **Game modes**
 - Practice **characters** or **words** (~600 beginner words, only the ones you can read with the groups you picked).
+- **Sentences**: 500+ real beginner sentences (e.g. 「わたしは学生です」) that you type as a single romaji answer — only sentences you can read with the groups you picked appear, particles like は and を are shown in black, and the meaning is shown once you get one right.
 - Answer by **typing** the romaji or by **multiple choice**.
 - Play a fixed amount (*Give me 10 Kanas*), against the clock (*Give me 5 minutes*) or without a limit.
 - Options: hints on/off, handwritten fonts, auto next.
