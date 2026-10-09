@@ -6,6 +6,8 @@ import { kanaCharacters } from '../kanaCharacters.js'
 import { getReadableSentences } from '../sentences.js'
 import { kanjiReadings } from '../kanjiReadings.js'
 import { getSelectedKanjiGroupTitles, getSrsKanjiCharacters, recordKanjiSrsAnswer } from '../kanjiSrs.js'
+import { getSpeechRecognitionClass, japaneseToRomaji, matchSpokenAnswer, spokenFormOfReading } from '../speechInput.js'
+import { Mic, MicOff } from 'lucide-react'
 import UserGameScoreWindow from './UserGameScoreWindow.js'
 import { useLanguage } from '../i18n'
 
@@ -262,6 +264,11 @@ export default function InGameCharacterShowAndInput() {
   const { t, meaningOf } = useLanguage();
   const isMacOS = /Mac/i.test(navigator.userAgentData?.platform || navigator.platform);
 
+  // Voice input needs the Web Speech API (Chrome, Edge, Safari): everywhere
+  // else the mic button simply stays hidden
+  const SpeechRecognitionClass = getSpeechRecognitionClass();
+  const speechRecognitionSupported = SpeechRecognitionClass !== null;
+
   /* 
     ##########################################
     # Creates and handles the Kana character #
@@ -296,6 +303,15 @@ export default function InGameCharacterShowAndInput() {
   const srsCurrentCardRef = useRef(null);
   const srsCardPointerStartRef = useRef(null);
   const srsCardDraggedRef = useRef(false);
+  // Voice input (mic button): accepted readings are mirrored in a ref so the
+  // speech recognizer callbacks, which fire outside the render cycle, always
+  // see the answers of the character currently on screen
+  const inGameAcceptedDisplayRef = useRef([]);
+  const recognitionRef = useRef(null);
+  const micSilenceTimerRef = useRef(null);
+  const micErrorTimeoutRef = useRef(null);
+  const [micListening, setMicListening] = useState(false);
+  const [micError, setMicError] = useState(false);
 
   // Hints ("?" key / Hint button) can be turned off in the menu
   const hintsEnabled = localStorage.getItem("game-mode-hints") !== "false";
@@ -789,6 +805,7 @@ export default function InGameCharacterShowAndInput() {
     inGameAnswerListRef.current = acceptedAnswers
       .map(normalizeAnswer)
       .filter(Boolean);
+    inGameAcceptedDisplayRef.current = answerReadings;
     // @ts-ignore
     setSolution(pickedElement.type === 'kanji' ? answerReadings : pickedElement.romanji);
     // @ts-ignore
@@ -1434,6 +1451,138 @@ export default function InGameCharacterShowAndInput() {
     if (hiddenInput) hiddenInput.focus();
   }
 
+  /*
+  #####################
+  # Voice input (mic) #
+  #####################
+  */
+  // Speech reaches the answer check in three shapes: exactly the typed
+  // reading, the particles as spoken (は → ha, where the reading writes wa),
+  // or the on-screen text with its kanji dropped (a recognizer transcribes
+  // みず as 水). Any of them counts as answering; otherwise the heard romaji
+  // is filled in for the player to fix by typing.
+  function handleMicResult(transcript) {
+    const spokenRomaji = japaneseToRomaji(transcript);
+    if (!spokenRomaji) return;
+    const acceptedAnswers = inGameAnswerListRef.current;
+    const displayAnswers = inGameAcceptedDisplayRef.current;
+    const spokenForms = displayAnswers
+      .map(answer => spokenFormOfReading(answer))
+      .filter(Boolean);
+    const screenForm = japaneseToRomaji(inGameKanaOnScreen);
+    const matchIndex = matchSpokenAnswer(spokenRomaji, [
+      ...acceptedAnswers,
+      ...spokenForms,
+      screenForm,
+    ]);
+
+    // The hidden <input> that mobile keyboards write to is checked on
+    // "input" events, so a voice answer goes through the same path as typing
+    const hiddenInput = document.querySelector('#in-game-text-input');
+    if (!hiddenInput) return;
+
+    if (matchIndex !== -1 && displayAnswers.length > 0) {
+      // Canonical reading of the matched answer; the accepted list can hold
+      // extra kana variants for kanji, which only submit on Enter
+      hiddenInput.value = displayAnswers[matchIndex % displayAnswers.length];
+    } else {
+      hiddenInput.value = spokenRomaji;
+    }
+    hiddenInput.dispatchEvent(new Event('input', { bubbles: true }));
+  }
+
+  function stopMic() {
+    window.clearTimeout(micSilenceTimerRef.current);
+    micSilenceTimerRef.current = null;
+    const recognition = recognitionRef.current;
+    recognitionRef.current = null;
+    setMicListening(false);
+    if (recognition) {
+      try { recognition.stop(); } catch (error) { }
+    }
+  }
+
+  function showMicError() {
+    setMicError(true);
+    window.clearTimeout(micErrorTimeoutRef.current);
+    micErrorTimeoutRef.current = window.setTimeout(() => setMicError(false), 3000);
+  }
+
+  // Sentences are spoken in whole: keep listening across pauses and finish
+  // shortly after the player stops talking (or when the mic is clicked
+  // again). The button only exists in sentence practice.
+  function toggleMic(event) {
+    event.stopPropagation();
+    if (!speechRecognitionSupported || scoreWindowVisibleRef.current) return;
+    if (recognitionRef.current) {
+      stopMic();
+      return;
+    }
+
+    const recognition = new SpeechRecognitionClass();
+    const collectWholeAnswer = currentCharacterTypeRef.current === 'long';
+    let finalTranscript = '';
+
+    recognition.lang = 'ja-JP';
+    recognition.continuous = collectWholeAnswer;
+    recognition.interimResults = false;
+    recognitionRef.current = recognition;
+
+    const finishListening = () => {
+      stopMic();
+      if (finalTranscript.trim()) {
+        handleMicResult(finalTranscript);
+      }
+    };
+
+    recognition.onresult = (resultEvent) => {
+      for (let i = resultEvent.resultIndex; i < resultEvent.results.length; i++) {
+        if (resultEvent.results[i].isFinal) {
+          finalTranscript += resultEvent.results[i][0].transcript;
+        }
+      }
+      if (collectWholeAnswer) {
+        // A pause ends the answer
+        window.clearTimeout(micSilenceTimerRef.current);
+        micSilenceTimerRef.current = window.setTimeout(finishListening, 2000);
+      } else {
+        finishListening();
+      }
+    };
+    recognition.onerror = (errorEvent) => {
+      stopMic();
+      if (errorEvent.error !== 'aborted') {
+        showMicError();
+      }
+    };
+    recognition.onend = () => {
+      // Also fires when nothing audible was said
+      if (recognitionRef.current === recognition) {
+        stopMic();
+      }
+    };
+
+    try {
+      recognition.start();
+      setMicError(false);
+      setMicListening(true);
+    } catch (error) {
+      recognitionRef.current = null;
+      showMicError();
+    }
+  }
+
+  // Never leave the microphone open when the game is left mid-speech
+  React.useEffect(() => {
+    return () => {
+      window.clearTimeout(micSilenceTimerRef.current);
+      window.clearTimeout(micErrorTimeoutRef.current);
+      if (recognitionRef.current) {
+        try { recognitionRef.current.abort(); } catch (error) { }
+      }
+    };
+  }, []);
+
   function onClickExitButton(event) {
     setUserGameScoreWindowVisible(true);
   }
@@ -1489,14 +1638,35 @@ export default function InGameCharacterShowAndInput() {
 
     // Make answer input via keyboard
   } else if (!isSrsPractice) {
+    const micTitle = micListening
+      ? t('gameMicListening')
+      : micError
+        ? t('gameMicError')
+        : t('gameMicButton');
     inGameInputElement = <>
-      <div id='in-game-text-input-cursor-group'>
-        <span id='in-game-text-input-before-cursor'></span>
-        <div id='in-game-text-input-cursor'></div>
-        <span id='in-game-text-input-after-cursor'></span>
-        <span id='in-game-text-input-placeholder'>
-          {t(onScreenCharacterType === 'kanji' ? 'kanjiGamePlaceholder' : 'gamePlaceholder')}
-        </span>
+      <div className='in-game-answer-row'>
+        <div id='in-game-text-input-cursor-group'>
+          <span id='in-game-text-input-before-cursor'></span>
+          <div id='in-game-text-input-cursor'></div>
+          <span id='in-game-text-input-after-cursor'></span>
+          <span id='in-game-text-input-placeholder'>
+            {t(onScreenCharacterType === 'kanji' ? 'kanjiGamePlaceholder' : 'gamePlaceholder')}
+          </span>
+        </div>
+        {/* Voice answers are only offered in sentence practice */}
+        {speechRecognitionSupported && onScreenCharacterType === 'long' && (
+          <button
+            type='button'
+            id='in-game-mic-button'
+            className={`mic-icon${micListening ? ' active' : ' muted'}${micError ? ' mic-error' : ''}`}
+            onClick={toggleMic}
+            title={micTitle}
+            aria-label={micTitle}
+            aria-pressed={micListening}
+          >
+            {micListening ? <Mic /> : <MicOff />}
+          </button>
+        )}
       </div>
       <input 
         type="text" 

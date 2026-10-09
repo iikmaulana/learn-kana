@@ -1,6 +1,6 @@
 {
-  "short_name": "Practice Kana",
-  "name": "Practice Kana",
+  "short_name": "日本語",
+  "name": "日本語",
   "icons": [
     {
       "src": "icon192.png",
@@ -22,6 +22,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#155263",
-  "background_color": "#155263"
+  "theme_color": "#2a373d",
+  "background_color": "#2a373d"
 }

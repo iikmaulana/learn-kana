@@ -608,6 +608,76 @@ html.in-game-scroll-lock body {
   opacity: 0;
 }
 
+/* Answer field + voice input button on one row; the input only shrinks
+   below its usual 90vw when the mic button actually needs the space */
+.in-game-answer-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: min(2vw, 14px);
+}
+
+.in-game-answer-row > #in-game-text-input-cursor-group {
+  width: auto;
+  flex: 0 1 min(90vw, 900px);
+  min-width: 0;
+}
+
+.mic-icon {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(13vh, 11vw);
+  height: min(14vh, 12vw);
+  min-width: 44px;
+  min-height: 48px;
+  max-width: 76px;
+  max-height: 82px;
+  border-radius: 22%;
+  border: 2px solid #ff9a3c40;
+  background: transparent;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.mic-icon svg {
+  width: 55%;
+  height: 55%;
+}
+
+.mic-icon.muted {
+  color: #ff9a3c66;
+}
+
+.mic-icon.muted:hover {
+  border-color: #ff9a3c;
+  color: #ff9a3c;
+}
+
+.mic-icon.active {
+  border-color: #ff9a3c;
+  color: #ff9a3c;
+  animation: mic-pulse 1.1s ease-in-out infinite;
+}
+
+.mic-icon.mic-error {
+  border-color: #ff6b6b;
+  color: #ff6b6b;
+}
+
+@keyframes mic-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 #ff6b6b66; }
+  50% { box-shadow: 0 0 0 10px #ff6b6b00; }
+}
+
+@media (max-width: 655px) {
+  .in-game-answer-row {
+    gap: 8px;
+  }
+}
+
 .in-game-touch-answer-group {
   display: flex;
   flex-direction: row;
