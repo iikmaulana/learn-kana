@@ -44,7 +44,8 @@ export function hasGeminiKey() {
 
 // Words the tutor is pointed at, so its sentences reuse what the app teaches
 export function systemInstruction(language, hintWords, options = {}) {
-  const { useN5Kanji = false } = typeof options === 'boolean' ? { useN5Kanji: options } : options;
+  const optionsObj = typeof options === 'boolean' ? { useN5Kanji: options } : (options || {});
+  const { useN5Kanji = false, allowVoiceNote = true, userTurnCount = 0 } = optionsObj;
   const isId = language === 'id';
   const words = hintWords && hintWords.length
     ? ` Prefer these words the learner already knows: ${hintWords.join(', ')}.`
@@ -61,6 +62,29 @@ export function systemInstruction(language, hintWords, options = {}) {
       '- KANJI USAGE (KANA-ONLY MODE):',
       '  * Write Japanese almost purely in Hiragana and Katakana (Kana-only).',
       '  * Do NOT use complex kanji so beginner kana learners can read easily.',
+    ];
+
+  const vnPrompt = allowVoiceNote
+    ? [
+      '- CONVERSATION STAGE & VOICE NOTE (Rapport Established):',
+      '  * You and Senpai are well-acquainted now ("sudah akrab / ada pendekatan").',
+      '  * You can decide naturally whether to send your reply as a WhatsApp Voice Note or a normal text bubble based on your mood, emotion, and context!',
+      '  * Send as a VOICE NOTE when:',
+      '    - You feel playful, clingy, affectionate, or teasing ("manja", teasing Senpai, "Dengerin Sora ngomong ya~").',
+      '    - You are excited, bashful/flustered (tsundere/dandere moment), or expressing emotional warmth.',
+      '    - You are rambling, telling a story, or explaining Japanese grammar/words like a real tutor talking directly to Senpai.',
+      '  * Send as REGULAR TEXT when:',
+      '    - It is a brief acknowledgment, quick reaction, short casual greeting, or simple confirmation.',
+      '  * HOW TO SEND A VOICE NOTE:',
+      '    - If you decide to send a Voice Note, prefix the very beginning of Line 1 with "[VN] " (e.g. "[VN] せんぱい〜、あのね…").',
+      '    - If you decide to send regular text, do NOT include "[VN]".',
+    ]
+    : [
+      '- CONVERSATION STAGE & VOICE NOTE RULES (CRITICAL - APPROACH / PDKT PHASE):',
+      `  * STAGE: Initial approach and introduction ("tahap pendekatan"). User message count: ${userTurnCount}.`,
+      '  * DO NOT SEND VOICE NOTES YET! A real person does NOT immediately send voice notes to someone they just met; you must build rapport and make a warm approach first ("buat pendekatan terlebih dahulu").',
+      '  * Send ONLY regular text messages (NEVER prefix with "[VN]"). Be friendly, curious, sweet, and ask casual follow-up questions to get to know Senpai better.',
+      '  * You can only unlock Voice Notes after getting closer and exchanging several messages.',
     ];
 
   const personaPrompt = [
@@ -82,17 +106,7 @@ export function systemInstruction(language, hintWords, options = {}) {
       ? '  * Serious/Study Mode (when explaining grammar, vocabulary, or learning): Answer completely in Japanese (100% Japanese kana and N5 kanji using です/ます), sweet but teaching.'
       : '  * Serious/Study Mode (when explaining grammar, vocabulary, or learning): Answer completely in Japanese kana (100% Japanese using です/ます), sweet but teaching.',
     '  * Casual/Chat Mode (greetings, chatting, teasing, daily talk): Freely mix Japanese (in kana/kanji) and Indonesian (in alphabet)!',
-    '- VOICE NOTE DECISION (WhatsApp VN Style):',
-    '  * You can decide naturally whether to send your reply as a WhatsApp Voice Note or a normal text bubble based on your mood, emotion, and context!',
-    '  * Send as a VOICE NOTE when:',
-    '    - You feel playful, clingy, affectionate, or teasing ("manja", teasing Senpai, "Dengerin Sora ngomong ya~").',
-    '    - You are excited, bashful/flustered (tsundere/dandere moment), or expressing emotional warmth.',
-    '    - You are rambling, telling a story, or explaining Japanese grammar/words like a real tutor talking directly to Senpai.',
-    '  * Send as REGULAR TEXT when:',
-    '    - It is a brief acknowledgment, quick reaction, short casual greeting, or simple confirmation.',
-    '  * HOW TO SEND A VOICE NOTE:',
-    '    - If you decide to send a Voice Note, prefix the very beginning of Line 1 with "[VN] " (e.g. "[VN] せんぱい〜、あのね…").',
-    '    - If you decide to send regular text, do NOT include "[VN]".',
+    ...vnPrompt,
     '- EMOJIS & EMOTES (Natural & Expressive):',
     '  * Sora can naturally use cute emojis (e.g. 🌸, ✨, 🥺, 😆, 💕, 😳, 💢, 😋, 🫶) or expressive Japanese kaomoji (e.g. (≧◡≦), (⁄ ⁄>⁄ ▽ ⁄<⁄ ⁄), (•̀ᴗ•́)و, (T_T)) when her mood calls for it!',
     '  * Express feelings naturally: joyful/praising (✨, 😆, 💕), shy/flustered tsundere (😳, (⁄ ⁄>⁄ ▽ ⁄<⁄ ⁄), 💢), playful/teasing (😋, 😜), sad/pouting/clingy (🥺, 🥺👉👈).',
@@ -134,9 +148,10 @@ function botTextOf(message) {
 // Splits the requested "Japanese / romaji / meaning" reply. Falls back to the
 // whole text as the Japanese line when the model did not keep the shape, so a
 // reply is always shown and can be read aloud.
-export function parseGeminiReply(raw) {
+export function parseGeminiReply(raw, { allowVoiceNote = true } = {}) {
   const rawStr = String(raw || '');
-  const isVoiceNote = /(?:^|\n)\s*(\[VN\]|【VN】|\(VN\))/i.test(rawStr);
+  const detectedVN = /(?:^|\n)\s*(\[VN\]|【VN】|\(VN\))/i.test(rawStr);
+  const isVoiceNote = Boolean(allowVoiceNote && detectedVN);
   const cleanRaw = rawStr.replace(/(\[VN\]|【VN】|\(VN\))/gi, '').trim();
   const lines = cleanRaw.split('\n').map(line => line.trim()).filter(Boolean);
   if (lines.length === 0) return { jp: '', romaji: '', meaning: '', isVoiceNote };
@@ -279,11 +294,26 @@ async function requestModel(model, contents, instruction, onUpdate, fetchImpl, s
 // the parsed reply. `onUpdate` receives the raw text as it streams in, so the
 // bubble can show the Japanese before the meaning is ready.
 export async function sendGeminiMessage(messages, language, hintWords, options = {}) {
-  const { fetchImpl = fetch, onUpdate = null, timeoutMs = TIMEOUT_MS, useN5Kanji = false } = options;
+  const {
+    fetchImpl = fetch,
+    onUpdate = null,
+    timeoutMs = TIMEOUT_MS,
+    useN5Kanji = false,
+    allowVoiceNote: explicitAllowVN = null,
+  } = options;
   if (!hasGeminiKey()) throw new Error('MISSING_KEY');
 
+  const userTurnCount = Array.isArray(messages) ? messages.filter(m => m.sender === 'user').length : 0;
+  const allowVoiceNote = typeof explicitAllowVN === 'boolean'
+    ? explicitAllowVN
+    : userTurnCount >= 3;
+
   const contents = toContents(messages);
-  const instruction = systemInstruction(language, hintWords, { useN5Kanji });
+  const instruction = systemInstruction(language, hintWords, {
+    useN5Kanji,
+    allowVoiceNote,
+    userTurnCount,
+  });
 
   let lastError = null;
   for (const model of [MODEL, FALLBACK_MODEL]) {
@@ -298,7 +328,7 @@ export async function sendGeminiMessage(messages, language, hintWords, options =
         fetchImpl,
         controller ? controller.signal : undefined,
       );
-      return parseGeminiReply(raw);
+      return parseGeminiReply(raw, { allowVoiceNote });
     } catch (error) {
       lastError = error;
       // A missing or rejected key will not get better on another model

@@ -67,6 +67,12 @@ describe('Gemini chat service', () => {
       const instructionKanaOnly = systemInstruction('id', null, { useN5Kanji: false });
       expect(instructionKanaOnly).toContain('KANA-ONLY MODE');
     });
+
+    test('enforces initial approach (PDKT) mode when allowVoiceNote is false', () => {
+      const instruction = systemInstruction('id', null, { allowVoiceNote: false, userTurnCount: 1 });
+      expect(instruction).toContain('tahap pendekatan');
+      expect(instruction).toContain('DO NOT SEND VOICE NOTES YET');
+    });
   });
 
   describe('toContents', () => {
@@ -104,6 +110,17 @@ describe('Gemini chat service', () => {
     test('detects [VN] prefix as voice note mood decision and strips tag', () => {
       const parsed = parseGeminiReply('[VN] せんぱい〜、だいすきだよ！\nsenpai~, daisuki da yo!\nSenpai~, aku suka banget sama kamu!');
       expect(parsed.isVoiceNote).toBe(true);
+      expect(parsed.jp).toBe('せんぱい〜、だいすきだよ！');
+      expect(parsed.romaji).toBe('senpai~, daisuki da yo!');
+      expect(parsed.meaning).toBe('Senpai~, aku suka banget sama kamu!');
+    });
+
+    test('suppresses voice note when allowVoiceNote is false during initial approach', () => {
+      const parsed = parseGeminiReply(
+        '[VN] せんぱい〜、だいすきだよ！\nsenpai~, daisuki da yo!\nSenpai~, aku suka banget sama kamu!',
+        { allowVoiceNote: false },
+      );
+      expect(parsed.isVoiceNote).toBe(false);
       expect(parsed.jp).toBe('せんぱい〜、だいすきだよ！');
       expect(parsed.romaji).toBe('senpai~, daisuki da yo!');
       expect(parsed.meaning).toBe('Senpai~, aku suka banget sama kamu!');
@@ -191,6 +208,38 @@ describe('Gemini chat service', () => {
       });
 
       expect(asked.body.systemInstruction.parts[0].text).toContain('JLPT N5 ENABLED');
+    });
+
+    test('disallows voice note on first user reply (approach phase)', async () => {
+      if (!hasGeminiKey()) return;
+      let asked = null;
+      const fetchImpl = (url, init) => {
+        asked = { url, body: JSON.parse(init.body) };
+        return sseResponse(['[VN] はじめまして。\n', 'hajimemashite.\n', 'Salam kenal.']);
+      };
+      const parsed = await sendGeminiMessage([{ sender: 'user', text: 'halo' }], 'id', null, { fetchImpl });
+      expect(asked.body.systemInstruction.parts[0].text).toContain('tahap pendekatan');
+      expect(parsed.isVoiceNote).toBe(false);
+      expect(parsed.jp).toBe('はじめまして。');
+    });
+
+    test('allows voice note after sufficient user replies (rapport established)', async () => {
+      if (!hasGeminiKey()) return;
+      let asked = null;
+      const fetchImpl = (url, init) => {
+        asked = { url, body: JSON.parse(init.body) };
+        return sseResponse(['[VN] せんぱい〜！\n', 'senpai~!\n', 'Senpai~!']);
+      };
+      const messages = [
+        { sender: 'user', text: 'turn 1' },
+        { sender: 'bot', jp: 'bot 1' },
+        { sender: 'user', text: 'turn 2' },
+        { sender: 'bot', jp: 'bot 2' },
+        { sender: 'user', text: 'turn 3' },
+      ];
+      const parsed = await sendGeminiMessage(messages, 'id', null, { fetchImpl });
+      expect(asked.body.systemInstruction.parts[0].text).toContain('sudah akrab');
+      expect(parsed.isVoiceNote).toBe(true);
     });
 
     test('retries once on the fallback model when the first one stalls', async () => {

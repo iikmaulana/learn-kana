@@ -5365,11 +5365,12 @@ html[data-theme='dark'] .materi-chat {
 
 /* Chat header */
 .materi-chat-header {
+  position: relative;
   flex: none;
   display: flex;
   align-items: center;
   gap: 0.75em;
-  padding: 0.6em 1em;
+  padding: 0.6em 0.25em 0.6em 1em;
   background: #f0f2f5;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   z-index: 3;
@@ -5429,29 +5430,206 @@ html[data-theme='dark'] .materi-chat-header-name {
   gap: 0.3em;
 }
 
+/* WhatsApp 3-dots Menu */
+.materi-chat-menu-container {
+  position: static;
+  display: inline-flex;
+  align-items: center;
+}
+
 .materi-chat-header-btn {
-  background: transparent;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  min-height: 36px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50% !important;
   border: none;
+  background: transparent;
   color: #54656f;
   cursor: var(--cursor-pointer);
-  padding: 0.4em;
-  display: inline-flex;
-  border-radius: 50%;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
   transition: all 0.15s ease;
+  font-size: 1.25em;
+  line-height: 1;
+}
+
+.materi-chat-header-btn .icon {
+  width: 1.15em;
+  height: 1.15em;
 }
 
 html[data-theme='dark'] .materi-chat-header-btn {
-  color: #8696a0;
+  color: #ffffff;
 }
 
-.materi-chat-header-btn:hover {
+.materi-chat-header-btn:hover,
+.materi-chat-header-btn:focus,
+.materi-chat-header-btn:focus-visible,
+.materi-chat-header-btn:active,
+.materi-chat-header-btn.active {
   background: rgba(0, 0, 0, 0.08);
   color: #111b21;
+  border-radius: 50% !important;
+  outline: none;
 }
 
-html[data-theme='dark'] .materi-chat-header-btn:hover {
+html[data-theme='dark'] .materi-chat-header-btn:hover,
+html[data-theme='dark'] .materi-chat-header-btn:focus,
+html[data-theme='dark'] .materi-chat-header-btn:focus-visible,
+html[data-theme='dark'] .materi-chat-header-btn:active,
+html[data-theme='dark'] .materi-chat-header-btn.active {
   background: rgba(255, 255, 255, 0.1);
   color: #e9edef;
+  border-radius: 50% !important;
+  outline: none;
+}
+
+.materi-chat-menu-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  min-width: 220px;
+  background: #ffffff;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14), 0 2px 6px rgba(0, 0, 0, 0.06);
+  padding: 6px 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: chatMenuFadeIn 0.14s ease-out;
+}
+
+html[data-theme='dark'] .materi-chat-menu-dropdown {
+  background: #233138;
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes chatMenuFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.materi-chat-menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  width: 100%;
+  padding: 10px 16px;
+  background: none;
+  border: none;
+  font-size: 0.88em;
+  color: #111b21;
+  cursor: var(--cursor-pointer);
+  text-align: left;
+  transition: background 0.12s ease;
+  user-select: none;
+}
+
+html[data-theme='dark'] .materi-chat-menu-item {
+  color: #d1d7db;
+}
+
+.materi-chat-menu-item:hover,
+.materi-chat-menu-item:focus-visible {
+  background: #f0f2f5;
+  outline: none;
+}
+
+html[data-theme='dark'] .materi-chat-menu-item:hover,
+html[data-theme='dark'] .materi-chat-menu-item:focus-visible {
+  background: #182229;
+}
+
+.materi-chat-menu-item-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.materi-chat-menu-item-icon {
+  font-size: 1.1em;
+  opacity: 0.85;
+}
+
+.materi-chat-menu-item-text {
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.materi-chat-menu-switch {
+  width: 32px;
+  height: 18px;
+  background: #b0bec5;
+  border-radius: 10px;
+  position: relative;
+  transition: background 0.2s ease;
+  flex-shrink: 0;
+}
+
+html[data-theme='dark'] .materi-chat-menu-switch {
+  background: #475a64;
+}
+
+.materi-chat-menu-switch.active {
+  background: #00a884;
+}
+
+.materi-chat-menu-switch-thumb {
+  width: 14px;
+  height: 14px;
+  background: #ffffff;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+.materi-chat-menu-switch.active .materi-chat-menu-switch-thumb {
+  transform: translateX(14px);
+}
+
+.materi-chat-menu-divider {
+  height: 1px;
+  background: #e9edef;
+  margin: 5px 0;
+}
+
+html[data-theme='dark'] .materi-chat-menu-divider {
+  background: #2a3942;
+}
+
+.materi-chat-menu-item.danger {
+  color: #ea0038;
+}
+
+html[data-theme='dark'] .materi-chat-menu-item.danger {
+  color: #f15c6d;
+}
+
+.materi-chat-menu-item.danger:hover {
+  background: rgba(234, 0, 56, 0.08);
+}
+
+html[data-theme='dark'] .materi-chat-menu-item.danger:hover {
+  background: rgba(241, 92, 109, 0.12);
 }
 
 .materi-chat-banner {
@@ -5755,6 +5933,73 @@ html[data-theme='dark'] .materi-chat-meaning {
 
 html[data-theme='dark'] .materi-chat-meaning.user {
   color: #d1d7db;
+}
+
+/* WhatsApp Timestamp & Read Receipts */
+.materi-chat-bubble-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 3px;
+  margin-top: 0.25em;
+  font-size: 0.68em;
+  line-height: 1;
+  color: #667781;
+  user-select: none;
+}
+
+html[data-theme='dark'] .materi-chat-bubble-footer {
+  color: #8696a0;
+}
+
+.materi-chat-msg.user .materi-chat-bubble-footer {
+  color: #597a65;
+}
+
+html[data-theme='dark'] .materi-chat-msg.user .materi-chat-bubble-footer {
+  color: #8da697;
+}
+
+.materi-chat-time {
+  font-size: 1em;
+  letter-spacing: 0.02em;
+}
+
+.materi-chat-ticks {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 1px;
+}
+
+.materi-chat-ticks .icon {
+  width: 1.18em;
+  height: 1.18em;
+}
+
+/* 1 grey checkmark: sent */
+.materi-chat-ticks.ticks-sent {
+  color: inherit;
+  opacity: 0.8;
+}
+
+/* 2 grey checkmarks: delivered */
+.materi-chat-ticks.ticks-delivered {
+  color: inherit;
+  opacity: 0.9;
+}
+
+/* 2 blue checkmarks: read */
+.materi-chat-ticks.ticks-read {
+  color: #34b7f1;
+}
+
+html[data-theme='dark'] .materi-chat-ticks.ticks-read {
+  color: #53bdeb;
+}
+
+.materi-chat-vn-time-stamp {
+  font-size: 0.95em;
+  opacity: 0.9;
 }
 
 /* WhatsApp Voice Note Bubble */

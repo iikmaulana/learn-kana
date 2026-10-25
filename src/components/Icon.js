@@ -218,6 +218,15 @@ const ICON_PATHS = {
     <rect x="6" y="4" width="4" height="16" rx="1" fill="currentColor" stroke="none" />
     <rect x="14" y="4" width="4" height="16" rx="1" fill="currentColor" stroke="none" />
   </>,
+  'more-vertical': <>
+    <circle cx="12" cy="5" r="2.3" fill="currentColor" stroke="none" />
+    <circle cx="12" cy="12" r="2.3" fill="currentColor" stroke="none" />
+    <circle cx="12" cy="19" r="2.3" fill="currentColor" stroke="none" />
+  </>,
+  'check-check': <>
+    <path d="M18 6 7 17l-5-5" />
+    <path d="m22 10-7.5 7.5L13 16" />
+  </>,
 };
 
 // Sized in em so an icon matches the text next to it; decorative unless a title is given

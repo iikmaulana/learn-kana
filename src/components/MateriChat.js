@@ -20,11 +20,20 @@ export const VN_BARS = [
   30, 50, 75, 40, 60, 90, 70, 45, 85, 100, 65, 50, 75, 90, 60, 40, 70, 85, 50, 65, 40, 55, 30
 ];
 
-function formatTime(seconds) {
+export function formatTime(seconds) {
   if (!seconds || isNaN(seconds) || !isFinite(seconds)) return '0:00';
   const mins = Math.floor(seconds / 60);
   const secs = Math.floor(seconds % 60);
   return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+}
+
+export function formatMessageTime(timestamp) {
+  if (!timestamp) return '';
+  const date = new Date(timestamp);
+  if (isNaN(date.getTime())) return '';
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+  return `${hours}:${minutes}`;
 }
 
 /* The Chat tab: a free conversation with the AI tutor (Gemini).
@@ -37,11 +46,53 @@ function formatTime(seconds) {
  * panel provides quick response phrases and kana typing tips.
  */
 
-const OPENING = {
-  jp: 'ヤッホー、せんぱい〜！おなまえは、なんですか〜？',
-  romaji: 'yahho-, senpai~! onamae wa, nan desu ka~?',
-  meaningKey: 'chatOpeningMeaning',
-};
+export const OPENING_QUESTIONS = [
+  {
+    jp: 'ヤッホー、せんぱい〜！おなまえは、なんですか〜？',
+    romaji: 'yahho-, senpai~! onamae wa, nan desu ka~?',
+    meaningKey: 'chatOpeningMeaning',
+    meaningId: 'Yahho, Senpai~! Nama kamu siapa nih? Kenalan dong nyaa~',
+    meaningEn: 'Yahho, Senpai~! What is your name? Introduce yourself nyaa~',
+  },
+  {
+    jp: 'はじめまして、せんぱい〜！どこから きたの〜？',
+    romaji: 'hajimemashite, senpai~! doko kara kita no~?',
+    meaningId: 'Salam kenal, Senpai~! Kamu asalnya dari mana nih? Kasih tau Sora dong~',
+    meaningEn: 'Nice to meet you, Senpai~! Where are you from? Tell Sora~',
+  },
+  {
+    jp: 'せんぱい〜！しゅみは なんですか〜？すきな こと、おしえて〜！',
+    romaji: 'senpai~! shumi wa nan desu ka~? sukina koto, oshiete~!',
+    meaningId: 'Senpai~! Hobimu apa nih? Ceritain hal yang kamu suka dong ke Sora~!',
+    meaningEn: 'Senpai~! What is your hobby? Tell me what you like~!',
+  },
+  {
+    jp: 'ヤッホー、せんぱい！すきな たべものは なに〜？おしえて〜！',
+    romaji: 'yahho-, senpai! sukina tabemono wa nani~? oshiete~!',
+    meaningId: 'Yahho, Senpai! Makanan kesukaanmu apa nih? Kasih tau dong~!',
+    meaningEn: 'Yahho, Senpai! What is your favorite food? Tell me~!',
+  },
+  {
+    jp: 'はじめまして〜！どうして にほんごを べんきょう してるの〜？',
+    romaji: 'hajimemashite~! doushite nihongo o benkyou shiteru no~?',
+    meaningId: 'Salam kenal~! Kenapa kamu tertarik belajar bahasa Jepang nih?',
+    meaningEn: 'Nice to meet you~! Why are you studying Japanese?',
+  },
+  {
+    jp: 'せんぱい〜、はじめまして！すきな アニメとか ある〜？',
+    romaji: 'senpai~, hajimemashite! sukina anime toka aru~?',
+    meaningId: 'Senpai~, salam kenal! Ada anime kesukaan yang sering kamu tonton nggak?',
+    meaningEn: 'Senpai~, nice to meet you! Do you have any favorite anime you watch?',
+  },
+  {
+    jp: 'ヤッホー、せんぱい〜！きょうの きぶんは どう〜？',
+    romaji: 'yahho-, senpai~! kyou no kibun wa dou~?',
+    meaningId: 'Yahho, Senpai~! Hari ini gimana kabarnya / perasaannya? Santuy kah?',
+    meaningEn: 'Yahho, Senpai~! How are you feeling today?',
+  },
+];
+
+export const OPENING = OPENING_QUESTIONS[0];
 
 let idCounter = 0;
 function nextId(prefix) {
@@ -49,8 +100,16 @@ function nextId(prefix) {
   return `${prefix}-${Date.now()}-${idCounter}`;
 }
 
-function createOpening() {
-  return { id: nextId('bot'), sender: 'bot', ...OPENING };
+export function getRandomOpeningQuestion() {
+  const index = Math.floor(Math.random() * OPENING_QUESTIONS.length);
+  return OPENING_QUESTIONS[index];
+}
+
+export function createOpening(index = null) {
+  const chosen = (typeof index === 'number' && index >= 0 && index < OPENING_QUESTIONS.length)
+    ? OPENING_QUESTIONS[index]
+    : getRandomOpeningQuestion();
+  return { id: nextId('bot'), sender: 'bot', timestamp: Date.now(), ...chosen };
 }
 
 export default function MateriChat() {
@@ -60,7 +119,7 @@ export default function MateriChat() {
   const [messages, setMessages] = useState(() => {
     const saved = readJson(CHAT_HISTORY_KEY, null);
     if (Array.isArray(saved) && saved.length > 0) {
-      return saved;
+      return saved.map(m => (m.timestamp ? m : { ...m, timestamp: Date.now() }));
     }
     return [createOpening()];
   });
@@ -70,6 +129,7 @@ export default function MateriChat() {
   const [errorNotice, setErrorNotice] = useState(aiAvailable ? null : 'chatAiNoKeyNotice');
   const [revealedMessages, setRevealedMessages] = useState({});
   const [showHelpPanel, setShowHelpPanel] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
   const [autoKana, setAutoKana] = useState(true);
   const [showRomaji, setShowRomaji] = useState(() => {
     const saved = readJson(CHAT_SHOW_ROMAJI_KEY, null);
@@ -89,6 +149,7 @@ export default function MateriChat() {
   const messagesEndRef = useRef(null);
   const threadRef = useRef(null);
   const inputRef = useRef(null);
+  const menuRef = useRef(null);
   // The conversation a pending reply belongs to: a restart drops late replies
   const conversationRef = useRef(0);
   const speechSupported = isSpeechSupported() || hasElevenLabsKey();
@@ -96,6 +157,26 @@ export default function MateriChat() {
   // Find the latest bot message to generate dynamic quick reply phrases
   const lastBotMessage = [...messages].reverse().find(m => m.sender === 'bot') || messages[0];
   const quickReplies = getQuickRepliesForQuestion(lastBotMessage?.jp || OPENING.jp);
+
+  useEffect(() => {
+    if (!showMenu) return;
+    const handlePointerDown = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setShowMenu(false);
+      }
+    };
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setShowMenu(false);
+      }
+    };
+    document.addEventListener('pointerdown', handlePointerDown);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('pointerdown', handlePointerDown);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [showMenu]);
 
   useEffect(() => {
     return () => {
@@ -209,9 +290,18 @@ export default function MateriChat() {
       inputRef.current.style.height = 'auto';
     }
     setShowHelpPanel(false);
+    setShowMenu(false);
 
+    const now = Date.now();
     const localMeaning = lookupUserMeaning(text, language);
-    const userMessage = { id: nextId('user'), sender: 'user', text, meaning: localMeaning };
+    const userMessage = {
+      id: nextId('user'),
+      sender: 'user',
+      text,
+      meaning: localMeaning,
+      timestamp: now,
+      status: 'sent',
+    };
     const nextMessages = [...messages, userMessage];
     setMessages(nextMessages);
     setLoading(true);
@@ -227,23 +317,40 @@ export default function MateriChat() {
 
     const conversation = conversationRef.current;
     const streamId = nextId('bot');
+    const userTurnCount = nextMessages.filter(m => m.sender === 'user').length;
+    const allowVoiceNote = userTurnCount >= 3;
+
+    // Transition user message to 'delivered' as request starts
+    setMessages(current => current.map(m => (m.id === userMessage.id ? { ...m, status: 'delivered' } : m)));
+
     try {
       const parsed = await sendGeminiMessage(nextMessages, language, null, {
         useN5Kanji,
+        allowVoiceNote,
         onUpdate: (raw) => {
           if (conversationRef.current !== conversation) return;
-          setStreaming({ id: streamId, ...parseGeminiReply(raw) });
+          // Transition to 'read' once AI starts streaming response
+          setMessages(current => current.map(m => (m.id === userMessage.id ? { ...m, status: 'read' } : m)));
+          setStreaming({
+            id: streamId,
+            timestamp: Date.now(),
+            ...parseGeminiReply(raw, { allowVoiceNote }),
+          });
         },
       });
       if (conversationRef.current !== conversation) return;
-      setMessages(current => [...current, {
-        id: streamId,
-        sender: 'bot',
-        jp: parsed.jp,
-        romaji: parsed.romaji,
-        aiMeaning: parsed.meaning,
-        isVoiceNote: parsed.isVoiceNote,
-      }]);
+      setMessages(current => [
+        ...current.map(m => (m.sender === 'user' ? { ...m, status: 'read' } : m)),
+        {
+          id: streamId,
+          sender: 'bot',
+          jp: parsed.jp,
+          romaji: parsed.romaji,
+          aiMeaning: parsed.meaning,
+          isVoiceNote: parsed.isVoiceNote,
+          timestamp: Date.now(),
+        },
+      ]);
     } catch (err) {
       if (conversationRef.current !== conversation) return;
       let messageKey = 'chatErrorGeneral';
@@ -274,6 +381,7 @@ export default function MateriChat() {
     setInput('');
     setRevealedMessages({});
     setShowHelpPanel(false);
+    setShowMenu(false);
     setErrorNotice(aiAvailable ? null : 'chatAiNoKeyNotice');
   };
 
@@ -379,7 +487,16 @@ export default function MateriChat() {
   };
 
   const meaningTextOf = msg => {
-    const raw = msg.aiMeaning || (msg.meaningKey ? t(msg.meaningKey) : null);
+    let raw = msg.aiMeaning;
+    if (!raw && msg.meaningKey) {
+      raw = t(msg.meaningKey);
+    }
+    if (!raw) {
+      raw = language === 'id' ? (msg.meaningId || msg.meaningEn) : (msg.meaningEn || msg.meaningId);
+    }
+    if (!raw) {
+      raw = msg.meaning || null;
+    }
     return cleanMeaning(raw);
   };
 
@@ -390,6 +507,7 @@ export default function MateriChat() {
     const romaji = toRomaji(msg.text);
     const meaning = msg.meaning;
     const isHelpActive = (isRomajiVisible && Boolean(romaji)) || (isMeaningVisible && Boolean(meaning));
+    const status = msg.status || 'read';
 
     return (
       <div key={msg.id} className='materi-chat-msg user'>
@@ -428,6 +546,15 @@ export default function MateriChat() {
               {isMeaningVisible && meaning && <div className='materi-chat-meaning user'>{meaning}</div>}
             </div>
           )}
+          <div className='materi-chat-bubble-footer'>
+            <span className='materi-chat-time'>{formatMessageTime(msg.timestamp || Date.now())}</span>
+            <span
+              className={`materi-chat-ticks ticks-${status}`}
+              title={status === 'sent' ? t('chatStatusSent') : status === 'delivered' ? t('chatStatusDelivered') : t('chatStatusRead')}
+            >
+              <Icon name={status === 'sent' ? 'check' : 'check-check'} />
+            </span>
+          </div>
         </div>
       </div>
     );
@@ -543,6 +670,7 @@ export default function MateriChat() {
                 <div className='materi-chat-vn-meta'>
                   <span className='materi-chat-vn-time'>{displayTime}</span>
                   <span className='materi-chat-vn-badge'>{t('chatVoiceNoteLabel')}</span>
+                  <span className='materi-chat-time materi-chat-vn-time-stamp'>{formatMessageTime(msg.timestamp || Date.now())}</span>
                 </div>
               </div>
 
@@ -615,6 +743,9 @@ export default function MateriChat() {
               {isMeaningVisible && meaning && <div className='materi-chat-meaning'>{meaning}</div>}
             </div>
           )}
+          <div className='materi-chat-bubble-footer'>
+            <span className='materi-chat-time'>{formatMessageTime(msg.timestamp || Date.now())}</span>
+          </div>
         </div>
       </div>
     );
@@ -633,15 +764,92 @@ export default function MateriChat() {
           </span>
         </div>
         <div className='materi-chat-header-actions'>
-          <button
-            type='button'
-            className='materi-chat-header-btn'
-            onClick={handleReset}
-            title={t('chatClearHistory')}
-            aria-label={t('chatClearHistory')}
-          >
-            <Icon name='trash' />
-          </button>
+          <div className='materi-chat-menu-container' ref={menuRef}>
+            <button
+              type='button'
+              className={`materi-chat-header-btn ${showMenu ? 'active' : ''}`}
+              onClick={() => setShowMenu(prev => !prev)}
+              title={t('chatMenu')}
+              aria-label={t('chatMenu')}
+              aria-haspopup='menu'
+              aria-expanded={showMenu}
+            >
+              <Icon name='more-vertical' />
+            </button>
+
+            {showMenu && (
+              <div className='materi-chat-menu-dropdown' role='menu'>
+                <button
+                  type='button'
+                  className='materi-chat-menu-item'
+                  onClick={toggleAutoKana}
+                  role='menuitemcheckbox'
+                  aria-checked={autoKana}
+                >
+                  <span className='materi-chat-menu-item-text'>{t('chatToggleAutoKana')}</span>
+                  <span className={`materi-chat-menu-switch ${autoKana ? 'active' : ''}`} aria-hidden='true'>
+                    <span className='materi-chat-menu-switch-thumb' />
+                  </span>
+                </button>
+
+                <button
+                  type='button'
+                  className='materi-chat-menu-item'
+                  onClick={toggleShowRomaji}
+                  role='menuitemcheckbox'
+                  aria-checked={showRomaji}
+                >
+                  <span className='materi-chat-menu-item-text'>{t('chatToggleRomaji')}</span>
+                  <span className={`materi-chat-menu-switch ${showRomaji ? 'active' : ''}`} aria-hidden='true'>
+                    <span className='materi-chat-menu-switch-thumb' />
+                  </span>
+                </button>
+
+                <button
+                  type='button'
+                  className='materi-chat-menu-item'
+                  onClick={toggleShowMeaning}
+                  role='menuitemcheckbox'
+                  aria-checked={showMeaning}
+                >
+                  <span className='materi-chat-menu-item-text'>{t('chatToggleMeaning')}</span>
+                  <span className={`materi-chat-menu-switch ${showMeaning ? 'active' : ''}`} aria-hidden='true'>
+                    <span className='materi-chat-menu-switch-thumb' />
+                  </span>
+                </button>
+
+                <button
+                  type='button'
+                  className='materi-chat-menu-item'
+                  onClick={toggleUseN5Kanji}
+                  role='menuitemcheckbox'
+                  aria-checked={useN5Kanji}
+                >
+                  <span className='materi-chat-menu-item-text'>{t('chatToggleN5Kanji')}</span>
+                  <span className={`materi-chat-menu-switch ${useN5Kanji ? 'active' : ''}`} aria-hidden='true'>
+                    <span className='materi-chat-menu-switch-thumb' />
+                  </span>
+                </button>
+
+                <div className='materi-chat-menu-divider' role='separator' />
+
+                <button
+                  type='button'
+                  className='materi-chat-menu-item danger'
+                  onClick={() => {
+                    handleReset();
+                    setShowMenu(false);
+                  }}
+                  role='menuitem'
+                >
+                  <span className='materi-chat-menu-item-content'>
+                    <Icon name='trash' className='materi-chat-menu-item-icon' />
+                    <span className='materi-chat-menu-item-text'>{t('chatClearHistory')}</span>
+                  </span>
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
@@ -697,79 +905,29 @@ export default function MateriChat() {
             </button>
           </div>
 
-          <div className='materi-chat-help-section'>
-            <div className='materi-chat-help-section-title'>{t('chatHelpQuickPhrases')}</div>
-            <div className='materi-chat-phrase-grid'>
-              {quickReplies.map(phrase => (
-                <button
-                  key={phrase.jp}
-                  type='button'
-                  className='materi-chat-phrase-chip'
-                  onClick={() => handlePickPhrase(phrase.jp)}
-                  title={phrase[language] || phrase.en}
-                >
-                  <span className='materi-chat-phrase-jp' lang='ja'>{phrase.jp}</span>
-                  <span className='materi-chat-phrase-meaning'>{phrase[language] || phrase.en}</span>
-                </button>
-              ))}
+          {quickReplies.length > 0 && (
+            <div className='materi-chat-help-section'>
+              <div className='materi-chat-help-section-title'>{t('chatHelpQuickPhrases')}</div>
+              <div className='materi-chat-phrase-grid'>
+                {quickReplies.map(phrase => (
+                  <button
+                    key={phrase.jp}
+                    type='button'
+                    className='materi-chat-phrase-chip'
+                    onClick={() => handlePickPhrase(phrase.jp)}
+                    title={phrase[language] || phrase.en}
+                  >
+                    <span className='materi-chat-phrase-jp' lang='ja'>{phrase.jp}</span>
+                    <span className='materi-chat-phrase-meaning'>{phrase[language] || phrase.en}</span>
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
 
           <div className='materi-chat-help-section'>
             <div className='materi-chat-help-section-title'>{t('chatHelpTypingGuide')}</div>
             <p className='materi-chat-help-tips-text'>{t('chatHelpTypingDetail')}</p>
-          </div>
-
-          <div className='materi-chat-help-footer'>
-            <div className='materi-chat-help-toggles'>
-              <button
-                type='button'
-                className={`materi-chat-help-toggle-btn ${autoKana ? 'active' : ''}`}
-                onClick={toggleAutoKana}
-                aria-pressed={autoKana}
-              >
-                <Icon name={autoKana ? 'check' : 'type'} />
-                <span>{t('chatToggleAutoKana')}</span>
-              </button>
-              <button
-                type='button'
-                className={`materi-chat-help-toggle-btn ${showRomaji ? 'active' : ''}`}
-                onClick={toggleShowRomaji}
-                aria-pressed={showRomaji}
-              >
-                <Icon name={showRomaji ? 'check' : 'help-circle'} />
-                <span>{t('chatToggleRomaji')}</span>
-              </button>
-              <button
-                type='button'
-                className={`materi-chat-help-toggle-btn ${showMeaning ? 'active' : ''}`}
-                onClick={toggleShowMeaning}
-                aria-pressed={showMeaning}
-              >
-                <Icon name={showMeaning ? 'check' : 'help-circle'} />
-                <span>{t('chatToggleMeaning')}</span>
-              </button>
-              <button
-                type='button'
-                className={`materi-chat-help-toggle-btn ${useN5Kanji ? 'active' : ''}`}
-                onClick={toggleUseN5Kanji}
-                aria-pressed={useN5Kanji}
-              >
-                <Icon name={useN5Kanji ? 'check' : 'help-circle'} />
-                <span>{t('chatToggleN5Kanji')}</span>
-              </button>
-            </div>
-            <div className='materi-chat-help-actions-row'>
-              <button
-                type='button'
-                className='materi-chat-help-clear-btn'
-                onClick={handleReset}
-                title={t('chatClearHistory')}
-              >
-                <Icon name='trash' />
-                <span>{t('chatClearHistory')}</span>
-              </button>
-            </div>
           </div>
         </div>
       )}

@@ -1,7 +1,7 @@
 import React from 'react';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { LanguageProvider } from '../i18n.js';
-import MateriChat from './MateriChat.js';
+import MateriChat, { OPENING_QUESTIONS, createOpening } from './MateriChat.js';
 import { hasGeminiKey, sendGeminiMessage } from '../services/geminiChat.js';
 
 // The AI is replaced by a fake: the tests never reach the network and can
@@ -30,6 +30,7 @@ beforeEach(() => {
   window.scrollTo = () => {};
   hasGeminiKey.mockReset().mockReturnValue(true);
   sendGeminiMessage.mockReset();
+  vi.spyOn(Math, 'random').mockReturnValue(0);
 });
 
 describe('the AI chat', () => {
@@ -106,13 +107,13 @@ describe('the AI chat', () => {
     });
   });
 
-  test('the composer help panel toggles romaji and meaning for bot messages', () => {
+  test('the header 3-dots menu toggles romaji and meaning for bot messages', () => {
     renderChat();
     const romajiText = 'yahho-, senpai~! onamae wa, nan desu ka~?';
     expect(screen.queryByText(romajiText)).toBeNull();
 
-    // the composer help button opens the panel; showing romaji via toggle
-    fireEvent.click(document.querySelector('.materi-chat-composer-help-btn'));
+    // the header 3-dots button opens the menu; showing romaji via toggle
+    fireEvent.click(document.querySelector('.materi-chat-menu-container .materi-chat-header-btn'));
     const romajiBtn = screen.getByText('Show Romaji').closest('button');
     expect(romajiBtn).not.toBeNull();
     fireEvent.click(romajiBtn);
@@ -256,6 +257,30 @@ describe('the AI chat', () => {
     expect(input.value).toContain('わたしは [なまえ] です');
   });
 
+  test('does not render quick reply chips when the bot message is not a question', async () => {
+    sendGeminiMessage.mockResolvedValue({
+      jp: 'すごいですね、せんぱい！とても じょうずです！',
+      romaji: 'sugoi desu ne, senpai! totemo jouzu desu!',
+      meaning: 'Hebat sekali, senpai! Sangat pandai!',
+    });
+
+    renderChat();
+    const input = getChatInput();
+    fireEvent.change(input, { target: { value: 'arigatou' } });
+    fireEvent.submit(input.closest('form'));
+
+    await waitFor(() => {
+      expect(screen.getByText('すごいですね、せんぱい！とても じょうずです！')).toBeInTheDocument();
+    });
+
+    // Open help panel
+    fireEvent.click(document.querySelector('.materi-chat-composer-help-btn'));
+
+    // Bot message was not a question, so no phrase chips should be displayed
+    const chips = document.querySelectorAll('.materi-chat-phrase-chip');
+    expect(chips.length).toBe(0);
+  });
+
   test('user-sent messages have a help button that toggles romaji reading', async () => {
     sendGeminiMessage.mockResolvedValue({
       jp: 'はい！',
@@ -333,8 +358,8 @@ describe('the AI chat', () => {
     // Initially romaji and meaning are hidden
     expect(screen.queryByText('yahho-, senpai~! onamae wa, nan desu ka~?')).toBeNull();
 
-    // Open help panel and activate both "Show Romaji" and "Show Meaning"
-    fireEvent.click(document.querySelector('.materi-chat-composer-help-btn'));
+    // Open header 3-dots menu and activate both "Show Romaji" and "Show Meaning"
+    fireEvent.click(document.querySelector('.materi-chat-menu-container .materi-chat-header-btn'));
     const romajiBtn = screen.getByText('Show Romaji').closest('button');
     const meaningBtn = screen.getByText('Show Meaning').closest('button');
     fireEvent.click(romajiBtn);
@@ -362,7 +387,7 @@ describe('the AI chat', () => {
     expect(screen.getByText('You are welcome!')).toBeInTheDocument();
   });
 
-  test('toggles N5 Kanji setting in help panel and passes useN5Kanji to sendGeminiMessage', async () => {
+  test('toggles N5 Kanji setting in header 3-dots menu and passes useN5Kanji to sendGeminiMessage', async () => {
     sendGeminiMessage.mockResolvedValue({
       jp: '今日は何をしますか？',
       romaji: 'kyou wa nani o shimasu ka?',
@@ -371,17 +396,17 @@ describe('the AI chat', () => {
 
     renderChat();
 
-    // Open help panel
-    fireEvent.click(document.querySelector('.materi-chat-composer-help-btn'));
+    // Open header 3-dots menu
+    fireEvent.click(document.querySelector('.materi-chat-menu-container .materi-chat-header-btn'));
 
     // Find N5 Kanji toggle button
     const n5Toggle = screen.getByText('N5 Kanji').closest('button');
     expect(n5Toggle).toBeInTheDocument();
-    expect(n5Toggle).not.toHaveClass('active');
+    expect(n5Toggle.querySelector('.materi-chat-menu-switch')).not.toHaveClass('active');
 
     // Click to enable N5 Kanji
     fireEvent.click(n5Toggle);
-    expect(n5Toggle).toHaveClass('active');
+    expect(n5Toggle.querySelector('.materi-chat-menu-switch')).toHaveClass('active');
 
     // Send a message
     const input = getChatInput();
@@ -482,5 +507,132 @@ describe('the AI chat', () => {
     });
 
     expect(document.querySelector('.materi-chat-msg.bot.voice-note')).toBeNull();
+  });
+
+  test('picks a randomized opening question based on Math.random', () => {
+    // Return index 1 from OPENING_QUESTIONS (which is the hometown/origin question)
+    vi.spyOn(Math, 'random').mockReturnValue(1 / OPENING_QUESTIONS.length);
+    renderChat();
+    expect(screen.getByText(OPENING_QUESTIONS[1].jp)).toBeInTheDocument();
+  });
+
+  test('passes allowVoiceNote: false during initial approach turns and true after rapport is built', async () => {
+    sendGeminiMessage.mockResolvedValue({
+      jp: 'こんにちは！',
+      romaji: 'konnichiwa!',
+      meaning: 'Hello!',
+      isVoiceNote: false,
+    });
+
+    renderChat();
+
+    // Turn 1
+    const input = getChatInput();
+    fireEvent.change(input, { target: { value: 'hai' } });
+    fireEvent.submit(input.closest('form'));
+
+    await waitFor(() => {
+      expect(sendGeminiMessage).toHaveBeenCalled();
+    });
+
+    expect(sendGeminiMessage.mock.calls[0][3].allowVoiceNote).toBe(false);
+
+    // Turn 2
+    fireEvent.change(input, { target: { value: 'genki' } });
+    fireEvent.submit(input.closest('form'));
+
+    await waitFor(() => {
+      expect(sendGeminiMessage).toHaveBeenCalledTimes(2);
+    });
+
+    expect(sendGeminiMessage.mock.calls[1][3].allowVoiceNote).toBe(false);
+
+    // Turn 3
+    fireEvent.change(input, { target: { value: 'hai sou desu' } });
+    fireEvent.submit(input.closest('form'));
+
+    await waitFor(() => {
+      expect(sendGeminiMessage).toHaveBeenCalledTimes(3);
+    });
+
+    expect(sendGeminiMessage.mock.calls[2][3].allowVoiceNote).toBe(true);
+  });
+
+  test('renders message timestamps and WhatsApp-style read status ticks', async () => {
+    let streamCallback;
+    sendGeminiMessage.mockImplementation((_msgs, _lang, _hints, opts) => {
+      streamCallback = opts?.onUpdate;
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve({
+            jp: 'こんにちは！',
+            romaji: 'konnichiwa!',
+            meaning: 'Hello!',
+            isVoiceNote: false,
+          });
+        }, 50);
+      });
+    });
+
+    renderChat();
+
+    // Bot greeting has a timestamp
+    const initialBotBubble = document.querySelector('.materi-chat-msg.bot');
+    expect(initialBotBubble.querySelector('.materi-chat-time')).toBeInTheDocument();
+    expect(initialBotBubble.querySelector('.materi-chat-time').textContent).toMatch(/^\d{2}:\d{2}$/);
+
+    // Send user message
+    const input = getChatInput();
+    fireEvent.change(input, { target: { value: 'ohayou' } });
+    fireEvent.submit(input.closest('form'));
+
+    const userBubble = document.querySelector('.materi-chat-msg.user');
+    expect(userBubble).toBeInTheDocument();
+
+    // User message has a timestamp
+    expect(userBubble.querySelector('.materi-chat-time')).toBeInTheDocument();
+    expect(userBubble.querySelector('.materi-chat-time').textContent).toMatch(/^\d{2}:\d{2}$/);
+
+    // Initial tick state after request starts is delivered (2 grey ticks)
+    const ticks = userBubble.querySelector('.materi-chat-ticks');
+    expect(ticks).toBeInTheDocument();
+    expect(ticks.classList.contains('ticks-delivered') || ticks.classList.contains('ticks-sent')).toBe(true);
+
+    // When bot starts streaming, status transitions to read (ticks-read)
+    if (streamCallback) {
+      act(() => {
+        streamCallback('こんにちは\nkonnichiwa\nHello');
+      });
+    }
+
+    await waitFor(() => {
+      expect(userBubble.querySelector('.materi-chat-ticks')).toHaveClass('ticks-read');
+    });
+  });
+
+  test('header 3-dots menu contains WhatsApp toggles and closes on Escape', () => {
+    renderChat();
+
+    const menuBtn = document.querySelector('.materi-chat-menu-container .materi-chat-header-btn');
+    expect(menuBtn).toBeInTheDocument();
+
+    // Initially menu is closed
+    expect(document.querySelector('.materi-chat-menu-dropdown')).toBeNull();
+
+    // Click opens menu
+    fireEvent.click(menuBtn);
+    const dropdown = document.querySelector('.materi-chat-menu-dropdown');
+    expect(dropdown).toBeInTheDocument();
+
+    // Check menu items
+    expect(screen.getByText('Auto Kana')).toBeInTheDocument();
+    expect(screen.getByText('Show Romaji')).toBeInTheDocument();
+    expect(screen.getByText('Show Meaning')).toBeInTheDocument();
+    expect(screen.getByText('N5 Kanji')).toBeInTheDocument();
+    expect(screen.getByText('Clear Chat History')).toBeInTheDocument();
+
+    // Press Escape closes menu
+    fireEvent.keyDown(document, { key: 'Escape' });
+    expect(document.querySelector('.materi-chat-menu-dropdown')).toBeNull();
   });
 });
