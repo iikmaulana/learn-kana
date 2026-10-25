@@ -254,12 +254,11 @@ html[data-theme='dark'] .navbar {
   display: none;
 }
 
-/* Desktop: notification in tab bar, settings in header */
-.navbar-tab-notif-desktop {
-  display: contents;
-}
-.navbar-settings-desktop {
-  display: inline-grid;
+/* Desktop: show the original separate action buttons */
+.navbar-desktop-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
 }
 
 .navbar-theme-toggle,
@@ -3284,17 +3283,6 @@ Notifications (navbar bell)
   display: inline-flex;
 }
 
-.notification-tab.segmented-option {
-  position: relative;
-}
-
-.notification-icon-container {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .notification-button {
   position: relative;
 }
@@ -3316,12 +3304,6 @@ Notifications (navbar bell)
   font-family: var(--ui-font);
   font-size: 0.7rem;
   line-height: 1;
-}
-
-.notification-tab .notification-badge {
-  top: -0.35rem;
-  right: -0.55rem;
-  font-size: 0.65rem;
 }
 
 /* Same look as the mode panel and the Learning Progress window */
@@ -3498,12 +3480,9 @@ Notifications (navbar bell)
     gap: 0.45em;
   }
 
-  /* Mobile: swap — hide desktop notification tab & settings header */
-  .navbar-tab-notif-desktop {
+  /* Mobile: hide desktop actions group, show mobile notification + settings tab */
+  .navbar-desktop-actions {
     display: none;
-  }
-  .navbar-settings-desktop {
-    display: none !important;
   }
 
   /* Mobile: show notification in header actions, settings in tab bar */
@@ -3512,32 +3491,6 @@ Notifications (navbar bell)
   }
   .navbar-tab-settings-mobile {
     display: inline-flex;
-  }
-
-  /* Notification in the header: round icon button style */
-  .navbar-notif-mobile .notification-menu {
-    position: relative;
-    flex: none;
-    display: inline-flex;
-  }
-  .navbar-notif-mobile .notification-tab {
-    display: inline-grid;
-    width: 2.1em;
-    height: 2.1em;
-    place-items: center;
-    padding: 0;
-    border: 1px solid #ff9a3c66;
-    border-radius: 50%;
-    background: #155263;
-    color: #ff9a3c;
-    font-size: 1.05em;
-    cursor: var(--cursor-pointer, pointer);
-  }
-  .navbar-notif-mobile .notification-tab span:not(.notification-icon-container):not(.notification-badge) {
-    display: none;
-  }
-  html[data-theme='dark'] .navbar-notif-mobile .notification-tab {
-    background: #2a373d;
   }
 
   .notification-panel {

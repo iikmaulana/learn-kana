@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useLanguage } from '../i18n';
+import { LANGUAGES, useLanguage } from '../i18n';
 import { ROUTES } from '../routes';
 import Icon from './Icon';
 import NotificationMenu from './NotificationMenu';
 import SettingsDialog from './SettingsDialog';
+import AboutDialog, { GitHubMark } from './AboutDialog';
 
 const NAVBAR_TABS = [
   { to: ROUTES.menu, icon: 'gamepad', label: 'tabGames' },
@@ -14,7 +15,10 @@ const NAVBAR_TABS = [
 ];
 
 export default function Navbar({ theme, toggleTheme }) {
-  const { t } = useLanguage();
+  const { language, setLanguage, t } = useLanguage();
+  const darkMode = theme === 'dark';
+  const [aboutOpen, setAboutOpen] = useState(false);
+  const closeAbout = useCallback(() => setAboutOpen(false), []);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const closeSettings = useCallback(() => setSettingsOpen(false), []);
 
@@ -65,7 +69,7 @@ export default function Navbar({ theme, toggleTheme }) {
         <div className='navbar-brand'>
           <span className='navbar-title'>日本語</span>
         </div>
-        {/* The app's tabs: the practice menu (Games), the Dictionary, the Materials, Chat and Notifications */}
+        {/* The app's tabs: the practice menu (Games), the Dictionary, Materials, Chat */}
         <div className='segmented-control navbar-tabs' aria-label={t('navbarTabs')}>
           {NAVBAR_TABS.map(tab => (
             <NavLink
@@ -78,10 +82,6 @@ export default function Navbar({ theme, toggleTheme }) {
               <span>{t(tab.label)}</span>
             </NavLink>
           ))}
-          {/* Desktop: Notifications in tab bar. Hidden on mobile via CSS */}
-          <div className='navbar-tab-notif-desktop'>
-            <NotificationMenu />
-          </div>
           {/* Mobile only: Settings tab in bottom bar. Hidden on desktop via CSS */}
           <button
             type='button'
@@ -94,22 +94,59 @@ export default function Navbar({ theme, toggleTheme }) {
           </button>
         </div>
         <div className='navbar-actions'>
-          {/* Desktop: Settings in header. Hidden on mobile via CSS */}
-          <button
-            type='button'
-            className='navbar-settings-toggle navbar-icon-button navbar-settings-desktop'
-            aria-label={t('navbarSettings')}
-            title={t('navbarSettings')}
-            onClick={() => setSettingsOpen(true)}
-          >
-            <Icon name='settings' />
-          </button>
           {/* Mobile only: Notifications in header. Hidden on desktop via CSS */}
           <div className='navbar-notif-mobile'>
             <NotificationMenu />
           </div>
+
+          {/* Desktop only: separate controls as originally arranged. Hidden on mobile via CSS */}
+          <div className='navbar-desktop-actions'>
+            <NotificationMenu />
+            <button
+              type='button'
+              className='navbar-theme-toggle'
+              aria-label={darkMode ? t('navbarLightMode') : t('navbarDarkMode')}
+              aria-pressed={darkMode}
+              title={darkMode ? t('navbarLightMode') : t('navbarDarkMode')}
+              onClick={toggleTheme}
+            >
+              <Icon name={darkMode ? 'sun' : 'moon'} />
+            </button>
+            <div className='segmented-control navbar-language' role='radiogroup' aria-label={t('navbarLanguage')}>
+              {LANGUAGES.map((option) => (
+                <button
+                  key={option.code}
+                  type='button'
+                  role='radio'
+                  aria-checked={language === option.code}
+                  className={'segmented-option' + (language === option.code ? ' active' : '')}
+                  onClick={() => setLanguage(option.code)}
+                >
+                  {option.label}
+                </button>
+              ))}
+            </div>
+            {deferredPrompt && (
+              <button className='navbar-install' onClick={handleInstallClick} aria-label={t('navbarInstall')} title={t('navbarInstall')}>
+                <Icon name='download' />
+                <span className='navbar-install-label'>{t('navbarInstall')}</span>
+              </button>
+            )}
+            {/* About the app: open source, its repository and the project it was forked from */}
+            <button
+              type='button'
+              className='github-icon'
+              onClick={() => setAboutOpen(true)}
+              aria-haspopup='dialog'
+              aria-label={t('navbarAbout')}
+              title={t('navbarAbout')}
+            >
+              <GitHubMark />
+            </button>
+          </div>
         </div>
       </nav>
+      {aboutOpen && <AboutDialog onClose={closeAbout} />}
       {settingsOpen && (
         <SettingsDialog
           onClose={closeSettings}
