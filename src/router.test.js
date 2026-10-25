@@ -26,6 +26,7 @@ beforeAll(() => Promise.all([
   import('./pages/InGame'),
   import('./pages/Dictionary'),
   import('./pages/Materi'),
+  import('./pages/Chat'),
   import('./NotFound'),
 ]));
 
@@ -61,6 +62,8 @@ beforeEach(() => {
   localStorage.clear();
   // The Dictionary keeps its search here
   sessionStorage.clear();
+  // jsdom has no scrollIntoView; the Chat tab scrolls its thread on mount
+  window.HTMLElement.prototype.scrollIntoView = () => { };
   practiceCharacters(['あ']);
 });
 
@@ -888,6 +891,21 @@ test('the review summary offers more new kanji once today\'s are done', async ()
   expect(document.querySelector('.kanji-srs-session-count')).toHaveTextContent(`1 / ${NEW_KANJI_PER_DAY}`);
 });
 
+test('Learning Progress loads the sentences when their tab is opened, not with the menu', async () => {
+  const today = new Date().setHours(0, 0, 0, 0);
+  localStorage.setItem('userStats', JSON.stringify({
+    'これは水です': { totalRightGuesses: 1, dailyPerformance: [{ date: today, rightGuesses: 1, wrongGuesses: 0, askForHelpCounter: 0, responseTimeSum: 2000 }] },
+  }));
+  await open('/');
+  fireEvent.click(screen.getAllByTitle(translate('en', 'menuStats'))[0]);
+  const statsTab = [...document.querySelectorAll('.progress-stats-tab')]
+    .find(tab => tab.textContent === translate('en', 'practiceLong'));
+  fireEvent.click(statsTab);
+  // The practiced sentence, once the sentences are loaded
+  expect(await screen.findByText('これは水です')).toBeInTheDocument();
+  expect(screen.queryByText(translate('en', 'statsSentencesEmpty'))).toBeNull();
+});
+
 describe('tabs', () => {
   test('the root is the Games tab, the navbar links to the Dictionary', async () => {
     await open('/');
@@ -925,6 +943,23 @@ describe('tabs', () => {
     fireEvent.click(screen.getByRole('radio', { name: translate('en', 'materiBunpou') }));
     expect(document.querySelector('.materi-list')).toHaveTextContent('〜です');
     expect(screen.getByRole('radio', { name: translate('en', 'materiBunpou') })).toHaveAttribute('aria-checked', 'true');
+  });
+
+  test('the navbar links to the Chat tab, next to the Materials', async () => {
+    await open('/');
+    const chat = screen.getByRole('link', { name: translate('en', 'tabChat') });
+    await act(async () => {
+      fireEvent.click(chat);
+    });
+    expect(path()).toBe('/chat');
+    expect(screen.getByRole('link', { name: translate('en', 'tabChat') })).toHaveAttribute('aria-current', 'page');
+    expect(document.title).toBe(translate('en', 'seoTitleChat'));
+    expect(document.querySelector('meta[name="robots"]').content).toBe('index, follow');
+
+    // The chat of the tab, not a section of the Materials any more
+    expect(document.querySelector('.materi-chat')).not.toBeNull();
+    expect(document.querySelector('.materi-list')).toBeNull();
+    expect(screen.getByPlaceholderText(translate('en', 'chatInputPlaceholder'))).toBeInTheDocument();
   });
 
   test('the dictionary searches and filters', async () => {

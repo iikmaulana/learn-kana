@@ -2763,7 +2763,8 @@ if (problems.length) {
 }
 
 // ---------- Readability check for the filter unit test ----------
-// The longPractice test expects exactly one sentence for this selection
+// What the これは水です groups can read (for information: the tests pass the
+// sentence they need with the navigation, see AGENT.md)
 {
   const groupOf = {};
   for (const group of [...Object.values(hiraganaData), ...Object.values(katakanaData)]) {

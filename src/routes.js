@@ -14,6 +14,9 @@ export const ROUTES = {
   dictionary: '/dictionary',
   // The Materials tab: the particle and grammar (bunpou) lessons
   materi: '/materi',
+  // The Chat tab: the conversation practice with the taught sentences or the
+  // AI tutor
+  chat: '/chat',
 };
 
 // Old addresses, still opened from bookmarks and installed apps: the game

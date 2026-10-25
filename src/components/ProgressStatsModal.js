@@ -2,7 +2,6 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { kanaCharacters } from '../kanaCharacters.js';
 import { useLanguage } from '../i18n';
 import { getKanjiSrsProgress, getKanjiSrsStage, getSelectedKanjiGroupTitles } from '../kanjiSrs.js';
-import { sentences, getReadableSentences } from '../sentences.js';
 import { calculateMastery, EXPERIENCE_ANSWERS, getMasteryBreakdown, getWeakestItems } from '../mastery.js';
 import { getConfusionPairs, readConfusions } from '../confusions.js';
 import { getListForPractice, getStoredPracticeMode } from '../practiceList.js';
@@ -23,6 +22,17 @@ const SRS_STAGE_LABEL_KEYS = {
 function ProgressStatsModal(props) {
     const { t, meaningOf, language } = useLanguage();
     const [activeTab, setActiveTab] = useState('characters');
+    // The sentences are a download of their own (most of the app's data, see
+    // sentences.js): loaded when their tab is opened, not with the menu
+    const [sentenceData, setSentenceData] = useState(null);
+    useEffect(() => {
+        if (!props.visible || activeTab !== 'sentences' || sentenceData) return;
+        let cancelled = false;
+        import('../sentences.js').then(module => {
+            if (!cancelled) setSentenceData({ sentences: module.sentences, getReadableSentences: module.getReadableSentences });
+        });
+        return () => { cancelled = true; };
+    }, [props.visible, activeTab, sentenceData]);
     const [userStats, setUserStats] = useState({});
     const [confusions, setConfusions] = useState({});
     const [hoveredItem, setHoveredItem] = useState(null);
@@ -192,7 +202,8 @@ function ProgressStatsModal(props) {
     // In the summary they still count against the sentences that can be read
     // with the selected groups, like the other tabs count against everything
     const getAllSentences = () => {
-        const practiced = sentences
+        if (!sentenceData) return [];
+        const practiced = sentenceData.sentences
             .map((sentence, index) => ({
                 character: sentence.jp_character,
                 romanji: sentence.romanji[0],
@@ -416,7 +427,7 @@ function ProgressStatsModal(props) {
     // like the other tabs count against everything in the tab
     let summary;
     if (activeTab === 'sentences') {
-        const readableTotal = getReadableSentences(getSelectedKanjiGroupTitles()).length;
+        const readableTotal = sentenceData ? sentenceData.getReadableSentences(getSelectedKanjiGroupTitles()).length : 0;
         const masterySum = items.reduce((sum, item) => sum + getMastery(item.character), 0);
         summary = {
             total: readableTotal,
@@ -579,7 +590,9 @@ function ProgressStatsModal(props) {
                         </div>
 
                         <div className={`progress-stats-grid-container${activeTab === 'sentences' ? ' progress-stats-sentence-grid-container' : ''}`}>
-                            {activeTab === 'sentences' && items.length === 0 ? (
+                            {activeTab === 'sentences' && !sentenceData ? (
+                                <p className='progress-stats-sentences-empty' role='status'>{t('pageLoading')}</p>
+                            ) : activeTab === 'sentences' && items.length === 0 ? (
                                 <p className='progress-stats-sentences-empty'>{t('statsSentencesEmpty')}</p>
                             ) : (
                                 <div className='progress-stats-grid' key={activeTab}>

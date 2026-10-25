@@ -19,6 +19,7 @@
     "start": "vite",
     "build": "vite build && node scripts/seo-postbuild.mjs",
     "preview": "vite preview",
+    "check:bundle": "node scripts/check-bundle.mjs",
     "test": "vitest run",
     "test:watch": "vitest",
     "lint": "eslint --max-warnings=0 --ext .js src",

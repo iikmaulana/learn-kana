@@ -11,6 +11,11 @@ const SECTIONS = [
   { value: 'bunpou', label: 'materiBunpou' },
 ];
 
+const INTROS = {
+  particles: 'materiParticlesIntro',
+  bunpou: 'materiBunpouIntro',
+};
+
 function readSection() {
   try {
     const saved = sessionStorage.getItem(SECTION_KEY);
@@ -80,7 +85,7 @@ export default function Materi() {
             ))}
           </div>
         </div>
-        <p className='materi-intro'>{t(section === 'bunpou' ? 'materiBunpouIntro' : 'materiParticlesIntro')}</p>
+        <p className='materi-intro'>{t(INTROS[section] || 'materiParticlesIntro')}</p>
         <ul className='materi-list'>
           {lessons.map(lesson => (
             <Lesson key={lesson.jp} lesson={lesson} isForm={section === 'bunpou'} />

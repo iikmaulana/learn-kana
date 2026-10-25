@@ -2,7 +2,7 @@ import React from 'react';
 import { act, fireEvent, render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import InGameCharacterShowAndInput from './InGameCharacterShowAndInput';
-import { sentences } from '../sentences.js';
+import { getReadableSentences, sentences } from '../sentences.js';
 import { kanaCharacters } from '../kanaCharacters.js';
 
 /*
@@ -14,7 +14,9 @@ import { kanaCharacters } from '../kanaCharacters.js';
  *
  * The sentence is picked at random, so instead of pinning one the tests read
  * the displayed sentence and look up its data (romaji + meaning) in
- * sentences.js.
+ * sentences.js. A test about one sentence passes it with the navigation
+ * (`only`, the way Try Problematics does): picking groups that make a single
+ * sentence readable breaks as soon as a kana-only sentence is added.
  *
  * The particles of a sentence (は, を, に...) are wrapped in their own
  * element so they can be shown in a different color than the rest.
@@ -52,7 +54,8 @@ function pressKeys(...keys) {
   keys.forEach(key => fireEvent.keyDown(window, { key }));
 }
 
-async function renderLongPractice(checkedKanas = ALL_GROUP_TITLES, { exercise = 'type' } = {}) {
+// only: the sentences the game may show (as Try Problematics passes them)
+async function renderLongPractice(checkedKanas = ALL_GROUP_TITLES, { exercise = 'type', only = null } = {}) {
   localStorage.setItem('checkedKanas', JSON.stringify(checkedKanas));
   localStorage.setItem('game-mode-sentence-exercise', exercise);
   localStorage.setItem('game-mode-practice', 'long');
@@ -64,7 +67,7 @@ async function renderLongPractice(checkedKanas = ALL_GROUP_TITLES, { exercise = 
   // The first sentence is loaded asynchronously when the game mounts
   await act(async () => {
     render(
-      <MemoryRouter>
+      <MemoryRouter initialEntries={[only ? { pathname: '/game', state: { characters: only } } : '/game']}>
         <InGameCharacterShowAndInput />
       </MemoryRouter>
     );
@@ -127,12 +130,16 @@ describe('long practice (real sentences)', () => {
   });
 
   test('only shows sentences readable with the selected groups', async () => {
-    // These are exactly the groups これは水です is made of, so it is the only
-    // sentence that can be shown (かんじ-free sentences need な / わ, etc.)
-    await renderLongPractice(['か', 'ら', 'は', 'だ', 'さ', kanjiGroupOf('水')]);
+    // The groups これは水です is made of: it is readable, a sentence with a
+    // kanji of another group (学生) is not, and what is shown is readable
+    const selection = ['か', 'ら', 'は', 'だ', 'さ', kanjiGroupOf('水')];
+    const readable = getReadableSentences(selection).map(entry => entry.jp_character);
+    expect(readable).toContain('これは水です');
+    expect(readable.some(sentence => sentence.includes('学'))).toBe(false);
+    await renderLongPractice(selection);
 
     const sentence = displayedSentence();
-    expect(sentence).toBe('これは水です');
+    expect(readable).toContain(sentence);
 
     // A filtered sentence plays like any other one: typing it reveals the meaning
     const entry = sentenceEntry(sentence);
@@ -146,9 +153,8 @@ describe('long practice (real sentences)', () => {
   });
 
   test('wraps the particles of the sentence so they can be styled differently', async () => {
-    // これは水です is the only sentence this selection can show, which makes
-    // the assertion deterministic
-    await renderLongPractice(['か', 'ら', 'は', 'だ', 'さ', kanjiGroupOf('水')]);
+    // Only これは水です, which makes the assertion deterministic
+    await renderLongPractice(ALL_GROUP_TITLES, { only: ['これは水です'] });
 
     expect(displayedSentence()).toBe('これは水です');
 
@@ -177,9 +183,8 @@ describe('long practice (real sentences)', () => {
   });
 
   test('asking for help shows furigana above the kanji instead of the romaji', async () => {
-    // これは水です is the only sentence this selection can show, which makes
-    // the assertion deterministic
-    await renderLongPractice(['か', 'ら', 'は', 'だ', 'さ', kanjiGroupOf('水')]);
+    // Only これは水です, which makes the assertion deterministic
+    await renderLongPractice(ALL_GROUP_TITLES, { only: ['これは水です'] });
 
     expect(displayedSentence()).toBe('これは水です');
 
@@ -277,8 +282,8 @@ describe('long practice (real sentences)', () => {
   });
 
   test('accepts other spellings of the sentence (Kunrei-shiki, は typed as ha)', async () => {
-    // これは水です is the only sentence this selection can show
-    await renderLongPractice(['か', 'ら', 'は', 'だ', 'さ', kanjiGroupOf('水')]);
+    // Only これは水です
+    await renderLongPractice(ALL_GROUP_TITLES, { only: ['これは水です'] });
 
     pressKeys(...'korehamizudesu'.split(''));
     expect(cursorGroup()).toHaveClass('answer-correct');
@@ -288,7 +293,7 @@ describe('long practice (real sentences)', () => {
   });
 
   test('marks only the text from the first mistake on as wrong', async () => {
-    await renderLongPractice(['か', 'ら', 'は', 'だ', 'さ', kanjiGroupOf('水')]);
+    await renderLongPractice(ALL_GROUP_TITLES, { only: ['これは水です'] });
 
     pressKeys(...'kore wa mx'.split(''));
     expect(cursorGroup()).toHaveClass('answer-wrong');
@@ -303,8 +308,8 @@ describe('long practice (real sentences)', () => {
   });
 
   test('tapping the typed answer moves the caret so a mistake in the middle can be fixed', async () => {
-    // これは水です is the only sentence this selection can show
-    await renderLongPractice(['か', 'ら', 'は', 'だ', 'さ', kanjiGroupOf('水')]);
+    // Only これは水です
+    await renderLongPractice(ALL_GROUP_TITLES, { only: ['これは水です'] });
 
     // The sentence typed with a typo in its middle: mizo instead of mizu
     pressKeys(...'korewamizodesu'.split(''));
@@ -336,7 +341,7 @@ describe('long practice (real sentences)', () => {
   });
 
   test('dims the words of the sentence that are already typed', async () => {
-    await renderLongPractice(['か', 'ら', 'は', 'だ', 'さ', kanjiGroupOf('水')]);
+    await renderLongPractice(ALL_GROUP_TITLES, { only: ['これは水です'] });
     const typedCharacters = () => [...document.querySelectorAll('#in-game-kana-character .in-game-sentence-typed')]
       .map(element => element.textContent).join('');
 
@@ -350,7 +355,7 @@ describe('long practice (real sentences)', () => {
   });
 
   test('help comes in steps: furigana, then the romaji of the word being typed', async () => {
-    await renderLongPractice(['か', 'ら', 'は', 'だ', 'さ', kanjiGroupOf('水')]);
+    await renderLongPractice(ALL_GROUP_TITLES, { only: ['これは水です'] });
     const hint = () => document.querySelector('#in-game-sentence-hint');
 
     pressKeys('?');
@@ -369,7 +374,7 @@ describe('long practice (real sentences)', () => {
   });
 
   test('shows every word of the sentence with its meaning after a correct answer', async () => {
-    await renderLongPractice(['か', 'ら', 'は', 'だ', 'さ', kanjiGroupOf('水')]);
+    await renderLongPractice(ALL_GROUP_TITLES, { only: ['これは水です'] });
 
     pressKeys(...'korewamizudesu'.split(''));
     const words = [...solution().querySelectorAll('.sentence-breakdown-word')].map(word => [
@@ -406,17 +411,16 @@ describe('long practice (real sentences)', () => {
 });
 
 /*
- * The other sentence exercises, all with これは水です (the only sentence the
- * これは水です selection can show): listening, the missing particle and
- * arranging the shuffled words.
+ * The other sentence exercises, all with これは水です: listening, the
+ * missing particle and arranging the shuffled words.
  */
 describe('sentence exercises', () => {
-  const ONE_SENTENCE = ['か', 'ら', 'は', 'だ', 'さ', kanjiGroupOf('水')];
+  const renderOneSentence = (options) => renderLongPractice(ALL_GROUP_TITLES, { ...options, only: ['これは水です'] });
   const prompt = () => document.querySelector('.in-game-sentence-prompt');
   const hint = () => document.querySelector('#in-game-sentence-hint');
 
   test('particle: the particle is hidden and only it is typed', async () => {
-    await renderLongPractice(ONE_SENTENCE, { exercise: 'particle' });
+    await renderOneSentence({ exercise: 'particle' });
 
     expect(displayedSentence()).toBe('これ？水です');
     expect(prompt()).toHaveTextContent('Type the missing particle');
@@ -440,7 +444,7 @@ describe('sentence exercises', () => {
   });
 
   test('arrange: the words are shown out of order and typed in order', async () => {
-    await renderLongPractice(ONE_SENTENCE, { exercise: 'arrange' });
+    await renderOneSentence({ exercise: 'arrange' });
     const chips = () => [...document.querySelectorAll('.in-game-sentence-chip')];
     const usedChips = () => chips().filter(chip => chip.classList.contains('is-used')).map(chip => chip.textContent);
 
@@ -479,7 +483,7 @@ describe('sentence exercises', () => {
     });
 
     test('the sentence is read out and hidden until help or a correct answer', async () => {
-      await renderLongPractice(ONE_SENTENCE, { exercise: 'listen' });
+      await renderOneSentence({ exercise: 'listen' });
 
       expect(spoken).toEqual(['これは水です']);
       expect(displayedSentence()).toBe('');
@@ -507,7 +511,7 @@ describe('sentence exercises', () => {
     test('falls back to reading when the browser cannot speak', async () => {
       delete window.SpeechSynthesisUtterance;
       delete window.speechSynthesis;
-      await renderLongPractice(ONE_SENTENCE, { exercise: 'listen' });
+      await renderOneSentence({ exercise: 'listen' });
 
       expect(displayedSentence()).toBe('これは水です');
       expect(prompt()).toBeNull();
@@ -516,9 +520,8 @@ describe('sentence exercises', () => {
 });
 
 test('never shows the same sentence twice in a row', async () => {
-  // Only これは水です and それはなんですか can be read with these groups, so
-  // the game has to alternate between them
-  await renderLongPractice(['か', 'ら', 'は', 'だ', 'さ', 'な', 'わ', kanjiGroupOf('水')]);
+  // With only これは水です and それはなんですか, the game has to alternate
+  await renderLongPractice(ALL_GROUP_TITLES, { only: ['これは水です', 'それはなんですか'] });
   let previous = displayedSentence();
   expect(['これは水です', 'それはなんですか']).toContain(previous);
   for (let round = 0; round < 10; round++) {

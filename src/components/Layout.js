@@ -2,7 +2,7 @@ import React, { Suspense, useEffect, useLayoutEffect, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { trackPageView } from '../analytics';
 import { useLanguage } from '../i18n';
-import { ROUTES } from '../routes';
+import { LEGACY_ROUTES, ROUTES } from '../routes';
 import Navbar from './Navbar';
 
 // The <meta> tag with this name, created when index.html has none
@@ -32,10 +32,14 @@ export default function Layout() {
 
     useEffect(() => {
         trackPageView(location.pathname);
-    }, [location]);
+        const appBody = document.querySelector('.app-body');
+        if (appBody) {
+            appBody.scrollTop = 0;
+        }
+    }, [location.pathname]);
 
     // Title and description of the page in the app's language. Only the menu,
-    // the Dictionary and the Materials are worth finding in search results: the
+    // the Dictionary, the Materials and Chat are worth finding in search results: the
     // game screen and unknown addresses ask search engines not to index them.
     const { t } = useLanguage();
     useEffect(() => {
@@ -43,11 +47,23 @@ export default function Layout() {
             : location.pathname === ROUTES.game ? 'game'
             : location.pathname === ROUTES.dictionary ? 'dictionary'
             : location.pathname === ROUTES.materi ? 'materi'
+            : location.pathname === ROUTES.chat ? 'chat'
             : 'notFound';
-        document.title = t({ menu: 'seoTitleMenu', game: 'seoTitleGame', dictionary: 'seoTitleDictionary', materi: 'seoTitleMateri', notFound: 'seoTitleNotFound' }[page]);
-        const description = { dictionary: 'seoDescriptionDictionary', materi: 'seoDescriptionMateri' }[page] || 'seoDescription';
+        document.title = t({
+            menu: 'seoTitleMenu',
+            game: 'seoTitleGame',
+            dictionary: 'seoTitleDictionary',
+            materi: 'seoTitleMateri',
+            chat: 'seoTitleChat',
+            notFound: 'seoTitleNotFound',
+        }[page]);
+        const description = {
+            dictionary: 'seoDescriptionDictionary',
+            materi: 'seoDescriptionMateri',
+            chat: 'seoDescriptionChat',
+        }[page] || 'seoDescription';
         metaTag('description').content = t(description);
-        metaTag('robots').content = ['menu', 'dictionary', 'materi'].includes(page) ? 'index, follow' : 'noindex, follow';
+        metaTag('robots').content = ['menu', 'dictionary', 'materi', 'chat'].includes(page) ? 'index, follow' : 'noindex, follow';
     }, [location.pathname, t]);
 
     useLayoutEffect(() => {
@@ -62,14 +78,17 @@ export default function Layout() {
         setTheme(nextTheme);
     };
 
-    // One navbar for the tabbed pages, kept mounted while switching tabs
-    const hasNavbar = [ROUTES.menu, ROUTES.dictionary, ROUTES.materi].includes(location.pathname);
+    // One navbar for every page but the game screen, which takes the whole
+    // viewport and has its own way back; kept mounted while switching tabs
+    const hasNavbar = ![ROUTES.game, LEGACY_ROUTES.game].includes(location.pathname);
     return (
-        <>
+        <div className={`app-shell${hasNavbar ? ' has-navbar' : ''}`}>
             {hasNavbar && <Navbar theme={theme} toggleTheme={toggleTheme} />}
-            <Suspense fallback={<p className='page-loading' role='status'>{t('pageLoading')}</p>}>
-                <Outlet />
-            </Suspense>
-        </>
+            <div className='app-body'>
+                <Suspense fallback={<p className='page-loading' role='status'>{t('pageLoading')}</p>}>
+                    <Outlet />
+                </Suspense>
+            </div>
+        </div>
     );
 }

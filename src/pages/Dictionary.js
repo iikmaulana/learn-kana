@@ -286,6 +286,7 @@ export default function Dictionary() {
   const searchFor = (text) => {
     changeSearch({ ...DEFAULT_SEARCH, query: text });
     window.scrollTo?.({ top: 0, behavior: 'smooth' });
+    document.querySelector('.app-body')?.scrollTo?.({ top: 0, behavior: 'smooth' });
   };
   // A game with these entries, whatever groups are picked in the menu
   // (see isDictionaryPractice in InGameCharacterShowAndInput)

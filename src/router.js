@@ -9,6 +9,7 @@ import { LEGACY_ROUTES, ROUTES } from './routes';
 const InGame = React.lazy(() => import('./pages/InGame'));
 const Dictionary = React.lazy(() => import('./pages/Dictionary'));
 const Materi = React.lazy(() => import('./pages/Materi'));
+const Chat = React.lazy(() => import('./pages/Chat'));
 const NotFound = React.lazy(() => import('./NotFound'));
 
 // The routes of the app (see routes.js for the paths and the basename)
@@ -20,6 +21,7 @@ export const appRoutes = [
       { path: ROUTES.game, element: <InGame /> },
       { path: ROUTES.dictionary, element: <Dictionary /> },
       { path: ROUTES.materi, element: <Materi /> },
+      { path: ROUTES.chat, element: <Chat /> },
       // Old addresses from bookmarks and installed apps
       { path: LEGACY_ROUTES.menu, element: <Navigate to={ROUTES.menu} replace /> },
       { path: LEGACY_ROUTES.game, element: <Navigate to={ROUTES.game} replace /> },

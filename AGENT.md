@@ -17,6 +17,7 @@ node scripts/generateSentences.mjs          # regenerate the sentence data (see 
 
 npm run preview                             # serve ./build, http://localhost:3000
 npm run lint                                # ESLint (react-app rules), fails on any warning
+npm run check:bundle                        # after a build: no sentence data in the first download, under the size budget
 
 # Tests (Vitest with jsdom, see "test" in vite.config.mjs)
 npm test                                    # every test, once
@@ -29,7 +30,7 @@ The build does not lint: run `npm run lint`. GitHub Actions (`.github/workflows/
 
 ## Architecture
 
-**Routing** (`src/routes.js`, `src/router.js`): the navbar has two tabs, Games at `/` (the menu, `App` → `GameMenu`) and Dictionary at `/dictionary` (`src/pages/Dictionary.js`, data and search in `src/dictionary.js`); the game is at `/game`. Keep every route one level deep (see `routes.js`). Only the menu is in the first download: the other pages are `React.lazy` in `router.js` (the `Suspense` is in `Layout`, which also renders the one `Navbar` of the tabbed pages). The sentence data (`sentences.js`, `bunpou.js` and what imports them) must stay out of the menu's static imports: the menu loads it with `import()` when a sentence or grammar practice is picked, and the menu options live in `practiceOptions.js`. The old `/learn-kana` and `/learn-kana∕game` addresses (`∕` is U+2215 DIVISION SLASH) redirect to the new ones.
+**Routing** (`src/routes.js`, `src/router.js`): the navbar has two tabs, Games at `/` (the menu, `App` → `GameMenu`) and Dictionary at `/dictionary` (`src/pages/Dictionary.js`, data and search in `src/dictionary.js`); the game is at `/game`. Keep every route one level deep (see `routes.js`). Only the menu is in the first download: the other pages are `React.lazy` in `router.js` (the `Suspense` is in `Layout`, which also renders the one `Navbar` of the tabbed pages). The sentence data (`sentences.js`, `bunpou.js` and what imports them) must stay out of the menu's static imports: the menu loads it with `import()` when a sentence or grammar practice is picked, Learning Progress (`ProgressStatsModal`) when its sentences tab is opened, and the menu options live in `practiceOptions.js`. `npm run check:bundle` (in CI, after the build) fails when the first download has sentence data again or grows over its budget. The old `/learn-kana` and `/learn-kana∕game` addresses (`∕` is U+2215 DIVISION SLASH) redirect to the new ones.
 
 **Storage** (`src/storage.js`): read and write through its helpers (`readJson`, `write`, `readUserStats` / `writeUserStats`, `readSelectedGroups` / `writeSelectedGroups`): they never throw on corrupt data, blocked storage or a full quota (a failed save fires `STORAGE_FULL_EVENT`, which the navbar notifications pick up). When the layout of a stored value changes, add a function at the end of `MIGRATIONS` (never edit a shipped one); migrations run at startup and after a backup is restored.
 
@@ -58,7 +59,7 @@ The build does not lint: run `npm run lint`. GitHub Actions (`.github/workflows/
 
 ## Tests
 
-Tests live next to the code (`src/**/*.test.js`). Game-screen tests render `InGameCharacterShowAndInput` and drive it with `fireEvent.keyDown(window, { key })`. Since questions are picked at random, tests pin one by selecting groups that make exactly one word or sentence readable (e.g. `['か','ら','は','だ','さ', <kanji group of 水>]` → only これは水です). A test that ends while an answer is shown should tap Next, or its Enter listener leaks into the next test.
+Tests live next to the code (`src/**/*.test.js`). Game-screen tests render `InGameCharacterShowAndInput` and drive it with `fireEvent.keyDown(window, { key })`. Since questions are picked at random, a test about one question passes it with the navigation state, the way Try Problematics does (`{ pathname: '/game', state: { characters: ['これは水です'] } }`, see `renderLongPractice(..., { only })`). Do not pin one by picking groups that make a single sentence readable: any kana-only sentence added later makes those groups read more than one. A test that ends while an answer is shown should tap Next, or its Enter listener leaks into the next test.
 
 ## Conventions
 
