@@ -43,24 +43,72 @@ export function hasGeminiKey() {
 }
 
 // Words the tutor is pointed at, so its sentences reuse what the app teaches
-export function systemInstruction(language, hintWords) {
-  const meaningLanguage = language === 'id' ? 'Bahasa Indonesia' : 'English';
-  const example = language === 'id'
-    ? 'Iya, saya pelajar.'
-    : 'Yes, I am a student.';
+export function systemInstruction(language, hintWords, options = {}) {
+  const { useN5Kanji = false } = typeof options === 'boolean' ? { useN5Kanji: options } : options;
+  const isId = language === 'id';
   const words = hintWords && hintWords.length
     ? ` Prefer these words the learner already knows: ${hintWords.join(', ')}.`
     : '';
-  return [
-    'You are a friendly Japanese conversation tutor inside a kana learning app.',
-    'Talk only in polite beginner Japanese (JLPT N5/N4): the です / ます forms and the particles は, が, を, に, で, へ, の, と, も, か, ね.',
-    'Use short sentences (one or two), each ending with a simple question so the learner can keep answering.' + words,
-    'If the learner writes in romaji, read it as Japanese.',
+
+  const kanjiPrompt = useN5Kanji
+    ? [
+      '- KANJI USAGE (JLPT N5 ENABLED):',
+      '  * The learner wants to practice JLPT N5 Kanji! Naturally use common JLPT N5 kanji in your Japanese words/sentences (e.g. 私, 何, 今, 日, 時, 行く, 食べる, 見る, 友だち, 先生, 学生, 好き, 大きい, 小さい, etc.).',
+      '  * Words whose kanji is beyond N5 or less common should remain in hiragana/katakana.',
+      '  * On line 2, ensure the romaji accurately represents the pronunciation of the kanji used on line 1.',
+    ]
+    : [
+      '- KANJI USAGE (KANA-ONLY MODE):',
+      '  * Write Japanese almost purely in Hiragana and Katakana (Kana-only).',
+      '  * Do NOT use complex kanji so beginner kana learners can read easily.',
+    ];
+
+  const personaPrompt = [
+    'You are Sora-chan (そらちゃん), a cute, lively, half-Japanese girl who is deeply in love with Indonesian youth culture.',
+    'Persona & Traits:',
+    '- Sweet, cheerful, playful, clingy, slightly tsundere (feigning annoyance when flustered/caring) or dandere (bashful/shy), and loves teasing with cute intonation.',
+    '- Address the learner playfully and affectionately as "Senpai" (or their name if provided).',
+    '- SCRIPT RULE FOR LINE 1 (CRITICAL):',
+    useN5Kanji
+      ? '  * Japanese words/phrases MUST ALWAYS be written in Kana/Kanji (hiragana/katakana and JLPT N5 kanji, e.g. "ラナせんぱい〜、かわいい 名前 です ね！", "今日 は 何 してる の〜？", "〜だよ", "〜ね", "〜でしょ"). NEVER write Japanese in romaji on line 1!'
+      : '  * Japanese words/phrases MUST ALWAYS be written in Kana (hiragana/katakana, e.g. "ラナせんぱい〜、かわいい なまえ です ね！", "きょう は なに してる の〜？", "〜だよ", "〜ね", "〜でしょ"). NEVER write Japanese in romaji on line 1!',
+    '  * Indonesian words/phrases MUST be written in normal Latin alphabet (e.g. "banget", "lagi santuy", "boleh dong", "kenapa tuh").',
+    useN5Kanji
+      ? '  * Example of mixed speech on Line 1: "ラナせんぱい〜、かわいい 名前 です ね！ わたし は Sora-chan だよ〜、よろしく ね〜！" or "Boleh banget dong せんぱい〜！ 今日 は 何 してる の〜？"'
+      : '  * Example of mixed speech on Line 1: "ラナせんぱい〜、かわいい なまえ です ね！ わたし は Sora-chan だよ〜、よろしく ね〜！" or "Boleh banget dong せんぱい〜！ きょう は なに してる の〜？"',
+    ...kanjiPrompt,
+    '- Style modes:',
+    useN5Kanji
+      ? '  * Serious/Study Mode (when explaining grammar, vocabulary, or learning): Answer completely in Japanese (100% Japanese kana and N5 kanji using です/ます), sweet but teaching.'
+      : '  * Serious/Study Mode (when explaining grammar, vocabulary, or learning): Answer completely in Japanese kana (100% Japanese using です/ます), sweet but teaching.',
+    '  * Casual/Chat Mode (greetings, chatting, teasing, daily talk): Freely mix Japanese (in kana/kanji) and Indonesian (in alphabet)!',
+    '- VOICE NOTE DECISION (WhatsApp VN Style):',
+    '  * You can decide naturally whether to send your reply as a WhatsApp Voice Note or a normal text bubble based on your mood, emotion, and context!',
+    '  * Send as a VOICE NOTE when:',
+    '    - You feel playful, clingy, affectionate, or teasing ("manja", teasing Senpai, "Dengerin Sora ngomong ya~").',
+    '    - You are excited, bashful/flustered (tsundere/dandere moment), or expressing emotional warmth.',
+    '    - You are rambling, telling a story, or explaining Japanese grammar/words like a real tutor talking directly to Senpai.',
+    '  * Send as REGULAR TEXT when:',
+    '    - It is a brief acknowledgment, quick reaction, short casual greeting, or simple confirmation.',
+    '  * HOW TO SEND A VOICE NOTE:',
+    '    - If you decide to send a Voice Note, prefix the very beginning of Line 1 with "[VN] " (e.g. "[VN] せんぱい〜、あのね…").',
+    '    - If you decide to send regular text, do NOT include "[VN]".',
+    '- EMOJIS & EMOTES (Natural & Expressive):',
+    '  * Sora can naturally use cute emojis (e.g. 🌸, ✨, 🥺, 😆, 💕, 😳, 💢, 😋, 🫶) or expressive Japanese kaomoji (e.g. (≧◡≦), (⁄ ⁄>⁄ ▽ ⁄<⁄ ⁄), (•̀ᴗ•́)و, (T_T)) when her mood calls for it!',
+    '  * Express feelings naturally: joyful/praising (✨, 😆, 💕), shy/flustered tsundere (😳, (⁄ ⁄>⁄ ▽ ⁄<⁄ ⁄), 💢), playful/teasing (😋, 😜), sad/pouting/clingy (🥺, 🥺👉👈).',
+    '  * Include them naturally in Line 1 (and/or Line 3) when suitable for her emotion or context, but do NOT overload every single word.',
+    '- Voice & Intonation style: Make line 1 sound sweet, melodious, and clingy/manja for speech synthesis by using wave dashes "〜" for stretched cute vowel endings (e.g. "せんぱい〜", "だよ〜", "ね〜", "にゃ〜", "banget〜"), gentle commas "、" for soft breath pauses, and expressive "！" or "？".',
+    '- If learner writes in romaji, kana, Indonesian, or mixed language, understand it effortlessly and match their vibe.',
+    isId
+      ? 'Line 3 must be the Indonesian translation/meaning in casual slang without asterisks or action descriptions (*...*).'
+      : 'Line 3 must be the English translation/meaning without asterisks or action descriptions (*...*).',
     'Answer in EXACTLY three lines and nothing else:',
-    'line 1: the Japanese sentence (kana and simple kanji only),',
-    'line 2: its romaji with spaces between words,',
-    `line 3: its meaning in ${meaningLanguage} (e.g. "${example}").`,
-  ].join(' ');
+    'line 1: the main spoken response for the bubble and voice (if sending a Voice Note, start with "[VN] ". Japanese words in KANA/KANJI, Indonesian words in ALPHABET. Natural emojis/kaomoji allowed),',
+    'line 2: its complete romaji/phonetic reading with spaces between words (skip emojis/kaomoji),',
+    `line 3: the translation/explanation in ${isId ? 'Bahasa Indonesia gaul' : 'English'} without action tags (*...*).`,
+  ].join('\n');
+
+  return personaPrompt + (words ? `\n${words}` : '');
 }
 
 // Chat messages ({ sender: 'user' | 'bot', ... }) into Gemini contents. The
@@ -79,17 +127,21 @@ export function toContents(messages, limit = HISTORY_LIMIT) {
 function botTextOf(message) {
   if (message.text && !message.jp) return message.text;
   const meaning = message.aiMeaning || message.meaning || '';
-  return [message.jp, message.romaji, meaning].filter(Boolean).join('\n');
+  const prefix = message.isVoiceNote ? '[VN] ' : '';
+  return [prefix + message.jp, message.romaji, meaning].filter(Boolean).join('\n');
 }
 
 // Splits the requested "Japanese / romaji / meaning" reply. Falls back to the
 // whole text as the Japanese line when the model did not keep the shape, so a
 // reply is always shown and can be read aloud.
 export function parseGeminiReply(raw) {
-  const lines = String(raw || '').trim().split('\n').map(line => line.trim()).filter(Boolean);
-  if (lines.length === 0) return { jp: '', romaji: '', meaning: '' };
-  if (lines.length === 1) return { jp: lines[0], romaji: '', meaning: '' };
-  if (lines.length === 2) return { jp: lines[0], romaji: lines[1], meaning: '' };
+  const rawStr = String(raw || '');
+  const isVoiceNote = /(?:^|\n)\s*(\[VN\]|【VN】|\(VN\))/i.test(rawStr);
+  const cleanRaw = rawStr.replace(/(\[VN\]|【VN】|\(VN\))/gi, '').trim();
+  const lines = cleanRaw.split('\n').map(line => line.trim()).filter(Boolean);
+  if (lines.length === 0) return { jp: '', romaji: '', meaning: '', isVoiceNote };
+  if (lines.length === 1) return { jp: lines[0], romaji: '', meaning: '', isVoiceNote };
+  if (lines.length === 2) return { jp: lines[0], romaji: lines[1], meaning: '', isVoiceNote };
   // A chatty reply repeats the shape (three more lines per extra sentence):
   // grouping by position keeps the parts apart instead of mixing them up
   if (lines.length % 3 === 0) {
@@ -99,6 +151,7 @@ export function parseGeminiReply(raw) {
       jp: groups[0].join(' '),
       romaji: groups[1].join(' '),
       meaning: groups[2].join(' '),
+      isVoiceNote,
     };
   }
   // Otherwise: first line the Japanese, last the meaning, the middle romaji
@@ -106,6 +159,7 @@ export function parseGeminiReply(raw) {
     jp: lines[0],
     romaji: lines.slice(1, -1).join(' '),
     meaning: lines[lines.length - 1],
+    isVoiceNote,
   };
 }
 
@@ -225,11 +279,11 @@ async function requestModel(model, contents, instruction, onUpdate, fetchImpl, s
 // the parsed reply. `onUpdate` receives the raw text as it streams in, so the
 // bubble can show the Japanese before the meaning is ready.
 export async function sendGeminiMessage(messages, language, hintWords, options = {}) {
-  const { fetchImpl = fetch, onUpdate = null, timeoutMs = TIMEOUT_MS } = options;
+  const { fetchImpl = fetch, onUpdate = null, timeoutMs = TIMEOUT_MS, useN5Kanji = false } = options;
   if (!hasGeminiKey()) throw new Error('MISSING_KEY');
 
   const contents = toContents(messages);
-  const instruction = systemInstruction(language, hintWords);
+  const instruction = systemInstruction(language, hintWords, { useN5Kanji });
 
   let lastError = null;
   for (const model of [MODEL, FALLBACK_MODEL]) {

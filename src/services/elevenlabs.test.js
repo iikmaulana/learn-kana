@@ -5,8 +5,8 @@ import {
   fetchElevenLabsAudio,
   playBotSpeech,
   playUserSpeech,
-  stopElevenLabsAudio,
   clearElevenLabsCache,
+  cleanTextForSpeech,
 } from './elevenlabs.js';
 import * as speechModule from '../speech.js';
 
@@ -180,5 +180,49 @@ describe('elevenlabs service', () => {
     // Repeating the same text should use cache and not fetch again
     await playBotSpeech('こんにちは');
     expect(globalThis.fetch).toHaveBeenCalledTimes(1);
+  });
+
+  test('playBotSpeech reports finite progress even when audio.duration is Infinity', async () => {
+    import.meta.env.VITE_ELEVENLABS_API_KEY = 'test-key';
+    const mockBlob = new Blob(['mock audio'], { type: 'audio/mpeg' });
+    globalThis.fetch = vi.fn().mockResolvedValue({
+      ok: true,
+      blob: () => Promise.resolve(mockBlob),
+    });
+    globalThis.URL.createObjectURL = vi.fn(() => 'blob:http://localhost/mock-audio');
+
+    let timeUpdateHandler = null;
+    const fakeAudio = {
+      play: vi.fn().mockResolvedValue(),
+      pause: vi.fn(),
+      currentTime: 1.5,
+      duration: Infinity,
+      set ontimeupdate(fn) { timeUpdateHandler = fn; },
+      get ontimeupdate() { return timeUpdateHandler; },
+      onended: null,
+    };
+    globalThis.Audio = vi.fn().mockImplementation(() => fakeAudio);
+
+    const onTimeUpdate = vi.fn();
+    await playBotSpeech('こんにちは', { onTimeUpdate });
+
+    expect(typeof timeUpdateHandler).toBe('function');
+    timeUpdateHandler();
+
+    expect(onTimeUpdate).toHaveBeenCalledWith(
+      expect.objectContaining({
+        currentTime: 1.5,
+        progress: expect.any(Number),
+      })
+    );
+    const result = onTimeUpdate.mock.calls[0][0];
+    expect(result.progress).toBeGreaterThan(0);
+    expect(Number.isFinite(result.duration)).toBe(true);
+  });
+
+  test('cleanTextForSpeech strips VN prefix, emojis, and kaomoji', () => {
+    expect(cleanTextForSpeech('[VN] こんにちは🌸')).toBe('こんにちは');
+    expect(cleanTextForSpeech('せんぱい〜！ (≧◡≦) ✨💕')).toBe('せんぱい〜！');
+    expect(cleanTextForSpeech('【VN】 まじで？ 😳')).toBe('まじで？');
   });
 });

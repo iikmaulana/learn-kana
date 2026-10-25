@@ -76,6 +76,7 @@ export default function Navbar({ theme, toggleTheme }) {
               key={tab.to}
               to={tab.to}
               end
+              aria-label={t(tab.label)}
               className={({ isActive }) =>
                 'segmented-option navbar-tab navbar-tab-' + tab.key + (isActive ? ' active' : '')
               }

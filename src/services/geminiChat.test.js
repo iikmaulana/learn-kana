@@ -50,13 +50,22 @@ describe('Gemini chat service', () => {
   describe('systemInstruction', () => {
     test('mentions JLPT polite forms and the three-line response shape', () => {
       const instruction = systemInstruction('en', ['ほん', 'ねこ']);
-      expect(instruction).toContain('polite beginner Japanese');
+      expect(instruction).toContain('Sora-chan');
       expect(instruction).toContain('EXACTLY three lines');
       expect(instruction).toContain('ほん, ねこ');
     });
 
     test('specifies Indonesian meaning when language is id', () => {
       expect(systemInstruction('id')).toContain('Bahasa Indonesia');
+    });
+
+    test('instructs N5 kanji usage when useN5Kanji is true', () => {
+      const instructionWithKanji = systemInstruction('id', null, { useN5Kanji: true });
+      expect(instructionWithKanji).toContain('JLPT N5 ENABLED');
+      expect(instructionWithKanji).toContain('JLPT N5 Kanji');
+
+      const instructionKanaOnly = systemInstruction('id', null, { useN5Kanji: false });
+      expect(instructionKanaOnly).toContain('KANA-ONLY MODE');
     });
   });
 
@@ -89,7 +98,15 @@ describe('Gemini chat service', () => {
   describe('parseGeminiReply', () => {
     test('splits clean three-line reply', () => {
       const parsed = parseGeminiReply('はい、そうです\nhai, sou desu\nYes, that is right');
-      expect(parsed).toEqual({ jp: 'はい、そうです', romaji: 'hai, sou desu', meaning: 'Yes, that is right' });
+      expect(parsed).toEqual({ jp: 'はい、そうです', romaji: 'hai, sou desu', meaning: 'Yes, that is right', isVoiceNote: false });
+    });
+
+    test('detects [VN] prefix as voice note mood decision and strips tag', () => {
+      const parsed = parseGeminiReply('[VN] せんぱい〜、だいすきだよ！\nsenpai~, daisuki da yo!\nSenpai~, aku suka banget sama kamu!');
+      expect(parsed.isVoiceNote).toBe(true);
+      expect(parsed.jp).toBe('せんぱい〜、だいすきだよ！');
+      expect(parsed.romaji).toBe('senpai~, daisuki da yo!');
+      expect(parsed.meaning).toBe('Senpai~, aku suka banget sama kamu!');
     });
 
     test('keeps two sentences of the same shape apart', () => {
@@ -100,6 +117,7 @@ describe('Gemini chat service', () => {
       expect(parsed.jp).toBe('はじめまして。 げんきですか。');
       expect(parsed.romaji).toBe('hajimemashite. genki desu ka.');
       expect(parsed.meaning).toBe('Salam kenal. Apa kabar?');
+      expect(parsed.isVoiceNote).toBe(false);
     });
 
     test('handles multi-line romaji', () => {
@@ -107,15 +125,17 @@ describe('Gemini chat service', () => {
       expect(parsed.jp).toBe('これはほんです');
       expect(parsed.romaji).toBe('kore wa hon desu');
       expect(parsed.meaning).toBe('This is a book');
+      expect(parsed.isVoiceNote).toBe(false);
     });
 
     test('handles single line gracefully', () => {
       const parsed = parseGeminiReply('こんにちは');
-      expect(parsed).toEqual({ jp: 'こんにちは', romaji: '', meaning: '' });
+      expect(parsed).toEqual({ jp: 'こんにちは', romaji: '', meaning: '', isVoiceNote: false });
     });
 
     test('handles empty reply gracefully', () => {
       expect(parseGeminiReply('').jp).toBe('');
+      expect(parseGeminiReply('').isVoiceNote).toBe(false);
     });
   });
 
@@ -138,7 +158,7 @@ describe('Gemini chat service', () => {
         { fetchImpl, onUpdate: raw => seen.push(raw) },
       );
 
-      expect(parsed).toEqual({ jp: 'はじめまして。', romaji: 'hajimemashite.', meaning: 'Salam kenal.' });
+      expect(parsed).toEqual({ jp: 'はじめまして。', romaji: 'hajimemashite.', meaning: 'Salam kenal.', isVoiceNote: false });
       // The learner sees the Japanese before the meaning is finished
       expect(seen[0]).toContain('はじめまして。');
       expect(seen[seen.length - 1]).toBe(threeLines.join(''));
@@ -156,6 +176,21 @@ describe('Gemini chat service', () => {
       expect(asked.url).toContain(`models/${MODEL}:streamGenerateContent`);
       expect(asked.body.generationConfig.thinkingConfig.thinkingLevel).toBe('minimal');
       expect(asked.body.systemInstruction.parts[0].text).toContain('EXACTLY three lines');
+    });
+
+    test('passes useN5Kanji option to systemInstruction', async () => {
+      if (!hasGeminiKey()) return;
+      let asked = null;
+      const fetchImpl = (url, init) => {
+        asked = { url, body: JSON.parse(init.body) };
+        return sseResponse(threeLines);
+      };
+      await sendGeminiMessage([{ sender: 'user', text: 'konnichiwa' }], 'en', null, {
+        fetchImpl,
+        useN5Kanji: true,
+      });
+
+      expect(asked.body.systemInstruction.parts[0].text).toContain('JLPT N5 ENABLED');
     });
 
     test('retries once on the fallback model when the first one stalls', async () => {

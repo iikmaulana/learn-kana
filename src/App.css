@@ -5321,6 +5321,97 @@ html[data-theme='dark'] .materi-chat {
   border-color: rgba(255, 255, 255, 0.08);
 }
 
+/* Chat header */
+.materi-chat-header {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 0.75em;
+  padding: 0.6em 1em;
+  background: #f0f2f5;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  z-index: 3;
+}
+
+html[data-theme='dark'] .materi-chat-header {
+  background: #202c33;
+  border-bottom-color: rgba(255, 255, 255, 0.06);
+}
+
+.materi-chat-header-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  background: #00a884;
+}
+
+.materi-chat-header-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.materi-chat-header-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.materi-chat-header-name {
+  font-size: 0.95em;
+  font-weight: 600;
+  color: #111b21;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+html[data-theme='dark'] .materi-chat-header-name {
+  color: #e9edef;
+}
+
+.materi-chat-header-status {
+  font-size: 0.75em;
+  color: #00a884;
+  font-weight: 500;
+}
+
+.materi-chat-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+}
+
+.materi-chat-header-btn {
+  background: transparent;
+  border: none;
+  color: #54656f;
+  cursor: var(--cursor-pointer);
+  padding: 0.4em;
+  display: inline-flex;
+  border-radius: 50%;
+  transition: all 0.15s ease;
+}
+
+html[data-theme='dark'] .materi-chat-header-btn {
+  color: #8696a0;
+}
+
+.materi-chat-header-btn:hover {
+  background: rgba(0, 0, 0, 0.08);
+  color: #111b21;
+}
+
+html[data-theme='dark'] .materi-chat-header-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #e9edef;
+}
+
 .materi-chat-banner {
   flex: none;
   display: flex;
@@ -5434,7 +5525,7 @@ html[data-theme='dark'] .materi-chat-msg.user .materi-chat-bubble {
 
 .materi-chat-jp {
   font-family: "Noto_Serif_JP", "Yu Mincho", "Hiragino Mincho ProN", serif;
-  font-size: 1.25em;
+  font-size: 1em;
   color: inherit;
   white-space: pre-wrap;
   word-break: break-word;
@@ -5554,7 +5645,7 @@ html[data-theme='dark'] .materi-chat-msg.user .materi-chat-speak-btn:hover {
 }
 
 .materi-chat-user-text {
-  font-size: 1.05em;
+  font-size: 1em;
   white-space: pre-wrap;
   word-break: break-word;
   flex: 1 1 auto;
@@ -5622,6 +5713,192 @@ html[data-theme='dark'] .materi-chat-meaning {
 
 html[data-theme='dark'] .materi-chat-meaning.user {
   color: #d1d7db;
+}
+
+/* WhatsApp Voice Note Bubble */
+.materi-chat-bubble.vn-bubble {
+  min-width: 250px;
+  max-width: min(88%, 390px);
+  padding: 0.65em 0.9em;
+}
+
+.materi-chat-vn-player {
+  display: flex;
+  align-items: center;
+  gap: 0.65em;
+}
+
+.materi-chat-vn-avatar-wrapper {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+}
+
+.materi-chat-vn-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ffd1dc, #ff9ebb);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25em;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  user-select: none;
+  overflow: hidden;
+}
+
+.materi-chat-vn-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+
+html[data-theme='dark'] .materi-chat-vn-avatar {
+  background: linear-gradient(135deg, #4a2d3b, #703b54);
+}
+
+.materi-chat-vn-mic-badge {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background: #00a884;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+html[data-theme='dark'] .materi-chat-vn-mic-badge {
+  border-color: #202c33;
+}
+
+.materi-chat-vn-mic-badge .icon {
+  width: 10px;
+  height: 10px;
+}
+
+.materi-chat-vn-play-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: #00a884;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: var(--cursor-pointer);
+  flex-shrink: 0;
+  transition: transform 0.15s ease, background 0.15s ease;
+  box-shadow: 0 2px 4px rgba(0, 168, 132, 0.25);
+}
+
+.materi-chat-vn-play-btn:hover {
+  background: #02906f;
+  transform: scale(1.04);
+}
+
+.materi-chat-vn-play-btn:active {
+  transform: scale(0.96);
+}
+
+.materi-chat-vn-play-btn .icon {
+  width: 15px;
+  height: 15px;
+}
+
+.materi-chat-vn-waveform-wrap {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+  cursor: var(--cursor-pointer);
+  user-select: none;
+  min-width: 130px;
+}
+
+.materi-chat-vn-waveform {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 2.5px;
+  height: 26px;
+  padding: 0 2px;
+}
+
+.materi-chat-vn-bar {
+  flex: 1 1 0;
+  min-width: 2px;
+  max-width: 4px;
+  border-radius: 2px;
+  background: #b0bec5;
+  transition: background 0.1s ease;
+}
+
+html[data-theme='dark'] .materi-chat-vn-bar {
+  background: #64748b;
+}
+
+.materi-chat-vn-bar.played,
+html[data-theme='dark'] .materi-chat-vn-bar.played {
+  background: #00a884;
+}
+
+.materi-chat-vn-dot {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #00a884;
+  pointer-events: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+  transition: left 0.1s linear;
+}
+
+.materi-chat-vn-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.72em;
+  color: #667781;
+  padding: 0 2px;
+}
+
+html[data-theme='dark'] .materi-chat-vn-meta {
+  color: #8696a0;
+}
+
+.materi-chat-vn-badge {
+  font-size: 0.88em;
+  font-weight: 500;
+  color: #00a884;
+}
+
+.materi-chat-vn-player .materi-chat-help-btn {
+  flex-shrink: 0;
+  margin-left: 0.15em;
+}
+
+.materi-chat-vn-transcript-body {
+  margin-top: 0.5em;
+  padding-top: 0.45em;
+  border-top: 1px dashed rgba(0, 0, 0, 0.08);
+  animation: materi-chat-fade-in 0.18s ease;
+}
+
+html[data-theme='dark'] .materi-chat-vn-transcript-body {
+  border-top-color: rgba(255, 255, 255, 0.1);
 }
 
 /* Typing animation */
@@ -5869,36 +6146,6 @@ html[data-theme='dark'] .materi-chat-help-toggle-btn {
   border-color: #00a884;
   background: rgba(0, 168, 132, 0.12);
   font-weight: 600;
-}
-
-.materi-chat-help-toggle-all-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4em;
-  padding: 0.4em 0.85em;
-  border-radius: 10px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  background: transparent;
-  color: #54656f;
-  font-size: 0.82em;
-  cursor: var(--cursor-pointer);
-  transition: all 0.15s ease;
-}
-
-html[data-theme='dark'] .materi-chat-help-toggle-all-btn {
-  color: #8696a0;
-  border-color: rgba(255, 255, 255, 0.12);
-}
-
-.materi-chat-help-toggle-all-btn:hover {
-  color: #00a884;
-  border-color: #00a884;
-}
-
-.materi-chat-help-toggle-all-btn.active {
-  color: #00a884;
-  border-color: #00a884;
-  background: rgba(0, 168, 132, 0.12);
 }
 
 .materi-chat-help-actions-row {

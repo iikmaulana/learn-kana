@@ -15,7 +15,7 @@ vi.mock('../services/geminiChat.js', async (importOriginal) => {
   };
 });
 
-const INPUT_PLACEHOLDER = /type romaji/i;
+const getChatInput = () => document.querySelector('.materi-chat-input');
 
 const renderChat = () => render(
   <LanguageProvider>
@@ -24,7 +24,10 @@ const renderChat = () => render(
 );
 
 beforeEach(() => {
+  localStorage.clear();
+  localStorage.setItem('language', 'en');
   window.HTMLElement.prototype.scrollIntoView = () => {};
+  window.scrollTo = () => {};
   hasGeminiKey.mockReset().mockReturnValue(true);
   sendGeminiMessage.mockReset();
 });
@@ -32,13 +35,13 @@ beforeEach(() => {
 describe('the AI chat', () => {
   test('opens with the greeting message', () => {
     renderChat();
-    expect(screen.getByText('こんにちは！おなまえはなんですか。')).toBeInTheDocument();
+    expect(screen.getByText('ヤッホー、せんぱい〜！おなまえは、なんですか〜？')).toBeInTheDocument();
   });
 
   test('hides romaji and meaning by default, and reveals progressively on clicking help (click 1: romaji, click 2: romaji and meaning, click 3: hide)', () => {
     renderChat();
-    const romajiText = 'konnichiwa! onamae wa nan desu ka.';
-    const meaningText = 'Hello! What is your name?';
+    const romajiText = 'yahho-, senpai~! onamae wa, nan desu ka~?';
+    const meaningText = 'Yahho, Senpai~! What is your name? Introduce yourself nyaa~';
     expect(screen.queryByText(romajiText)).toBeNull();
     expect(screen.queryByText(meaningText)).toBeNull();
 
@@ -69,7 +72,7 @@ describe('the AI chat', () => {
     });
 
     renderChat();
-    const input = screen.getByPlaceholderText(INPUT_PLACEHOLDER);
+    const input = getChatInput();
     fireEvent.change(input, { target: { value: 'arigatou' } });
     fireEvent.submit(input.closest('form'));
 
@@ -103,20 +106,19 @@ describe('the AI chat', () => {
     });
   });
 
-  test('the composer help button toggles help for all bot messages', () => {
+  test('the composer help panel toggles romaji and meaning for bot messages', () => {
     renderChat();
-    const romajiText = 'konnichiwa! onamae wa nan desu ka.';
+    const romajiText = 'yahho-, senpai~! onamae wa, nan desu ka~?';
     expect(screen.queryByText(romajiText)).toBeNull();
 
-    // the composer help button opens the panel; showing every message's help
-    // is the toggle-all button inside that panel
+    // the composer help button opens the panel; showing romaji via toggle
     fireEvent.click(document.querySelector('.materi-chat-composer-help-btn'));
-    const toggleAllBtn = document.querySelector('.materi-chat-help-toggle-all-btn');
-    expect(toggleAllBtn).not.toBeNull();
-    fireEvent.click(toggleAllBtn);
+    const romajiBtn = screen.getByText('Show Romaji').closest('button');
+    expect(romajiBtn).not.toBeNull();
+    fireEvent.click(romajiBtn);
     expect(screen.getByText(romajiText)).toBeInTheDocument();
 
-    fireEvent.click(toggleAllBtn);
+    fireEvent.click(romajiBtn);
     expect(screen.queryByText(romajiText)).toBeNull();
   });
 
@@ -135,7 +137,7 @@ describe('the AI chat', () => {
     expect(input.value).toBe('どうも');
   });
 
-  test('selecting a phrase from help panel inserts it into the input', () => {
+  test('selecting a suggestion chip inserts it into the input', () => {
     renderChat();
     const input = screen.getByRole('textbox');
     
@@ -144,15 +146,14 @@ describe('the AI chat', () => {
     expect(helpBtn).not.toBeNull();
     fireEvent.click(helpBtn);
     
-    // Click a phrase chip (first one)
-    const phraseChips = document.querySelectorAll('.materi-chat-phrase-chip');
-    if (phraseChips.length > 0) {
-      fireEvent.click(phraseChips[0]);
-      
-      // Input should now contain the selected Japanese phrase
-      const jpChar = phraseChips[0].querySelector('.materi-chat-phrase-jp').textContent;
-      expect(input.value).toContain(jpChar);
-    }
+    // Click a suggestion chip (first one)
+    const suggestionChips = document.querySelectorAll('.materi-chat-phrase-chip');
+    expect(suggestionChips.length).toBe(3);
+    fireEvent.click(suggestionChips[0]);
+    
+    // Input should now contain the selected Japanese phrase
+    const jpChar = suggestionChips[0].querySelector('.materi-chat-phrase-jp').textContent;
+    expect(input.value).toContain(jpChar);
   });
 
   test('closing the help panel is possible via close button', () => {
@@ -182,7 +183,7 @@ describe('the AI chat', () => {
     });
 
     renderChat();
-    const input = screen.getByPlaceholderText(INPUT_PLACEHOLDER);
+    const input = getChatInput();
     fireEvent.change(input, { target: { value: 'watashi wa tarou desu' } });
     fireEvent.submit(input.closest('form'));
 
@@ -207,7 +208,7 @@ describe('the AI chat', () => {
     });
 
     renderChat();
-    const input = screen.getByPlaceholderText(INPUT_PLACEHOLDER);
+    const input = getChatInput();
     fireEvent.change(input, { target: { value: 'tenki wa?' } });
     fireEvent.submit(input.closest('form'));
 
@@ -220,7 +221,7 @@ describe('the AI chat', () => {
     sendGeminiMessage.mockRejectedValue(new Error('NETWORK'));
 
     renderChat();
-    const input = screen.getByPlaceholderText(INPUT_PLACEHOLDER);
+    const input = getChatInput();
     fireEvent.change(input, { target: { value: 'konnichiwa' } });
     fireEvent.submit(input.closest('form'));
 
@@ -233,38 +234,26 @@ describe('the AI chat', () => {
     hasGeminiKey.mockReturnValue(false);
     renderChat();
     expect(screen.getByRole('alert')).toHaveTextContent('VITE_GEMINI_API_KEY');
-    expect(screen.getByPlaceholderText(INPUT_PLACEHOLDER)).toBeDisabled();
+    expect(getChatInput()).toBeDisabled();
   });
 
-  test('has no scenario topics or suggested replies', () => {
+  test('renders 3 dynamic quick reply suggestion chips based on bot question when help is opened', () => {
     renderChat();
-    expect(document.querySelector('.materi-chat-scenarios')).toBeNull();
-    expect(document.querySelector('.materi-chat-quick-replies')).toBeNull();
-    expect(screen.queryByRole('tab')).toBeNull();
-  });
 
-  test('reset button restarts the conversation to the opening', async () => {
-    sendGeminiMessage.mockResolvedValue({
-      jp: 'げんきですか？',
-      romaji: 'genki desu ka?',
-      meaning: 'How are you?',
-    });
+    // Open help
+    fireEvent.click(document.querySelector('.materi-chat-composer-help-btn'));
 
-    renderChat();
-    const input = screen.getByPlaceholderText(INPUT_PLACEHOLDER);
-    fireEvent.change(input, { target: { value: 'watashi wa' } });
-    fireEvent.submit(input.closest('form'));
+    // Bot starts with "ヤッホー、せんぱい！おなまえはなんですか。" (name question)
+    const chips = document.querySelectorAll('.materi-chat-phrase-chip');
+    expect(chips.length).toBe(3);
+    expect(chips[0]).toHaveTextContent('わたしは [なまえ] です');
+    expect(chips[1]).toHaveTextContent('はじめまして！');
+    expect(chips[2]).toHaveTextContent('よろしくおねがいします');
 
-    await waitFor(() => {
-      expect(screen.getByText('げんきですか？')).toBeInTheDocument();
-    });
-
-    const resetBtn = document.querySelector('.materi-chat-reset-btn');
-    fireEvent.click(resetBtn);
-
-    expect(screen.queryByText('げんきですか？')).toBeNull();
-    expect(screen.queryByText('わたし わ')).toBeNull();
-    expect(screen.getByText('こんにちは！おなまえはなんですか。')).toBeInTheDocument();
+    // Clicking a chip inserts phrase into input
+    const input = screen.getByRole('textbox');
+    fireEvent.click(chips[0]);
+    expect(input.value).toContain('わたしは [なまえ] です');
   });
 
   test('user-sent messages have a help button that toggles romaji reading', async () => {
@@ -275,7 +264,7 @@ describe('the AI chat', () => {
     });
 
     renderChat();
-    const input = screen.getByPlaceholderText(INPUT_PLACEHOLDER);
+    const input = getChatInput();
     fireEvent.change(input, { target: { value: 'arigatou' } });
     fireEvent.submit(input.closest('form'));
 
@@ -303,5 +292,195 @@ describe('the AI chat', () => {
     await waitFor(() => {
       expect(screen.getByText('はい！')).toBeInTheDocument();
     });
+  });
+
+  test('pressing Enter submits the message, while Shift+Enter allows newline', async () => {
+    sendGeminiMessage.mockResolvedValue({
+      jp: 'はい、おはようございます！',
+      romaji: 'hai, ohayou gozaimasu!',
+      meaning: 'Yes, good morning!',
+    });
+
+    renderChat();
+    const input = getChatInput();
+    fireEvent.focus(input);
+    expect(document.body.classList.contains('chat-keyboard-open')).toBe(true);
+    fireEvent.change(input, { target: { value: 'ohayou' } });
+
+    // Shift+Enter does not send
+    fireEvent.keyDown(input, { key: 'Enter', code: 'Enter', shiftKey: true });
+    expect(document.querySelector('.materi-chat-msg.user')).toBeNull();
+
+    // Plain Enter submits the message
+    fireEvent.keyDown(input, { key: 'Enter', code: 'Enter', shiftKey: false });
+    expect(document.querySelector('.materi-chat-msg.user')).not.toBeNull();
+    expect(screen.getByText('おはよう')).toBeInTheDocument();
+
+    await waitFor(() => {
+      expect(screen.getByText('はい、おはようございます！')).toBeInTheDocument();
+    });
+  });
+
+  test('automatically displays romaji and meaning for new messages when show romaji and show meaning are both active', async () => {
+    sendGeminiMessage.mockResolvedValue({
+      jp: 'どういたしまして！',
+      romaji: 'douitashimashite!',
+      meaning: 'You are welcome!',
+    });
+
+    renderChat();
+
+    // Initially romaji and meaning are hidden
+    expect(screen.queryByText('yahho-, senpai~! onamae wa, nan desu ka~?')).toBeNull();
+
+    // Open help panel and activate both "Show Romaji" and "Show Meaning"
+    fireEvent.click(document.querySelector('.materi-chat-composer-help-btn'));
+    const romajiBtn = screen.getByText('Show Romaji').closest('button');
+    const meaningBtn = screen.getByText('Show Meaning').closest('button');
+    fireEvent.click(romajiBtn);
+    fireEvent.click(meaningBtn);
+
+    // Initial greeting now shows romaji and meaning
+    expect(screen.getByText('yahho-, senpai~! onamae wa, nan desu ka~?')).toBeInTheDocument();
+
+    // Learner sends a message
+    const input = getChatInput();
+    fireEvent.change(input, { target: { value: 'arigatou' } });
+    fireEvent.submit(input.closest('form'));
+
+    // The user bubble automatically displays both romaji and meaning without manual clicks
+    const userBubble = document.querySelector('.materi-chat-msg.user');
+    expect(userBubble).not.toBeNull();
+    expect(userBubble.querySelector('.materi-chat-romaji')).toHaveTextContent('arigatou');
+    expect(userBubble.querySelector('.materi-chat-meaning')).toHaveTextContent('Thank you');
+
+    // Bot reply automatically displays both romaji and meaning as well
+    await waitFor(() => {
+      expect(screen.getByText('どういたしまして！')).toBeInTheDocument();
+    });
+    expect(screen.getByText('douitashimashite!')).toBeInTheDocument();
+    expect(screen.getByText('You are welcome!')).toBeInTheDocument();
+  });
+
+  test('toggles N5 Kanji setting in help panel and passes useN5Kanji to sendGeminiMessage', async () => {
+    sendGeminiMessage.mockResolvedValue({
+      jp: '今日は何をしますか？',
+      romaji: 'kyou wa nani o shimasu ka?',
+      meaning: 'What are you doing today?',
+    });
+
+    renderChat();
+
+    // Open help panel
+    fireEvent.click(document.querySelector('.materi-chat-composer-help-btn'));
+
+    // Find N5 Kanji toggle button
+    const n5Toggle = screen.getByText('N5 Kanji').closest('button');
+    expect(n5Toggle).toBeInTheDocument();
+    expect(n5Toggle).not.toHaveClass('active');
+
+    // Click to enable N5 Kanji
+    fireEvent.click(n5Toggle);
+    expect(n5Toggle).toHaveClass('active');
+
+    // Send a message
+    const input = getChatInput();
+    fireEvent.change(input, { target: { value: 'genki' } });
+    fireEvent.submit(input.closest('form'));
+
+    await waitFor(() => {
+      expect(sendGeminiMessage).toHaveBeenCalled();
+    });
+
+    const options = sendGeminiMessage.mock.calls[0][3];
+    expect(options.useN5Kanji).toBe(true);
+  });
+
+  test('renders bot message as WhatsApp-style voice note bubble when Sora mood decides isVoiceNote is true', async () => {
+    const vnReply = 'せんぱい〜、だいすきだよ！';
+    const vnRomaji = 'senpai~, daisuki da yo!';
+    const vnMeaning = 'Senpai~, aku suka banget sama kamu!';
+    sendGeminiMessage.mockResolvedValue({
+      jp: vnReply,
+      romaji: vnRomaji,
+      meaning: vnMeaning,
+      isVoiceNote: true,
+    });
+
+    renderChat();
+
+    // Send a message
+    const input = getChatInput();
+    fireEvent.change(input, { target: { value: 'sora chan' } });
+    fireEvent.submit(input.closest('form'));
+
+    await waitFor(() => {
+      expect(document.querySelector('.materi-chat-msg.bot.voice-note')).not.toBeNull();
+    });
+
+    const vnBubble = document.querySelector('.materi-chat-msg.bot.voice-note');
+    expect(vnBubble).toBeInTheDocument();
+    expect(vnBubble.querySelector('.materi-chat-vn-avatar')).toBeInTheDocument();
+    expect(vnBubble.querySelector('.materi-chat-vn-mic-badge')).toBeInTheDocument();
+    expect(vnBubble.querySelector('.materi-chat-vn-waveform')).toBeInTheDocument();
+
+    // Initially, transcript text is hidden (audio-only voice note)
+    expect(screen.queryByText(vnReply)).toBeNull();
+
+    // Clicking play button toggles playback
+    const playBtn = vnBubble.querySelector('.materi-chat-vn-play-btn');
+    expect(playBtn).not.toBeNull();
+    fireEvent.click(playBtn);
+
+    const helpBtn = vnBubble.querySelector('.materi-chat-help-btn');
+    expect(helpBtn).not.toBeNull();
+
+    // Click 1: Reveals Japanese text (lihat teks)
+    fireEvent.click(helpBtn);
+    expect(screen.getByText(vnReply)).toBeInTheDocument();
+    expect(screen.queryByText(vnRomaji)).toBeNull();
+    expect(screen.queryByText(vnMeaning)).toBeNull();
+
+    // Click 2: Reveals Romaji
+    fireEvent.click(helpBtn);
+    expect(screen.getByText(vnReply)).toBeInTheDocument();
+    expect(screen.getByText(vnRomaji)).toBeInTheDocument();
+    expect(screen.queryByText(vnMeaning)).toBeNull();
+
+    // Click 3: Reveals Meaning
+    fireEvent.click(helpBtn);
+    expect(screen.getByText(vnReply)).toBeInTheDocument();
+    expect(screen.getByText(vnRomaji)).toBeInTheDocument();
+    expect(screen.getByText(vnMeaning)).toBeInTheDocument();
+
+    // Click 4: Closes back to hidden voice note
+    fireEvent.click(helpBtn);
+    expect(screen.queryByText(vnReply)).toBeNull();
+    expect(screen.queryByText(vnRomaji)).toBeNull();
+    expect(screen.queryByText(vnMeaning)).toBeNull();
+  });
+
+  test('does not render bot message as voice note even if text is long when isVoiceNote is false', async () => {
+    const longReply = 'せんぱい、日本語の勉強はとても楽しいですね！毎日少しずつ練習していきましょう。応援していますよ！';
+    const longRomaji = 'senpai, nihongo no benkyou wa totemo tanoshii desu ne! mainichi sukoshizutsu renshuu shite ikimashou. ouen shite imasu yo!';
+    const longMeaning = 'Senpai, belajar bahasa Jepang sangat menyenangkan ya! Mari berlatih sedikit demi sedikit setiap hari. Aku selalu mendukungmu!';
+    sendGeminiMessage.mockResolvedValue({
+      jp: longReply,
+      romaji: longRomaji,
+      meaning: longMeaning,
+      isVoiceNote: false,
+    });
+
+    renderChat();
+
+    const input = getChatInput();
+    fireEvent.change(input, { target: { value: 'halo' } });
+    fireEvent.submit(input.closest('form'));
+
+    await waitFor(() => {
+      expect(screen.getByText(longReply)).toBeInTheDocument();
+    });
+
+    expect(document.querySelector('.materi-chat-msg.bot.voice-note')).toBeNull();
   });
 });

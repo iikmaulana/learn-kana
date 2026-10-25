@@ -32,7 +32,11 @@ export default function Layout() {
 
     useEffect(() => {
         trackPageView(location.pathname);
-    }, [location]);
+        const appBody = document.querySelector('.app-body');
+        if (appBody) {
+            appBody.scrollTop = 0;
+        }
+    }, [location.pathname]);
 
     // Title and description of the page in the app's language. Only the menu,
     // the Dictionary, the Materials and Chat are worth finding in search results: the
@@ -78,11 +82,13 @@ export default function Layout() {
     // viewport and has its own way back; kept mounted while switching tabs
     const hasNavbar = ![ROUTES.game, LEGACY_ROUTES.game].includes(location.pathname);
     return (
-        <>
+        <div className={`app-shell${hasNavbar ? ' has-navbar' : ''}`}>
             {hasNavbar && <Navbar theme={theme} toggleTheme={toggleTheme} />}
-            <Suspense fallback={<p className='page-loading' role='status'>{t('pageLoading')}</p>}>
-                <Outlet />
-            </Suspense>
-        </>
+            <div className='app-body'>
+                <Suspense fallback={<p className='page-loading' role='status'>{t('pageLoading')}</p>}>
+                    <Outlet />
+                </Suspense>
+            </div>
+        </div>
     );
 }
