@@ -247,11 +247,12 @@ html[data-theme='dark'] .navbar {
 }
 
 /* Desktop: hide the mobile-only elements */
+.navbar-tab.navbar-tab-settings-mobile,
 .navbar-tab-settings-mobile {
-  display: none;
+  display: none !important;
 }
 .navbar-notif-mobile {
-  display: none;
+  display: none !important;
 }
 
 /* Desktop: show the original separate action buttons */
@@ -3482,15 +3483,15 @@ Notifications (navbar bell)
 
   /* Mobile: hide desktop actions group, show mobile notification + settings tab */
   .navbar-desktop-actions {
-    display: none;
+    display: none !important;
   }
 
   /* Mobile: show notification in header actions, settings in tab bar */
   .navbar-notif-mobile {
-    display: flex;
+    display: flex !important;
   }
-  .navbar-tab-settings-mobile {
-    display: inline-flex;
+  .navbar-tab.navbar-tab-settings-mobile {
+    display: flex !important;
   }
 
   .notification-panel {
