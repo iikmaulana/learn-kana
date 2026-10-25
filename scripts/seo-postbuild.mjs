@@ -50,8 +50,8 @@ export function addSiteUrl(html, siteUrl) {
     .replace('"@type": "WebApplication",', `"@type": "WebApplication", "url": ${JSON.stringify(siteUrl)}, "image": ${JSON.stringify(image)},`);
 }
 
-// The indexed pages: the Games tab (menu), the Dictionary and the Materials tabs (src/routes.js)
-const SITEMAP_PATHS = ['', 'dictionary', 'materi'];
+// The indexed pages: the Games tab (menu), the Dictionary, Materials and Chat tabs (src/routes.js)
+const SITEMAP_PATHS = ['', 'dictionary', 'materi', 'chat'];
 
 export function sitemap(siteUrl, date = new Date()) {
   const lastmod = date.toISOString().slice(0, 10);
@@ -73,7 +73,9 @@ function readSiteUrl() {
   for (const file of ['.env.production.local', '.env.local', '.env.production', '.env']) {
     const envPath = path.join(root, file);
     if (!fs.existsSync(envPath)) continue;
-    const match = /^\s*SITE_URL\s*=\s*(.*?)\s*$/m.exec(fs.readFileSync(envPath, 'utf8'));
+    // Only spaces around the value: \s would also eat the line breaks and
+    // grab the next line (a comment) when SITE_URL is empty
+    const match = /^[ \t]*SITE_URL[ \t]*=[ \t]*(.*?)[ \t]*$/m.exec(fs.readFileSync(envPath, 'utf8'));
     // Drop the quotes around a quoted value: SITE_URL="https://..."
     if (match) return match[1].replace(/^(['"])(.*)\1$/, '$2');
   }

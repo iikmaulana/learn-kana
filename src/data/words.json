@@ -17096,5 +17096,4982 @@
       "わ",
       "が"
     ]
+  },
+  "aoi": {
+    "jp_character": "あおい",
+    "romanji": [
+      "aoi"
+    ],
+    "sound": "あおい",
+    "meaning": "blue",
+    "meaning_id": "biru",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ"
+    ]
+  },
+  "aku": {
+    "jp_character": "あく",
+    "romanji": [
+      "aku"
+    ],
+    "sound": "あく",
+    "meaning": "to open",
+    "meaning_id": "membuka",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "か"
+    ]
+  },
+  "ageru": {
+    "jp_character": "あげる",
+    "romanji": [
+      "ageru"
+    ],
+    "sound": "あげる",
+    "meaning": "to raise, to give",
+    "meaning_id": "menaikkan, memberi",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "が",
+      "ら"
+    ]
+  },
+  "asagohan": {
+    "jp_character": "あさごはん",
+    "romanji": [
+      "asagohan"
+    ],
+    "sound": "あさごはん",
+    "meaning": "breakfast",
+    "meaning_id": "sarapan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "さ",
+      "が",
+      "は",
+      "わ"
+    ]
+  },
+  "asatte": {
+    "jp_character": "あさって",
+    "romanji": [
+      "asatte"
+    ],
+    "sound": "あさって",
+    "meaning": "the day after tomorrow",
+    "meaning_id": "lusa",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "さ",
+      "た"
+    ]
+  },
+  "achira": {
+    "jp_character": "あちら",
+    "romanji": [
+      "achira"
+    ],
+    "sound": "あちら",
+    "meaning": "that way, over there",
+    "meaning_id": "sana",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "た",
+      "ら"
+    ]
+  },
+  "atchi": {
+    "jp_character": "あっち",
+    "romanji": [
+      "atchi"
+    ],
+    "sound": "あっち",
+    "meaning": "over there",
+    "meaning_id": "di sana",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "た"
+    ]
+  },
+  "ato": {
+    "jp_character": "あと",
+    "romanji": [
+      "ato"
+    ],
+    "sound": "あと",
+    "meaning": "after that, later",
+    "meaning_id": "setelah itu",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "た"
+    ]
+  },
+  "ano_": {
+    "jp_character": "あのー",
+    "romanji": [
+      "ano"
+    ],
+    "sound": "あのー",
+    "meaning": "um...",
+    "meaning_id": "um ...",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "な"
+    ]
+  },
+  "abiru": {
+    "jp_character": "あびる",
+    "romanji": [
+      "abiru"
+    ],
+    "sound": "あびる",
+    "meaning": "to bathe, to take a shower",
+    "meaning_id": "mandi",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "ば",
+      "ら"
+    ]
+  },
+  "aru": {
+    "jp_character": "ある",
+    "romanji": [
+      "aru"
+    ],
+    "sound": "ある",
+    "meaning": "to exist (inanimate)",
+    "meaning_id": "ada (dipakai untuk benda mati)",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "ら"
+    ]
+  },
+  "are": {
+    "jp_character": "あれ",
+    "romanji": [
+      "are"
+    ],
+    "sound": "あれ",
+    "meaning": "that (one)",
+    "meaning_id": "itu",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "ら"
+    ]
+  },
+  "iu": {
+    "jp_character": "いう",
+    "romanji": [
+      "iu"
+    ],
+    "sound": "いう",
+    "meaning": "to say",
+    "meaning_id": "mengatakan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ"
+    ]
+  },
+  "ikaga": {
+    "jp_character": "いかが",
+    "romanji": [
+      "ikaga"
+    ],
+    "sound": "いかが",
+    "meaning": "how",
+    "meaning_id": "bagaimana",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "か",
+      "が"
+    ]
+  },
+  "ikutsu": {
+    "jp_character": "いくつ",
+    "romanji": [
+      "ikutsu"
+    ],
+    "sound": "いくつ",
+    "meaning": "how many? how old?",
+    "meaning_id": "berapa banyak? berapa umur?",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "か",
+      "た"
+    ]
+  },
+  "ikura": {
+    "jp_character": "いくら",
+    "romanji": [
+      "ikura"
+    ],
+    "sound": "いくら",
+    "meaning": "how much?",
+    "meaning_id": "berapa banyak?",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "か",
+      "ら"
+    ]
+  },
+  "ike": {
+    "jp_character": "いけ",
+    "romanji": [
+      "ike"
+    ],
+    "sound": "いけ",
+    "meaning": "pond",
+    "meaning_id": "kolam",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "か"
+    ]
+  },
+  "ichinichi": {
+    "jp_character": "いちにち",
+    "romanji": [
+      "ichinichi"
+    ],
+    "sound": "いちにち",
+    "meaning": "one day, the first of the month",
+    "meaning_id": "satu hari, tanggal satu",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "た",
+      "な"
+    ]
+  },
+  "ichiban": {
+    "jp_character": "いちばん",
+    "romanji": [
+      "ichiban"
+    ],
+    "sound": "いちばん",
+    "meaning": "best, first, number one",
+    "meaning_id": "terbaik, pertama",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "た",
+      "ば",
+      "わ"
+    ]
+  },
+  "itsuka": {
+    "jp_character": "いつか",
+    "romanji": [
+      "itsuka"
+    ],
+    "sound": "いつか",
+    "meaning": "five days, the fifth",
+    "meaning_id": "lima hari, hari kelima",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "た",
+      "か"
+    ]
+  },
+  "itsutsu": {
+    "jp_character": "いつつ",
+    "romanji": [
+      "itsutsu"
+    ],
+    "sound": "いつつ",
+    "meaning": "five (things)",
+    "meaning_id": "lima",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "た"
+    ]
+  },
+  "imi": {
+    "jp_character": "いみ",
+    "romanji": [
+      "imi"
+    ],
+    "sound": "いみ",
+    "meaning": "meaning",
+    "meaning_id": "arti",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "ま"
+    ]
+  },
+  "iya": {
+    "jp_character": "いや",
+    "romanji": [
+      "iya"
+    ],
+    "sound": "いや",
+    "meaning": "unpleasant, disagreeable",
+    "meaning_id": "tidak",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "や"
+    ]
+  },
+  "iriguchi": {
+    "jp_character": "いりぐち",
+    "romanji": [
+      "iriguchi"
+    ],
+    "sound": "いりぐち",
+    "meaning": "entrance",
+    "meaning_id": "jalan masuk",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "ら",
+      "が",
+      "た"
+    ]
+  },
+  "iru": {
+    "jp_character": "いる",
+    "romanji": [
+      "iru"
+    ],
+    "sound": "いる",
+    "meaning": "to exist, to be (animate); to need",
+    "meaning_id": "ada (digunakan untuk makhluk hidup); membutuhkan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "ら"
+    ]
+  },
+  "ireru": {
+    "jp_character": "いれる",
+    "romanji": [
+      "ireru"
+    ],
+    "sound": "いれる",
+    "meaning": "to put in",
+    "meaning_id": "memasukkan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "ら"
+    ]
+  },
+  "iro": {
+    "jp_character": "いろ",
+    "romanji": [
+      "iro"
+    ],
+    "sound": "いろ",
+    "meaning": "color",
+    "meaning_id": "warna",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "ら"
+    ]
+  },
+  "iroiro": {
+    "jp_character": "いろいろ",
+    "romanji": [
+      "iroiro"
+    ],
+    "sound": "いろいろ",
+    "meaning": "various",
+    "meaning_id": "bermacam-macam",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "ら"
+    ]
+  },
+  "usui": {
+    "jp_character": "うすい",
+    "romanji": [
+      "usui"
+    ],
+    "sound": "うすい",
+    "meaning": "thin, weak",
+    "meaning_id": "kurus, lemah",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "さ"
+    ]
+  },
+  "uta": {
+    "jp_character": "うた",
+    "romanji": [
+      "uta"
+    ],
+    "sound": "うた",
+    "meaning": "song",
+    "meaning_id": "lagu",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "た"
+    ]
+  },
+  "umareru": {
+    "jp_character": "うまれる",
+    "romanji": [
+      "umareru"
+    ],
+    "sound": "うまれる",
+    "meaning": "to be born",
+    "meaning_id": "terlahir",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "ま",
+      "ら"
+    ]
+  },
+  "uwagi": {
+    "jp_character": "うわぎ",
+    "romanji": [
+      "uwagi"
+    ],
+    "sound": "うわぎ",
+    "meaning": "jacket, outerwear",
+    "meaning_id": "jaket",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "わ",
+      "が"
+    ]
+  },
+  "eigakan": {
+    "jp_character": "えいがかん",
+    "romanji": [
+      "eigakan"
+    ],
+    "sound": "えいがかん",
+    "meaning": "movie theater",
+    "meaning_id": "bioskop",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "が",
+      "か",
+      "わ"
+    ]
+  },
+  "ee": {
+    "jp_character": "ええ",
+    "romanji": [
+      "ee"
+    ],
+    "sound": "ええ",
+    "meaning": "yes",
+    "meaning_id": "iya nih",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ"
+    ]
+  },
+  "ooi": {
+    "jp_character": "おおい",
+    "romanji": [
+      "ooi"
+    ],
+    "sound": "おおい",
+    "meaning": "many, much",
+    "meaning_id": "banyak",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ"
+    ]
+  },
+  "ookina": {
+    "jp_character": "おおきな",
+    "romanji": [
+      "ookina"
+    ],
+    "sound": "おおきな",
+    "meaning": "big",
+    "meaning_id": "yg besar",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "か",
+      "な"
+    ]
+  },
+  "oozei": {
+    "jp_character": "おおぜい",
+    "romanji": [
+      "oozei"
+    ],
+    "sound": "おおぜい",
+    "meaning": "a large number of people",
+    "meaning_id": "sejumlah besar orang",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "ざ"
+    ]
+  },
+  "oku": {
+    "jp_character": "おく",
+    "romanji": [
+      "oku"
+    ],
+    "sound": "おく",
+    "meaning": "to put, to place",
+    "meaning_id": "meletakkan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "か"
+    ]
+  },
+  "okusan": {
+    "jp_character": "おくさん",
+    "romanji": [
+      "okusan"
+    ],
+    "sound": "おくさん",
+    "meaning": "wife",
+    "meaning_id": "istri",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "か",
+      "さ",
+      "わ"
+    ]
+  },
+  "osake": {
+    "jp_character": "おさけ",
+    "romanji": [
+      "osake"
+    ],
+    "sound": "おさけ",
+    "meaning": "sake, alcohol",
+    "meaning_id": "sake, minuman keras",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "さ",
+      "か"
+    ]
+  },
+  "osara": {
+    "jp_character": "おさら",
+    "romanji": [
+      "osara"
+    ],
+    "sound": "おさら",
+    "meaning": "plate, dish",
+    "meaning_id": "piring, hidangan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "さ",
+      "ら"
+    ]
+  },
+  "ojisan": {
+    "jp_character": "おじさん",
+    "romanji": [
+      "ojisan"
+    ],
+    "sound": "おじさん",
+    "meaning": "uncle",
+    "meaning_id": "paman, om",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "ざ",
+      "さ",
+      "わ"
+    ]
+  },
+  "osu": {
+    "jp_character": "おす",
+    "romanji": [
+      "osu"
+    ],
+    "sound": "おす",
+    "meaning": "to push, to press",
+    "meaning_id": "mendorong, memencet",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "さ"
+    ]
+  },
+  "otearai": {
+    "jp_character": "おてあらい",
+    "romanji": [
+      "otearai"
+    ],
+    "sound": "おてあらい",
+    "meaning": "restroom, bathroom",
+    "meaning_id": "kamar mandi",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "た",
+      "ら"
+    ]
+  },
+  "otokonoko": {
+    "jp_character": "おとこのこ",
+    "romanji": [
+      "otokonoko"
+    ],
+    "sound": "おとこのこ",
+    "meaning": "boy",
+    "meaning_id": "anak laki-laki",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "た",
+      "か",
+      "な"
+    ]
+  },
+  "ototoi": {
+    "jp_character": "おととい",
+    "romanji": [
+      "ototoi"
+    ],
+    "sound": "おととい",
+    "meaning": "the day before yesterday",
+    "meaning_id": "hari sebelum kemarin, 2 hari yg lalu",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "た"
+    ]
+  },
+  "ototoshi": {
+    "jp_character": "おととし",
+    "romanji": [
+      "ototoshi"
+    ],
+    "sound": "おととし",
+    "meaning": "the year before last",
+    "meaning_id": "tahun sebelum tahun-lalu, 2 tahun yg lalu",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "た",
+      "さ"
+    ]
+  },
+  "onaji": {
+    "jp_character": "おなじ",
+    "romanji": [
+      "onaji"
+    ],
+    "sound": "おなじ",
+    "meaning": "same",
+    "meaning_id": "sama",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "な",
+      "ざ"
+    ]
+  },
+  "obasan": {
+    "jp_character": "おばさん",
+    "romanji": [
+      "obasan"
+    ],
+    "sound": "おばさん",
+    "meaning": "aunt",
+    "meaning_id": "bibi",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "ば",
+      "さ",
+      "わ"
+    ]
+  },
+  "ofuro": {
+    "jp_character": "おふろ",
+    "romanji": [
+      "ofuro"
+    ],
+    "sound": "おふろ",
+    "meaning": "bath",
+    "meaning_id": "mandi",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "は",
+      "ら"
+    ]
+  },
+  "obentou": {
+    "jp_character": "おべんとう",
+    "romanji": [
+      "obentou"
+    ],
+    "sound": "おべんとう",
+    "meaning": "boxed lunch",
+    "meaning_id": "kotak makan siang",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "ば",
+      "わ",
+      "た"
+    ]
+  },
+  "omawarisan": {
+    "jp_character": "おまわりさん",
+    "romanji": [
+      "omawarisan"
+    ],
+    "sound": "おまわりさん",
+    "meaning": "police officer",
+    "meaning_id": "pak polisi",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "ま",
+      "わ",
+      "ら",
+      "さ"
+    ]
+  },
+  "oriru": {
+    "jp_character": "おりる",
+    "romanji": [
+      "oriru"
+    ],
+    "sound": "おりる",
+    "meaning": "to get off, to descend",
+    "meaning_id": "turun",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "ら"
+    ]
+  },
+  "owaru": {
+    "jp_character": "おわる",
+    "romanji": [
+      "owaru"
+    ],
+    "sound": "おわる",
+    "meaning": "to end, to finish",
+    "meaning_id": "menyelesaikan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "わ",
+      "ら"
+    ]
+  },
+  "onnanoko": {
+    "jp_character": "おんなのこ",
+    "romanji": [
+      "onnanoko"
+    ],
+    "sound": "おんなのこ",
+    "meaning": "girl",
+    "meaning_id": "gadis",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "あ",
+      "わ",
+      "な",
+      "か"
+    ]
+  },
+  "gaikoku": {
+    "jp_character": "がいこく",
+    "romanji": [
+      "gaikoku"
+    ],
+    "sound": "がいこく",
+    "meaning": "foreign country",
+    "meaning_id": "negara asing",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "が",
+      "あ",
+      "か"
+    ]
+  },
+  "gaikokujin": {
+    "jp_character": "がいこくじん",
+    "romanji": [
+      "gaikokujin"
+    ],
+    "sound": "がいこくじん",
+    "meaning": "foreigner",
+    "meaning_id": "orang asing",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "が",
+      "あ",
+      "か",
+      "ざ",
+      "わ"
+    ]
+  },
+  "kaidan": {
+    "jp_character": "かいだん",
+    "romanji": [
+      "kaidan"
+    ],
+    "sound": "かいだん",
+    "meaning": "stairs",
+    "meaning_id": "tangga",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "か",
+      "あ",
+      "だ",
+      "わ"
+    ]
+  },
+  "kaimono": {
+    "jp_character": "かいもの",
+    "romanji": [
+      "kaimono"
+    ],
+    "sound": "かいもの",
+    "meaning": "shopping",
+    "meaning_id": "belanjaan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "か",
+      "あ",
+      "ま",
+      "な"
+    ]
+  },
+  "kaesu": {
+    "jp_character": "かえす",
+    "romanji": [
+      "kaesu"
+    ],
+    "sound": "かえす",
+    "meaning": "to return (something)",
+    "meaning_id": "mengembalikan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "か",
+      "あ",
+      "さ"
+    ]
+  },
+  "kakaru": {
+    "jp_character": "かかる",
+    "romanji": [
+      "kakaru"
+    ],
+    "sound": "かかる",
+    "meaning": "to take (time, money)",
+    "meaning_id": "memerlukan (waktu, uang)",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "か",
+      "ら"
+    ]
+  },
+  "kakeru": {
+    "jp_character": "かける",
+    "romanji": [
+      "kakeru"
+    ],
+    "sound": "かける",
+    "meaning": "to call (on the phone)",
+    "meaning_id": "menelepon",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "か",
+      "ら"
+    ]
+  },
+  "kasu": {
+    "jp_character": "かす",
+    "romanji": [
+      "kasu"
+    ],
+    "sound": "かす",
+    "meaning": "to lend",
+    "meaning_id": "untuk meminjamkan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "か",
+      "さ"
+    ]
+  },
+  "katei": {
+    "jp_character": "かてい",
+    "romanji": [
+      "katei"
+    ],
+    "sound": "かてい",
+    "meaning": "household, home",
+    "meaning_id": "rumah tangga",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "か",
+      "た",
+      "あ"
+    ]
+  },
+  "kado": {
+    "jp_character": "かど",
+    "romanji": [
+      "kado"
+    ],
+    "sound": "かど",
+    "meaning": "corner",
+    "meaning_id": "sudut",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "か",
+      "だ"
+    ]
+  },
+  "kabin": {
+    "jp_character": "かびん",
+    "romanji": [
+      "kabin"
+    ],
+    "sound": "かびん",
+    "meaning": "vase",
+    "meaning_id": "vas",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "か",
+      "ば",
+      "わ"
+    ]
+  },
+  "karada": {
+    "jp_character": "からだ",
+    "romanji": [
+      "karada"
+    ],
+    "sound": "からだ",
+    "meaning": "body",
+    "meaning_id": "tubuh",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "か",
+      "ら",
+      "だ"
+    ]
+  },
+  "kariru": {
+    "jp_character": "かりる",
+    "romanji": [
+      "kariru"
+    ],
+    "sound": "かりる",
+    "meaning": "to borrow",
+    "meaning_id": "meminjam",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "か",
+      "ら"
+    ]
+  },
+  "kiiroi": {
+    "jp_character": "きいろい",
+    "romanji": [
+      "kiiroi"
+    ],
+    "sound": "きいろい",
+    "meaning": "yellow",
+    "meaning_id": "kuning",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "か",
+      "あ",
+      "ら"
+    ]
+  },
+  "kieru": {
+    "jp_character": "きえる",
+    "romanji": [
+      "kieru"
+    ],
+    "sound": "きえる",
+    "meaning": "to disappear",
+    "meaning_id": "menghilang",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "か",
+      "あ",
+      "ら"
+    ]
+  },
+  "kitte": {
+    "jp_character": "きって",
+    "romanji": [
+      "kitte"
+    ],
+    "sound": "きって",
+    "meaning": "postage stamp",
+    "meaning_id": "perangko",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "か",
+      "た"
+    ]
+  },
+  "kippu": {
+    "jp_character": "きっぷ",
+    "romanji": [
+      "kippu"
+    ],
+    "sound": "きっぷ",
+    "meaning": "ticket",
+    "meaning_id": "tiket",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "か",
+      "た",
+      "ぱ"
+    ]
+  },
+  "gyuuniku": {
+    "jp_character": "ぎゅうにく",
+    "romanji": [
+      "gyuuniku"
+    ],
+    "sound": "ぎゅうにく",
+    "meaning": "beef",
+    "meaning_id": "daging sapi",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "が",
+      "や",
+      "あ",
+      "な",
+      "か"
+    ]
+  },
+  "kyoushitsu": {
+    "jp_character": "きょうしつ",
+    "romanji": [
+      "kyoushitsu"
+    ],
+    "sound": "きょうしつ",
+    "meaning": "classroom",
+    "meaning_id": "kelas",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "か",
+      "や",
+      "あ",
+      "さ",
+      "た"
+    ]
+  },
+  "kyoudai": {
+    "jp_character": "きょうだい",
+    "romanji": [
+      "kyoudai"
+    ],
+    "sound": "きょうだい",
+    "meaning": "siblings",
+    "meaning_id": "Kakak-beradik",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "か",
+      "や",
+      "あ",
+      "だ"
+    ]
+  },
+  "kyonen": {
+    "jp_character": "きょねん",
+    "romanji": [
+      "kyonen"
+    ],
+    "sound": "きょねん",
+    "meaning": "last year",
+    "meaning_id": "tahun lalu",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "か",
+      "や",
+      "な",
+      "わ"
+    ]
+  },
+  "kiru": {
+    "jp_character": "きる",
+    "romanji": [
+      "kiru"
+    ],
+    "sound": "きる",
+    "meaning": "to cut; to wear (clothes above the waist)",
+    "meaning_id": "memotong; mengenakan (pakaian)",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "か",
+      "ら"
+    ]
+  },
+  "kusuri": {
+    "jp_character": "くすり",
+    "romanji": [
+      "kusuri"
+    ],
+    "sound": "くすり",
+    "meaning": "medicine",
+    "meaning_id": "obat",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "か",
+      "さ",
+      "ら"
+    ]
+  },
+  "kudasai": {
+    "jp_character": "ください",
+    "romanji": [
+      "kudasai"
+    ],
+    "sound": "ください",
+    "meaning": "please",
+    "meaning_id": "permohonan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "か",
+      "だ",
+      "さ",
+      "あ"
+    ]
+  },
+  "kumoru": {
+    "jp_character": "くもる",
+    "romanji": [
+      "kumoru"
+    ],
+    "sound": "くもる",
+    "meaning": "to become cloudy",
+    "meaning_id": "mendung, berawan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "か",
+      "ま",
+      "ら"
+    ]
+  },
+  "kuroi": {
+    "jp_character": "くろい",
+    "romanji": [
+      "kuroi"
+    ],
+    "sound": "くろい",
+    "meaning": "black",
+    "meaning_id": "hitam",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "か",
+      "ら",
+      "あ"
+    ]
+  },
+  "keikan": {
+    "jp_character": "けいかん",
+    "romanji": [
+      "keikan"
+    ],
+    "sound": "けいかん",
+    "meaning": "police officer",
+    "meaning_id": "polisi",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "か",
+      "あ",
+      "わ"
+    ]
+  },
+  "kesa": {
+    "jp_character": "けさ",
+    "romanji": [
+      "kesa"
+    ],
+    "sound": "けさ",
+    "meaning": "this morning",
+    "meaning_id": "pagi ini",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "か",
+      "さ"
+    ]
+  },
+  "kesu": {
+    "jp_character": "けす",
+    "romanji": [
+      "kesu"
+    ],
+    "sound": "けす",
+    "meaning": "to erase, to turn off",
+    "meaning_id": "menghapus, memadamkan (listrik)",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "か",
+      "さ"
+    ]
+  },
+  "kekkou": {
+    "jp_character": "けっこう",
+    "romanji": [
+      "kekkou"
+    ],
+    "sound": "けっこう",
+    "meaning": "fine, enough",
+    "meaning_id": "cukup",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "か",
+      "た",
+      "あ"
+    ]
+  },
+  "kekkon": {
+    "jp_character": "けっこん",
+    "romanji": [
+      "kekkon"
+    ],
+    "sound": "けっこん",
+    "meaning": "marriage",
+    "meaning_id": "pernikahan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "か",
+      "た",
+      "わ"
+    ]
+  },
+  "genkan": {
+    "jp_character": "げんかん",
+    "romanji": [
+      "genkan"
+    ],
+    "sound": "げんかん",
+    "meaning": "entrance hall",
+    "meaning_id": "pintu masuk",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "が",
+      "わ",
+      "か"
+    ]
+  },
+  "kousaten": {
+    "jp_character": "こうさてん",
+    "romanji": [
+      "kousaten"
+    ],
+    "sound": "こうさてん",
+    "meaning": "intersection",
+    "meaning_id": "persimpangan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "か",
+      "あ",
+      "さ",
+      "た",
+      "わ"
+    ]
+  },
+  "koucha": {
+    "jp_character": "こうちゃ",
+    "romanji": [
+      "koucha"
+    ],
+    "sound": "こうちゃ",
+    "meaning": "black tea",
+    "meaning_id": "teh hitam",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "か",
+      "あ",
+      "た",
+      "や"
+    ]
+  },
+  "kouban": {
+    "jp_character": "こうばん",
+    "romanji": [
+      "kouban"
+    ],
+    "sound": "こうばん",
+    "meaning": "police box",
+    "meaning_id": "pos polisi",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "か",
+      "あ",
+      "ば",
+      "わ"
+    ]
+  },
+  "koe": {
+    "jp_character": "こえ",
+    "romanji": [
+      "koe"
+    ],
+    "sound": "こえ",
+    "meaning": "voice",
+    "meaning_id": "suara",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "か",
+      "あ"
+    ]
+  },
+  "gogo": {
+    "jp_character": "ごご",
+    "romanji": [
+      "gogo"
+    ],
+    "sound": "ごご",
+    "meaning": "afternoon, p.m.",
+    "meaning_id": "sore",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "が"
+    ]
+  },
+  "kokonoka": {
+    "jp_character": "ここのか",
+    "romanji": [
+      "kokonoka"
+    ],
+    "sound": "ここのか",
+    "meaning": "nine days, the ninth",
+    "meaning_id": "sembilan hari, hari kesembilan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "か",
+      "な"
+    ]
+  },
+  "kokonotsu": {
+    "jp_character": "ここのつ",
+    "romanji": [
+      "kokonotsu"
+    ],
+    "sound": "ここのつ",
+    "meaning": "nine (things)",
+    "meaning_id": "sembilan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "か",
+      "な",
+      "た"
+    ]
+  },
+  "gozen": {
+    "jp_character": "ごぜん",
+    "romanji": [
+      "gozen"
+    ],
+    "sound": "ごぜん",
+    "meaning": "morning, a.m.",
+    "meaning_id": "pagi",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "が",
+      "ざ",
+      "わ"
+    ]
+  },
+  "kotaeru": {
+    "jp_character": "こたえる",
+    "romanji": [
+      "kotaeru"
+    ],
+    "sound": "こたえる",
+    "meaning": "to answer",
+    "meaning_id": "menjawab",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "か",
+      "た",
+      "あ",
+      "ら"
+    ]
+  },
+  "kochira": {
+    "jp_character": "こちら",
+    "romanji": [
+      "kochira"
+    ],
+    "sound": "こちら",
+    "meaning": "this way, this person",
+    "meaning_id": "disini, orang ini",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "か",
+      "た",
+      "ら"
+    ]
+  },
+  "kotchi": {
+    "jp_character": "こっち",
+    "romanji": [
+      "kotchi"
+    ],
+    "sound": "こっち",
+    "meaning": "this one, this way",
+    "meaning_id": "yang ini",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "か",
+      "た"
+    ]
+  },
+  "komaru": {
+    "jp_character": "こまる",
+    "romanji": [
+      "komaru"
+    ],
+    "sound": "こまる",
+    "meaning": "to have trouble, to be in difficulty",
+    "meaning_id": "mengalami kesulitan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "か",
+      "ま",
+      "ら"
+    ]
+  },
+  "kongetsu": {
+    "jp_character": "こんげつ",
+    "romanji": [
+      "kongetsu"
+    ],
+    "sound": "こんげつ",
+    "meaning": "this month",
+    "meaning_id": "bulan ini",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "か",
+      "わ",
+      "が",
+      "た"
+    ]
+  },
+  "konshuu": {
+    "jp_character": "こんしゅう",
+    "romanji": [
+      "konshuu"
+    ],
+    "sound": "こんしゅう",
+    "meaning": "this week",
+    "meaning_id": "minggu ini",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "か",
+      "わ",
+      "さ",
+      "や",
+      "あ"
+    ]
+  },
+  "konna": {
+    "jp_character": "こんな",
+    "romanji": [
+      "konna"
+    ],
+    "sound": "こんな",
+    "meaning": "like this, such",
+    "meaning_id": "seperti itu",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "か",
+      "わ",
+      "な"
+    ]
+  },
+  "konban": {
+    "jp_character": "こんばん",
+    "romanji": [
+      "konban"
+    ],
+    "sound": "こんばん",
+    "meaning": "this evening",
+    "meaning_id": "malam ini",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "か",
+      "わ",
+      "ば"
+    ]
+  },
+  "zasshi": {
+    "jp_character": "ざっし",
+    "romanji": [
+      "zasshi"
+    ],
+    "sound": "ざっし",
+    "meaning": "magazine",
+    "meaning_id": "majalah",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ざ",
+      "た",
+      "さ"
+    ]
+  },
+  "jisho": {
+    "jp_character": "じしょ",
+    "romanji": [
+      "jisho"
+    ],
+    "sound": "じしょ",
+    "meaning": "dictionary",
+    "meaning_id": "kamus",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ざ",
+      "さ",
+      "や"
+    ]
+  },
+  "jidousha": {
+    "jp_character": "じどうしゃ",
+    "romanji": [
+      "jidousha"
+    ],
+    "sound": "じどうしゃ",
+    "meaning": "automobile",
+    "meaning_id": "mobil",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ざ",
+      "だ",
+      "あ",
+      "さ",
+      "や"
+    ]
+  },
+  "jibiki": {
+    "jp_character": "じびき",
+    "romanji": [
+      "jibiki"
+    ],
+    "sound": "じびき",
+    "meaning": "dictionary",
+    "meaning_id": "kamus",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ざ",
+      "ば",
+      "か"
+    ]
+  },
+  "jibun": {
+    "jp_character": "じぶん",
+    "romanji": [
+      "jibun"
+    ],
+    "sound": "じぶん",
+    "meaning": "oneself",
+    "meaning_id": "diri, diri sendiri",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ざ",
+      "ば",
+      "わ"
+    ]
+  },
+  "ja": {
+    "jp_character": "じゃ",
+    "romanji": [
+      "ja"
+    ],
+    "sound": "じゃ",
+    "meaning": "well then...",
+    "meaning_id": "Baiklah kalau begitu…",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ざ",
+      "や"
+    ]
+  },
+  "joubu": {
+    "jp_character": "じょうぶ",
+    "romanji": [
+      "joubu"
+    ],
+    "sound": "じょうぶ",
+    "meaning": "strong, durable",
+    "meaning_id": "kuat, tahan lama",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ざ",
+      "や",
+      "あ",
+      "ば"
+    ]
+  },
+  "zenbu": {
+    "jp_character": "ぜんぶ",
+    "romanji": [
+      "zenbu"
+    ],
+    "sound": "ぜんぶ",
+    "meaning": "all",
+    "meaning_id": "semua",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ざ",
+      "わ",
+      "ば"
+    ]
+  },
+  "saa": {
+    "jp_character": "さあ",
+    "romanji": [
+      "saa"
+    ],
+    "sound": "さあ",
+    "meaning": "well...",
+    "meaning_id": "baik…",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "さ",
+      "あ"
+    ]
+  },
+  "saki": {
+    "jp_character": "さき",
+    "romanji": [
+      "saki"
+    ],
+    "sound": "さき",
+    "meaning": "ahead, before, first",
+    "meaning_id": "sebelum, sebelumnya, duluan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "さ",
+      "か"
+    ]
+  },
+  "saku": {
+    "jp_character": "さく",
+    "romanji": [
+      "saku"
+    ],
+    "sound": "さく",
+    "meaning": "to bloom",
+    "meaning_id": "mekar",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "さ",
+      "か"
+    ]
+  },
+  "sakubun": {
+    "jp_character": "さくぶん",
+    "romanji": [
+      "sakubun"
+    ],
+    "sound": "さくぶん",
+    "meaning": "composition, writing",
+    "meaning_id": "komposisi, menulis",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "さ",
+      "か",
+      "ば",
+      "わ"
+    ]
+  },
+  "sasu": {
+    "jp_character": "さす",
+    "romanji": [
+      "sasu"
+    ],
+    "sound": "さす",
+    "meaning": "to hold out, to raise (an umbrella)",
+    "meaning_id": "mengulurkan tangan, memberikan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "さ"
+    ]
+  },
+  "satou": {
+    "jp_character": "さとう",
+    "romanji": [
+      "satou"
+    ],
+    "sound": "さとう",
+    "meaning": "sugar",
+    "meaning_id": "gula",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "さ",
+      "た",
+      "あ"
+    ]
+  },
+  "sarainen": {
+    "jp_character": "さらいねん",
+    "romanji": [
+      "sarainen"
+    ],
+    "sound": "さらいねん",
+    "meaning": "the year after next",
+    "meaning_id": "tahun setelah berikutnya, 2 tahun kedepan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "さ",
+      "ら",
+      "あ",
+      "な",
+      "わ"
+    ]
+  },
+  "sanposuru": {
+    "jp_character": "さんぽする",
+    "romanji": [
+      "sanposuru"
+    ],
+    "sound": "さんぽする",
+    "meaning": "to take a walk",
+    "meaning_id": "berjalan-jalan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "さ",
+      "わ",
+      "ぱ",
+      "ら"
+    ]
+  },
+  "shikashi": {
+    "jp_character": "しかし",
+    "romanji": [
+      "shikashi"
+    ],
+    "sound": "しかし",
+    "meaning": "however, but",
+    "meaning_id": "namun",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "さ",
+      "か"
+    ]
+  },
+  "shitsumon": {
+    "jp_character": "しつもん",
+    "romanji": [
+      "shitsumon"
+    ],
+    "sound": "しつもん",
+    "meaning": "question",
+    "meaning_id": "pertanyaan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "さ",
+      "た",
+      "ま",
+      "わ"
+    ]
+  },
+  "shinu": {
+    "jp_character": "しぬ",
+    "romanji": [
+      "shinu"
+    ],
+    "sound": "しぬ",
+    "meaning": "to die",
+    "meaning_id": "mati",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "さ",
+      "な"
+    ]
+  },
+  "shimaru": {
+    "jp_character": "しまる",
+    "romanji": [
+      "shimaru"
+    ],
+    "sound": "しまる",
+    "meaning": "to close (by itself)",
+    "meaning_id": "menutup",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "さ",
+      "ま",
+      "ら"
+    ]
+  },
+  "shokudou": {
+    "jp_character": "しょくどう",
+    "romanji": [
+      "shokudou"
+    ],
+    "sound": "しょくどう",
+    "meaning": "dining hall, cafeteria",
+    "meaning_id": "ruang makan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "さ",
+      "や",
+      "か",
+      "だ",
+      "あ"
+    ]
+  },
+  "shiroi": {
+    "jp_character": "しろい",
+    "romanji": [
+      "shiroi"
+    ],
+    "sound": "しろい",
+    "meaning": "white",
+    "meaning_id": "putih",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "さ",
+      "ら",
+      "あ"
+    ]
+  },
+  "shinbun": {
+    "jp_character": "しんぶん",
+    "romanji": [
+      "shinbun"
+    ],
+    "sound": "しんぶん",
+    "meaning": "newspaper",
+    "meaning_id": "koran",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "さ",
+      "わ",
+      "ば"
+    ]
+  },
+  "suu": {
+    "jp_character": "すう",
+    "romanji": [
+      "suu"
+    ],
+    "sound": "すう",
+    "meaning": "to smoke, to inhale",
+    "meaning_id": "asap, mengisap",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "さ",
+      "あ"
+    ]
+  },
+  "sukunai": {
+    "jp_character": "すくない",
+    "romanji": [
+      "sukunai"
+    ],
+    "sound": "すくない",
+    "meaning": "few (in number)",
+    "meaning_id": "sedikit (jumlahnya)",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "さ",
+      "か",
+      "な",
+      "あ"
+    ]
+  },
+  "suguni": {
+    "jp_character": "すぐに",
+    "romanji": [
+      "suguni"
+    ],
+    "sound": "すぐに",
+    "meaning": "immediately",
+    "meaning_id": "segera",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "さ",
+      "が",
+      "な"
+    ]
+  },
+  "sumu": {
+    "jp_character": "すむ",
+    "romanji": [
+      "sumu"
+    ],
+    "sound": "すむ",
+    "meaning": "to live (in)",
+    "meaning_id": "untuk tinggal di",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "さ",
+      "ま"
+    ]
+  },
+  "suru": {
+    "jp_character": "する",
+    "romanji": [
+      "suru"
+    ],
+    "sound": "する",
+    "meaning": "to do",
+    "meaning_id": "melakukan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "さ",
+      "ら"
+    ]
+  },
+  "se": {
+    "jp_character": "せ",
+    "romanji": [
+      "se"
+    ],
+    "sound": "せ",
+    "meaning": "height, stature",
+    "meaning_id": "tinggi, perawakan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "さ"
+    ]
+  },
+  "seito": {
+    "jp_character": "せいと",
+    "romanji": [
+      "seito"
+    ],
+    "sound": "せいと",
+    "meaning": "pupil, student",
+    "meaning_id": "murid, siswa",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "さ",
+      "あ",
+      "た"
+    ]
+  },
+  "sekken": {
+    "jp_character": "せっけん",
+    "romanji": [
+      "sekken"
+    ],
+    "sound": "せっけん",
+    "meaning": "soap",
+    "meaning_id": "sabun mandi",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "さ",
+      "た",
+      "か",
+      "わ"
+    ]
+  },
+  "sebiro": {
+    "jp_character": "せびろ",
+    "romanji": [
+      "sebiro"
+    ],
+    "sound": "せびろ",
+    "meaning": "business suit",
+    "meaning_id": "setelan jas untuk bekerja",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "さ",
+      "ば",
+      "ら"
+    ]
+  },
+  "sengetsu": {
+    "jp_character": "せんげつ",
+    "romanji": [
+      "sengetsu"
+    ],
+    "sound": "せんげつ",
+    "meaning": "last month",
+    "meaning_id": "bulan lalu",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "さ",
+      "わ",
+      "が",
+      "た"
+    ]
+  },
+  "senshuu": {
+    "jp_character": "せんしゅう",
+    "romanji": [
+      "senshuu"
+    ],
+    "sound": "せんしゅう",
+    "meaning": "last week",
+    "meaning_id": "minggu lalu",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "さ",
+      "わ",
+      "や",
+      "あ"
+    ]
+  },
+  "sentaku": {
+    "jp_character": "せんたく",
+    "romanji": [
+      "sentaku"
+    ],
+    "sound": "せんたく",
+    "meaning": "laundry",
+    "meaning_id": "cucian",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "さ",
+      "わ",
+      "た",
+      "か"
+    ]
+  },
+  "souji": {
+    "jp_character": "そうじ",
+    "romanji": [
+      "souji"
+    ],
+    "sound": "そうじ",
+    "meaning": "cleaning",
+    "meaning_id": "membersihkan, menyapu",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "さ",
+      "あ",
+      "ざ"
+    ]
+  },
+  "soushite": {
+    "jp_character": "そうして",
+    "romanji": [
+      "soushite"
+    ],
+    "sound": "そうして",
+    "meaning": "and",
+    "meaning_id": "dan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "さ",
+      "あ",
+      "た"
+    ]
+  },
+  "sochira": {
+    "jp_character": "そちら",
+    "romanji": [
+      "sochira"
+    ],
+    "sound": "そちら",
+    "meaning": "over there, that way",
+    "meaning_id": "di sana",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "さ",
+      "た",
+      "ら"
+    ]
+  },
+  "sotchi": {
+    "jp_character": "そっち",
+    "romanji": [
+      "sotchi"
+    ],
+    "sound": "そっち",
+    "meaning": "over there",
+    "meaning_id": "di sana",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "さ",
+      "た"
+    ]
+  },
+  "sorekara": {
+    "jp_character": "それから",
+    "romanji": [
+      "sorekara"
+    ],
+    "sound": "それから",
+    "meaning": "after that, and then",
+    "meaning_id": "setelah itu",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "さ",
+      "ら",
+      "か"
+    ]
+  },
+  "soredeha": {
+    "jp_character": "それでは",
+    "romanji": [
+      "soredeha"
+    ],
+    "sound": "それでは",
+    "meaning": "well then",
+    "meaning_id": "kalau begitu",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "さ",
+      "ら",
+      "だ",
+      "は"
+    ]
+  },
+  "taishikan": {
+    "jp_character": "たいしかん",
+    "romanji": [
+      "taishikan"
+    ],
+    "sound": "たいしかん",
+    "meaning": "embassy",
+    "meaning_id": "kedutaan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "た",
+      "あ",
+      "さ",
+      "か",
+      "わ"
+    ]
+  },
+  "daisuki": {
+    "jp_character": "だいすき",
+    "romanji": [
+      "daisuki"
+    ],
+    "sound": "だいすき",
+    "meaning": "to like very much",
+    "meaning_id": "Sangat menyukai",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "だ",
+      "あ",
+      "さ",
+      "か"
+    ]
+  },
+  "taisetsu": {
+    "jp_character": "たいせつ",
+    "romanji": [
+      "taisetsu"
+    ],
+    "sound": "たいせつ",
+    "meaning": "important, precious",
+    "meaning_id": "Sangat menghargai",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "た",
+      "あ",
+      "さ"
+    ]
+  },
+  "dasu": {
+    "jp_character": "だす",
+    "romanji": [
+      "dasu"
+    ],
+    "sound": "だす",
+    "meaning": "to take out, to put out",
+    "meaning_id": "mengeluarkan, memadamkan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "だ",
+      "さ"
+    ]
+  },
+  "tate": {
+    "jp_character": "たて",
+    "romanji": [
+      "tate"
+    ],
+    "sound": "たて",
+    "meaning": "length, height, vertical",
+    "meaning_id": "panjang, tinggi",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "た"
+    ]
+  },
+  "tatemono": {
+    "jp_character": "たてもの",
+    "romanji": [
+      "tatemono"
+    ],
+    "sound": "たてもの",
+    "meaning": "building",
+    "meaning_id": "bangunan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "た",
+      "ま",
+      "な"
+    ]
+  },
+  "tanomu": {
+    "jp_character": "たのむ",
+    "romanji": [
+      "tanomu"
+    ],
+    "sound": "たのむ",
+    "meaning": "to ask, to request, to entrust",
+    "meaning_id": "meminta, mengandalkan, mempercayakan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "た",
+      "な",
+      "ま"
+    ]
+  },
+  "tabako": {
+    "jp_character": "たばこ",
+    "romanji": [
+      "tabako"
+    ],
+    "sound": "たばこ",
+    "meaning": "tobacco, cigarette",
+    "meaning_id": "tembakau, rokok",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "た",
+      "ば",
+      "か"
+    ]
+  },
+  "tabemono": {
+    "jp_character": "たべもの",
+    "romanji": [
+      "tabemono"
+    ],
+    "sound": "たべもの",
+    "meaning": "food",
+    "meaning_id": "makanan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "た",
+      "ば",
+      "ま",
+      "な"
+    ]
+  },
+  "dareka": {
+    "jp_character": "だれか",
+    "romanji": [
+      "dareka"
+    ],
+    "sound": "だれか",
+    "meaning": "someone",
+    "meaning_id": "seseorang",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "だ",
+      "ら",
+      "か"
+    ]
+  },
+  "dandan": {
+    "jp_character": "だんだん",
+    "romanji": [
+      "dandan"
+    ],
+    "sound": "だんだん",
+    "meaning": "gradually",
+    "meaning_id": "secara bertahap",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "だ",
+      "わ"
+    ]
+  },
+  "chiisana": {
+    "jp_character": "ちいさな",
+    "romanji": [
+      "chiisana"
+    ],
+    "sound": "ちいさな",
+    "meaning": "small",
+    "meaning_id": "yang kecil",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "た",
+      "あ",
+      "さ",
+      "な"
+    ]
+  },
+  "chigau": {
+    "jp_character": "ちがう",
+    "romanji": [
+      "chigau"
+    ],
+    "sound": "ちがう",
+    "meaning": "to differ, to be wrong",
+    "meaning_id": "berbeda",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "た",
+      "が",
+      "あ"
+    ]
+  },
+  "chizu": {
+    "jp_character": "ちず",
+    "romanji": [
+      "chizu"
+    ],
+    "sound": "ちず",
+    "meaning": "map",
+    "meaning_id": "peta",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "た",
+      "ざ"
+    ]
+  },
+  "choudo": {
+    "jp_character": "ちょうど",
+    "romanji": [
+      "choudo"
+    ],
+    "sound": "ちょうど",
+    "meaning": "exactly",
+    "meaning_id": "persis",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "た",
+      "や",
+      "あ",
+      "だ"
+    ]
+  },
+  "tsuitachi": {
+    "jp_character": "ついたち",
+    "romanji": [
+      "tsuitachi"
+    ],
+    "sound": "ついたち",
+    "meaning": "the first of the month",
+    "meaning_id": "awal bulan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "た",
+      "あ"
+    ]
+  },
+  "tsukareru": {
+    "jp_character": "つかれる",
+    "romanji": [
+      "tsukareru"
+    ],
+    "sound": "つかれる",
+    "meaning": "to get tired",
+    "meaning_id": "capek, lelah",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "た",
+      "か",
+      "ら"
+    ]
+  },
+  "tsugi": {
+    "jp_character": "つぎ",
+    "romanji": [
+      "tsugi"
+    ],
+    "sound": "つぎ",
+    "meaning": "next",
+    "meaning_id": "berikutnya",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "た",
+      "が"
+    ]
+  },
+  "tsuku": {
+    "jp_character": "つく",
+    "romanji": [
+      "tsuku"
+    ],
+    "sound": "つく",
+    "meaning": "to arrive",
+    "meaning_id": "tiba, sampai",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "た",
+      "か"
+    ]
+  },
+  "tsukeru": {
+    "jp_character": "つける",
+    "romanji": [
+      "tsukeru"
+    ],
+    "sound": "つける",
+    "meaning": "to turn on",
+    "meaning_id": "mengaktifkan, menyalakan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "た",
+      "か",
+      "ら"
+    ]
+  },
+  "tsutomeru": {
+    "jp_character": "つとめる",
+    "romanji": [
+      "tsutomeru"
+    ],
+    "sound": "つとめる",
+    "meaning": "to work (at a company)",
+    "meaning_id": "bekerja",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "た",
+      "ま",
+      "ら"
+    ]
+  },
+  "dekakeru": {
+    "jp_character": "でかける",
+    "romanji": [
+      "dekakeru"
+    ],
+    "sound": "でかける",
+    "meaning": "to go out",
+    "meaning_id": "untuk pergi keluar",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "だ",
+      "か",
+      "ら"
+    ]
+  },
+  "dekiru": {
+    "jp_character": "できる",
+    "romanji": [
+      "dekiru"
+    ],
+    "sound": "できる",
+    "meaning": "to be able to, can",
+    "meaning_id": "bisa, mampu",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "だ",
+      "か",
+      "ら"
+    ]
+  },
+  "deguchi": {
+    "jp_character": "でぐち",
+    "romanji": [
+      "deguchi"
+    ],
+    "sound": "でぐち",
+    "meaning": "exit",
+    "meaning_id": "pintu keluar",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "だ",
+      "が",
+      "た"
+    ]
+  },
+  "deha": {
+    "jp_character": "では",
+    "romanji": [
+      "deha"
+    ],
+    "sound": "では",
+    "meaning": "well then...",
+    "meaning_id": "dengan itu...",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "だ",
+      "は"
+    ]
+  },
+  "demo": {
+    "jp_character": "でも",
+    "romanji": [
+      "demo"
+    ],
+    "sound": "でも",
+    "meaning": "but",
+    "meaning_id": "tapi",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "だ",
+      "ま"
+    ]
+  },
+  "denki": {
+    "jp_character": "でんき",
+    "romanji": [
+      "denki"
+    ],
+    "sound": "でんき",
+    "meaning": "electricity",
+    "meaning_id": "listrik",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "だ",
+      "わ",
+      "か"
+    ]
+  },
+  "to": {
+    "jp_character": "と",
+    "romanji": [
+      "to"
+    ],
+    "sound": "と",
+    "meaning": "Japanese-style door",
+    "meaning_id": "Pintu gaya Jepang",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "た"
+    ]
+  },
+  "dou": {
+    "jp_character": "どう",
+    "romanji": [
+      "dou"
+    ],
+    "sound": "どう",
+    "meaning": "how, in what way",
+    "meaning_id": "bagaimana, dengan cara apa",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "だ",
+      "あ"
+    ]
+  },
+  "doushite": {
+    "jp_character": "どうして",
+    "romanji": [
+      "doushite"
+    ],
+    "sound": "どうして",
+    "meaning": "why",
+    "meaning_id": "mengapa, untuk alasan apa",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "だ",
+      "あ",
+      "さ",
+      "た"
+    ]
+  },
+  "doubutsu": {
+    "jp_character": "どうぶつ",
+    "romanji": [
+      "doubutsu"
+    ],
+    "sound": "どうぶつ",
+    "meaning": "animal",
+    "meaning_id": "hewan, binatang",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "だ",
+      "あ",
+      "ば",
+      "た"
+    ]
+  },
+  "doumo": {
+    "jp_character": "どうも",
+    "romanji": [
+      "doumo"
+    ],
+    "sound": "どうも",
+    "meaning": "thank you",
+    "meaning_id": "Terima kasih",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "だ",
+      "あ",
+      "ま"
+    ]
+  },
+  "tooka": {
+    "jp_character": "とおか",
+    "romanji": [
+      "tooka"
+    ],
+    "sound": "とおか",
+    "meaning": "ten days, the tenth",
+    "meaning_id": "sepuluh hari, hari kesepuluh",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "た",
+      "あ",
+      "か"
+    ]
+  },
+  "tokoro": {
+    "jp_character": "ところ",
+    "romanji": [
+      "tokoro"
+    ],
+    "sound": "ところ",
+    "meaning": "place",
+    "meaning_id": "tempat",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "た",
+      "か",
+      "ら"
+    ]
+  },
+  "toshi": {
+    "jp_character": "とし",
+    "romanji": [
+      "toshi"
+    ],
+    "sound": "とし",
+    "meaning": "year",
+    "meaning_id": "tahun",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "た",
+      "さ"
+    ]
+  },
+  "dochira": {
+    "jp_character": "どちら",
+    "romanji": [
+      "dochira"
+    ],
+    "sound": "どちら",
+    "meaning": "which (of two)",
+    "meaning_id": "yang mana",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "だ",
+      "た",
+      "ら"
+    ]
+  },
+  "dotchi": {
+    "jp_character": "どっち",
+    "romanji": [
+      "dotchi"
+    ],
+    "sound": "どっち",
+    "meaning": "which (of two)",
+    "meaning_id": "yang mana",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "だ",
+      "た"
+    ]
+  },
+  "donata": {
+    "jp_character": "どなた",
+    "romanji": [
+      "donata"
+    ],
+    "sound": "どなた",
+    "meaning": "who (polite)",
+    "meaning_id": "siapa",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "だ",
+      "な",
+      "た"
+    ]
+  },
+  "dono": {
+    "jp_character": "どの",
+    "romanji": [
+      "dono"
+    ],
+    "sound": "どの",
+    "meaning": "which",
+    "meaning_id": "yang",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "だ",
+      "な"
+    ]
+  },
+  "tobu": {
+    "jp_character": "とぶ",
+    "romanji": [
+      "tobu"
+    ],
+    "sound": "とぶ",
+    "meaning": "to fly, to jump",
+    "meaning_id": "untuk terbang, melompat",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "た",
+      "ば"
+    ]
+  },
+  "tomaru": {
+    "jp_character": "とまる",
+    "romanji": [
+      "tomaru"
+    ],
+    "sound": "とまる",
+    "meaning": "to stop",
+    "meaning_id": "untuk datang ke berhenti",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "た",
+      "ま",
+      "ら"
+    ]
+  },
+  "toriniku": {
+    "jp_character": "とりにく",
+    "romanji": [
+      "toriniku"
+    ],
+    "sound": "とりにく",
+    "meaning": "chicken (meat)",
+    "meaning_id": "daging ayam",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "た",
+      "ら",
+      "な",
+      "か"
+    ]
+  },
+  "toru": {
+    "jp_character": "とる",
+    "romanji": [
+      "toru"
+    ],
+    "sound": "とる",
+    "meaning": "to take; to take a photo, to film",
+    "meaning_id": "mengambil sesuatu; mengambil foto atau merekam film",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "た",
+      "ら"
+    ]
+  },
+  "nana": {
+    "jp_character": "なな",
+    "romanji": [
+      "nana"
+    ],
+    "sound": "なな",
+    "meaning": "seven",
+    "meaning_id": "tujuh",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "な"
+    ]
+  },
+  "nakusu": {
+    "jp_character": "なくす",
+    "romanji": [
+      "nakusu"
+    ],
+    "sound": "なくす",
+    "meaning": "to lose (something)",
+    "meaning_id": "kehilangan sesuatu",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "な",
+      "か",
+      "さ"
+    ]
+  },
+  "naze": {
+    "jp_character": "なぜ",
+    "romanji": [
+      "naze"
+    ],
+    "sound": "なぜ",
+    "meaning": "why",
+    "meaning_id": "Mengapa",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "な",
+      "ざ"
+    ]
+  },
+  "natsuyasumi": {
+    "jp_character": "なつやすみ",
+    "romanji": [
+      "natsuyasumi"
+    ],
+    "sound": "なつやすみ",
+    "meaning": "summer vacation",
+    "meaning_id": "liburan musim panas",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "な",
+      "た",
+      "や",
+      "さ",
+      "ま"
+    ]
+  },
+  "nado": {
+    "jp_character": "など",
+    "romanji": [
+      "nado"
+    ],
+    "sound": "など",
+    "meaning": "and so on, et cetera",
+    "meaning_id": "et cetera, dan lain lain",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "な",
+      "だ"
+    ]
+  },
+  "nanatsu": {
+    "jp_character": "ななつ",
+    "romanji": [
+      "nanatsu"
+    ],
+    "sound": "ななつ",
+    "meaning": "seven (things)",
+    "meaning_id": "tujuh",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "な",
+      "た"
+    ]
+  },
+  "nanoka": {
+    "jp_character": "なのか",
+    "romanji": [
+      "nanoka"
+    ],
+    "sound": "なのか",
+    "meaning": "seven days, the seventh",
+    "meaning_id": "tujuh hari, hari ketujuh",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "な",
+      "か"
+    ]
+  },
+  "narabu": {
+    "jp_character": "ならぶ",
+    "romanji": [
+      "narabu"
+    ],
+    "sound": "ならぶ",
+    "meaning": "to line up",
+    "meaning_id": "berbaris",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "な",
+      "ら",
+      "ば"
+    ]
+  },
+  "naraberu": {
+    "jp_character": "ならべる",
+    "romanji": [
+      "naraberu"
+    ],
+    "sound": "ならべる",
+    "meaning": "to line up, to arrange",
+    "meaning_id": "untuk berbaris, untuk mengatur",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "な",
+      "ら",
+      "ば"
+    ]
+  },
+  "naru": {
+    "jp_character": "なる",
+    "romanji": [
+      "naru"
+    ],
+    "sound": "なる",
+    "meaning": "to become",
+    "meaning_id": "menjadi",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "な",
+      "ら"
+    ]
+  },
+  "nan": {
+    "jp_character": "なん",
+    "romanji": [
+      "nan"
+    ],
+    "sound": "なん",
+    "meaning": "what",
+    "meaning_id": "apa",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "な",
+      "わ"
+    ]
+  },
+  "nimotsu": {
+    "jp_character": "にもつ",
+    "romanji": [
+      "nimotsu"
+    ],
+    "sound": "にもつ",
+    "meaning": "luggage",
+    "meaning_id": "barang bawaan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "な",
+      "ま",
+      "た"
+    ]
+  },
+  "nurui": {
+    "jp_character": "ぬるい",
+    "romanji": [
+      "nurui"
+    ],
+    "sound": "ぬるい",
+    "meaning": "lukewarm",
+    "meaning_id": "hangat",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "な",
+      "ら",
+      "あ"
+    ]
+  },
+  "noboru": {
+    "jp_character": "のぼる",
+    "romanji": [
+      "noboru"
+    ],
+    "sound": "のぼる",
+    "meaning": "to climb",
+    "meaning_id": "memanjat",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "な",
+      "ば",
+      "ら"
+    ]
+  },
+  "nomimono": {
+    "jp_character": "のみもの",
+    "romanji": [
+      "nomimono"
+    ],
+    "sound": "のみもの",
+    "meaning": "drink",
+    "meaning_id": "minuman",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "な",
+      "ま"
+    ]
+  },
+  "noru": {
+    "jp_character": "のる",
+    "romanji": [
+      "noru"
+    ],
+    "sound": "のる",
+    "meaning": "to ride, to get on",
+    "meaning_id": "naik, menaiki",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "な",
+      "ら"
+    ]
+  },
+  "haizara": {
+    "jp_character": "はいざら",
+    "romanji": [
+      "haizara"
+    ],
+    "sound": "はいざら",
+    "meaning": "ashtray",
+    "meaning_id": "asbak",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "は",
+      "あ",
+      "ざ",
+      "ら"
+    ]
+  },
+  "hagaki": {
+    "jp_character": "はがき",
+    "romanji": [
+      "hagaki"
+    ],
+    "sound": "はがき",
+    "meaning": "postcard",
+    "meaning_id": "kartu pos",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "は",
+      "が",
+      "か"
+    ]
+  },
+  "haku": {
+    "jp_character": "はく",
+    "romanji": [
+      "haku"
+    ],
+    "sound": "はく",
+    "meaning": "to wear (on the lower body)",
+    "meaning_id": "memakai, mengenakan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "は",
+      "か"
+    ]
+  },
+  "hako": {
+    "jp_character": "はこ",
+    "romanji": [
+      "hako"
+    ],
+    "sound": "はこ",
+    "meaning": "box",
+    "meaning_id": "kotak",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "は",
+      "か"
+    ]
+  },
+  "hajimaru": {
+    "jp_character": "はじまる",
+    "romanji": [
+      "hajimaru"
+    ],
+    "sound": "はじまる",
+    "meaning": "to begin",
+    "meaning_id": "memulai",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "は",
+      "ざ",
+      "ま",
+      "ら"
+    ]
+  },
+  "hajime": {
+    "jp_character": "はじめ",
+    "romanji": [
+      "hajime"
+    ],
+    "sound": "はじめ",
+    "meaning": "beginning",
+    "meaning_id": "awal",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "は",
+      "ざ",
+      "ま"
+    ]
+  },
+  "hajimete": {
+    "jp_character": "はじめて",
+    "romanji": [
+      "hajimete"
+    ],
+    "sound": "はじめて",
+    "meaning": "for the first time",
+    "meaning_id": "pertama kalinya",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "は",
+      "ざ",
+      "ま",
+      "た"
+    ]
+  },
+  "hatachi": {
+    "jp_character": "はたち",
+    "romanji": [
+      "hatachi"
+    ],
+    "sound": "はたち",
+    "meaning": "twenty years old",
+    "meaning_id": "20 tahun, tahun 20",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "は",
+      "た"
+    ]
+  },
+  "hatsuka": {
+    "jp_character": "はつか",
+    "romanji": [
+      "hatsuka"
+    ],
+    "sound": "はつか",
+    "meaning": "the twentieth (of the month)",
+    "meaning_id": "tanggal dua puluh",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "は",
+      "た",
+      "か"
+    ]
+  },
+  "hanashi": {
+    "jp_character": "はなし",
+    "romanji": [
+      "hanashi"
+    ],
+    "sound": "はなし",
+    "meaning": "talk, story",
+    "meaning_id": "bicara, cerita",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "は",
+      "な",
+      "さ"
+    ]
+  },
+  "hareru": {
+    "jp_character": "はれる",
+    "romanji": [
+      "hareru"
+    ],
+    "sound": "はれる",
+    "meaning": "to clear up",
+    "meaning_id": "menjadi cerah",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "は",
+      "ら"
+    ]
+  },
+  "han": {
+    "jp_character": "はん",
+    "romanji": [
+      "han"
+    ],
+    "sound": "はん",
+    "meaning": "half",
+    "meaning_id": "setengah",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "は",
+      "わ"
+    ]
+  },
+  "bangou": {
+    "jp_character": "ばんごう",
+    "romanji": [
+      "bangou"
+    ],
+    "sound": "ばんごう",
+    "meaning": "number",
+    "meaning_id": "nomor",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ば",
+      "わ",
+      "が",
+      "あ"
+    ]
+  },
+  "bangohan": {
+    "jp_character": "ばんごはん",
+    "romanji": [
+      "bangohan"
+    ],
+    "sound": "ばんごはん",
+    "meaning": "dinner",
+    "meaning_id": "makan malam",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ば",
+      "わ",
+      "が",
+      "は"
+    ]
+  },
+  "hanbun": {
+    "jp_character": "はんぶん",
+    "romanji": [
+      "hanbun"
+    ],
+    "sound": "はんぶん",
+    "meaning": "half",
+    "meaning_id": "setengah menit",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "は",
+      "わ",
+      "ば"
+    ]
+  },
+  "hiku": {
+    "jp_character": "ひく",
+    "romanji": [
+      "hiku"
+    ],
+    "sound": "ひく",
+    "meaning": "to pull; to play (an instrument)",
+    "meaning_id": "menarik; memainkan alat musik",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "は",
+      "か"
+    ]
+  },
+  "hikui": {
+    "jp_character": "ひくい",
+    "romanji": [
+      "hikui"
+    ],
+    "sound": "ひくい",
+    "meaning": "low, short",
+    "meaning_id": "pendek, rendah",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "は",
+      "か",
+      "あ"
+    ]
+  },
+  "hitotsu": {
+    "jp_character": "ひとつ",
+    "romanji": [
+      "hitotsu"
+    ],
+    "sound": "ひとつ",
+    "meaning": "one (thing)",
+    "meaning_id": "satu",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "は",
+      "た"
+    ]
+  },
+  "hitotsuki": {
+    "jp_character": "ひとつき",
+    "romanji": [
+      "hitotsuki"
+    ],
+    "sound": "ひとつき",
+    "meaning": "one month",
+    "meaning_id": "satu bulan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "は",
+      "た",
+      "か"
+    ]
+  },
+  "byouki": {
+    "jp_character": "びょうき",
+    "romanji": [
+      "byouki"
+    ],
+    "sound": "びょうき",
+    "meaning": "illness",
+    "meaning_id": "penyakit",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ば",
+      "や",
+      "あ",
+      "か"
+    ]
+  },
+  "hirugohan": {
+    "jp_character": "ひるごはん",
+    "romanji": [
+      "hirugohan"
+    ],
+    "sound": "ひるごはん",
+    "meaning": "lunch",
+    "meaning_id": "makan siang",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "は",
+      "ら",
+      "が",
+      "わ"
+    ]
+  },
+  "fuutou": {
+    "jp_character": "ふうとう",
+    "romanji": [
+      "fuutou"
+    ],
+    "sound": "ふうとう",
+    "meaning": "envelope",
+    "meaning_id": "amplop",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "は",
+      "あ",
+      "た"
+    ]
+  },
+  "futatsu": {
+    "jp_character": "ふたつ",
+    "romanji": [
+      "futatsu"
+    ],
+    "sound": "ふたつ",
+    "meaning": "two (things)",
+    "meaning_id": "dua",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "は",
+      "た"
+    ]
+  },
+  "butaniku": {
+    "jp_character": "ぶたにく",
+    "romanji": [
+      "butaniku"
+    ],
+    "sound": "ぶたにく",
+    "meaning": "pork",
+    "meaning_id": "daging babi",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ば",
+      "た",
+      "な",
+      "か"
+    ]
+  },
+  "futari": {
+    "jp_character": "ふたり",
+    "romanji": [
+      "futari"
+    ],
+    "sound": "ふたり",
+    "meaning": "two people",
+    "meaning_id": "dua orang",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "は",
+      "た",
+      "ら"
+    ]
+  },
+  "futsuka": {
+    "jp_character": "ふつか",
+    "romanji": [
+      "futsuka"
+    ],
+    "sound": "ふつか",
+    "meaning": "two days, the second",
+    "meaning_id": "dua hari, hari kedua dlm bulan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "は",
+      "た",
+      "か"
+    ]
+  },
+  "furu": {
+    "jp_character": "ふる",
+    "romanji": [
+      "furu"
+    ],
+    "sound": "ふる",
+    "meaning": "to fall (rain, snow)",
+    "meaning_id": "turun, misalnya hujan atau salju",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "は",
+      "ら"
+    ]
+  },
+  "furo": {
+    "jp_character": "ふろ",
+    "romanji": [
+      "furo"
+    ],
+    "sound": "ふろ",
+    "meaning": "bath",
+    "meaning_id": "mandi",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "は",
+      "ら"
+    ]
+  },
+  "bunshou": {
+    "jp_character": "ぶんしょう",
+    "romanji": [
+      "bunshou"
+    ],
+    "sound": "ぶんしょう",
+    "meaning": "sentence, text",
+    "meaning_id": "kalimat, teks",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ば",
+      "わ",
+      "さ",
+      "や",
+      "あ"
+    ]
+  },
+  "heta": {
+    "jp_character": "へた",
+    "romanji": [
+      "heta"
+    ],
+    "sound": "へた",
+    "meaning": "unskillful",
+    "meaning_id": "tidak terampil, payah",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "は",
+      "た"
+    ]
+  },
+  "hoka": {
+    "jp_character": "ほか",
+    "romanji": [
+      "hoka"
+    ],
+    "sound": "ほか",
+    "meaning": "other, the rest",
+    "meaning_id": "lainnya, sisanya",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "は",
+      "か"
+    ]
+  },
+  "hoshii": {
+    "jp_character": "ほしい",
+    "romanji": [
+      "hoshii"
+    ],
+    "sound": "ほしい",
+    "meaning": "to want",
+    "meaning_id": "ingin",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "は",
+      "さ",
+      "あ"
+    ]
+  },
+  "hondana": {
+    "jp_character": "ほんだな",
+    "romanji": [
+      "hondana"
+    ],
+    "sound": "ほんだな",
+    "meaning": "bookshelf",
+    "meaning_id": "rak buku",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "は",
+      "わ",
+      "だ",
+      "な"
+    ]
+  },
+  "hontou": {
+    "jp_character": "ほんとう",
+    "romanji": [
+      "hontou"
+    ],
+    "sound": "ほんとう",
+    "meaning": "true, truth",
+    "meaning_id": "benar, kebenaran",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "は",
+      "わ",
+      "た",
+      "あ"
+    ]
+  },
+  "maiasa": {
+    "jp_character": "まいあさ",
+    "romanji": [
+      "maiasa"
+    ],
+    "sound": "まいあさ",
+    "meaning": "every morning",
+    "meaning_id": "setiap pagi",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ま",
+      "あ",
+      "さ"
+    ]
+  },
+  "maigetsu": {
+    "jp_character": "まいげつ",
+    "romanji": [
+      "maigetsu"
+    ],
+    "sound": "まいげつ",
+    "meaning": "every month",
+    "meaning_id": "setiap bulan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ま",
+      "あ",
+      "が",
+      "た"
+    ]
+  },
+  "maishuu": {
+    "jp_character": "まいしゅう",
+    "romanji": [
+      "maishuu"
+    ],
+    "sound": "まいしゅう",
+    "meaning": "every week",
+    "meaning_id": "setiap minggu",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ま",
+      "あ",
+      "さ",
+      "や"
+    ]
+  },
+  "mainen": {
+    "jp_character": "まいねん",
+    "romanji": [
+      "mainen"
+    ],
+    "sound": "まいねん",
+    "meaning": "every year",
+    "meaning_id": "setiap tahun",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ま",
+      "あ",
+      "な",
+      "わ"
+    ]
+  },
+  "maiban": {
+    "jp_character": "まいばん",
+    "romanji": [
+      "maiban"
+    ],
+    "sound": "まいばん",
+    "meaning": "every evening",
+    "meaning_id": "setiap malam",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ま",
+      "あ",
+      "ば",
+      "わ"
+    ]
+  },
+  "magaru": {
+    "jp_character": "まがる",
+    "romanji": [
+      "magaru"
+    ],
+    "sound": "まがる",
+    "meaning": "to turn, to bend",
+    "meaning_id": "membengkokkan, menekuk, mengubah",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ま",
+      "が",
+      "ら"
+    ]
+  },
+  "mata": {
+    "jp_character": "また",
+    "romanji": [
+      "mata"
+    ],
+    "sound": "また",
+    "meaning": "again, and",
+    "meaning_id": "lagi, dan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ま",
+      "た"
+    ]
+  },
+  "massugu": {
+    "jp_character": "まっすぐ",
+    "romanji": [
+      "massugu"
+    ],
+    "sound": "まっすぐ",
+    "meaning": "straight ahead",
+    "meaning_id": "lurus ke depan, langsung",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ま",
+      "た",
+      "さ",
+      "が"
+    ]
+  },
+  "mannenhitsu": {
+    "jp_character": "まんねんひつ",
+    "romanji": [
+      "mannenhitsu"
+    ],
+    "sound": "まんねんひつ",
+    "meaning": "fountain pen",
+    "meaning_id": "pulpen",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ま",
+      "わ",
+      "な",
+      "は",
+      "た"
+    ]
+  },
+  "migaku": {
+    "jp_character": "みがく",
+    "romanji": [
+      "migaku"
+    ],
+    "sound": "みがく",
+    "meaning": "to polish, to brush",
+    "meaning_id": "memoles, menyikat",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ま",
+      "が",
+      "か"
+    ]
+  },
+  "miseru": {
+    "jp_character": "みせる",
+    "romanji": [
+      "miseru"
+    ],
+    "sound": "みせる",
+    "meaning": "to show",
+    "meaning_id": "memperlihatkan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ま",
+      "さ",
+      "ら"
+    ]
+  },
+  "mikka": {
+    "jp_character": "みっか",
+    "romanji": [
+      "mikka"
+    ],
+    "sound": "みっか",
+    "meaning": "three days, the third",
+    "meaning_id": "tiga hari, hari ketiga dlm bulan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ま",
+      "た",
+      "か"
+    ]
+  },
+  "mittsu": {
+    "jp_character": "みっつ",
+    "romanji": [
+      "mittsu"
+    ],
+    "sound": "みっつ",
+    "meaning": "three (things)",
+    "meaning_id": "tiga",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ま",
+      "た"
+    ]
+  },
+  "minasan": {
+    "jp_character": "みなさん",
+    "romanji": [
+      "minasan"
+    ],
+    "sound": "みなさん",
+    "meaning": "everyone",
+    "meaning_id": "semua orang",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ま",
+      "な",
+      "さ",
+      "わ"
+    ]
+  },
+  "minna": {
+    "jp_character": "みんな",
+    "romanji": [
+      "minna"
+    ],
+    "sound": "みんな",
+    "meaning": "everyone",
+    "meaning_id": "semua orang",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ま",
+      "わ",
+      "な"
+    ]
+  },
+  "muika": {
+    "jp_character": "むいか",
+    "romanji": [
+      "muika"
+    ],
+    "sound": "むいか",
+    "meaning": "six days, the sixth",
+    "meaning_id": "enam hari, hari keenam dlm bulan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ま",
+      "あ",
+      "か"
+    ]
+  },
+  "mukou": {
+    "jp_character": "むこう",
+    "romanji": [
+      "mukou"
+    ],
+    "sound": "むこう",
+    "meaning": "over there, the other side",
+    "meaning_id": "(yg ada) di sana",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ま",
+      "か",
+      "あ"
+    ]
+  },
+  "muttsu": {
+    "jp_character": "むっつ",
+    "romanji": [
+      "muttsu"
+    ],
+    "sound": "むっつ",
+    "meaning": "six (things)",
+    "meaning_id": "enam",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ま",
+      "た"
+    ]
+  },
+  "mou": {
+    "jp_character": "もう",
+    "romanji": [
+      "mou"
+    ],
+    "sound": "もう",
+    "meaning": "already, again",
+    "meaning_id": "sudah, lagi",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ま",
+      "あ"
+    ]
+  },
+  "mouichido": {
+    "jp_character": "もういちど",
+    "romanji": [
+      "mouichido"
+    ],
+    "sound": "もういちど",
+    "meaning": "once more",
+    "meaning_id": "sekali lagi",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ま",
+      "あ",
+      "た",
+      "だ"
+    ]
+  },
+  "motto": {
+    "jp_character": "もっと",
+    "romanji": [
+      "motto"
+    ],
+    "sound": "もっと",
+    "meaning": "more",
+    "meaning_id": "lebih, lagi",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ま",
+      "た"
+    ]
+  },
+  "mono": {
+    "jp_character": "もの",
+    "romanji": [
+      "mono"
+    ],
+    "sound": "もの",
+    "meaning": "thing, object",
+    "meaning_id": "benda",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ま",
+      "な"
+    ]
+  },
+  "mon": {
+    "jp_character": "もん",
+    "romanji": [
+      "mon"
+    ],
+    "sound": "もん",
+    "meaning": "gate",
+    "meaning_id": "gerbang",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ま",
+      "わ"
+    ]
+  },
+  "mondai": {
+    "jp_character": "もんだい",
+    "romanji": [
+      "mondai"
+    ],
+    "sound": "もんだい",
+    "meaning": "problem, question",
+    "meaning_id": "soal, persoalan, masalah",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ま",
+      "わ",
+      "だ",
+      "あ"
+    ]
+  },
+  "yon": {
+    "jp_character": "よん",
+    "romanji": [
+      "yon"
+    ],
+    "sound": "よん",
+    "meaning": "four",
+    "meaning_id": "empat",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "や",
+      "わ"
+    ]
+  },
+  "yaoya": {
+    "jp_character": "やおや",
+    "romanji": [
+      "yaoya"
+    ],
+    "sound": "やおや",
+    "meaning": "greengrocer",
+    "meaning_id": "penjual sayur",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "や",
+      "あ"
+    ]
+  },
+  "yasumi": {
+    "jp_character": "やすみ",
+    "romanji": [
+      "yasumi"
+    ],
+    "sound": "やすみ",
+    "meaning": "holiday, rest",
+    "meaning_id": "liburan, hari libur",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "や",
+      "さ",
+      "ま"
+    ]
+  },
+  "yattsu": {
+    "jp_character": "やっつ",
+    "romanji": [
+      "yattsu"
+    ],
+    "sound": "やっつ",
+    "meaning": "eight (things)",
+    "meaning_id": "delapan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "や",
+      "た"
+    ]
+  },
+  "yaru": {
+    "jp_character": "やる",
+    "romanji": [
+      "yaru"
+    ],
+    "sound": "やる",
+    "meaning": "to do, to give",
+    "meaning_id": "melakukan, memberi",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "や",
+      "ら"
+    ]
+  },
+  "yuugata": {
+    "jp_character": "ゆうがた",
+    "romanji": [
+      "yuugata"
+    ],
+    "sound": "ゆうがた",
+    "meaning": "evening",
+    "meaning_id": "malam",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "や",
+      "あ",
+      "が",
+      "た"
+    ]
+  },
+  "yuuhan": {
+    "jp_character": "ゆうはん",
+    "romanji": [
+      "yuuhan"
+    ],
+    "sound": "ゆうはん",
+    "meaning": "dinner, evening meal",
+    "meaning_id": "makan malam",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "や",
+      "あ",
+      "は",
+      "わ"
+    ]
+  },
+  "yuube": {
+    "jp_character": "ゆうべ",
+    "romanji": [
+      "yuube"
+    ],
+    "sound": "ゆうべ",
+    "meaning": "last night",
+    "meaning_id": "Tadi malam",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "や",
+      "あ",
+      "ば"
+    ]
+  },
+  "yuku": {
+    "jp_character": "ゆく",
+    "romanji": [
+      "yuku"
+    ],
+    "sound": "ゆく",
+    "meaning": "to go",
+    "meaning_id": "pergi",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "や",
+      "か"
+    ]
+  },
+  "yukkurito": {
+    "jp_character": "ゆっくりと",
+    "romanji": [
+      "yukkurito"
+    ],
+    "sound": "ゆっくりと",
+    "meaning": "slowly",
+    "meaning_id": "pelan-pelan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "や",
+      "た",
+      "か",
+      "ら"
+    ]
+  },
+  "youka": {
+    "jp_character": "ようか",
+    "romanji": [
+      "youka"
+    ],
+    "sound": "ようか",
+    "meaning": "eight days, the eighth",
+    "meaning_id": "tanggal delapan, 8 hari",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "や",
+      "あ",
+      "か"
+    ]
+  },
+  "youfuku": {
+    "jp_character": "ようふく",
+    "romanji": [
+      "youfuku"
+    ],
+    "sound": "ようふく",
+    "meaning": "Western-style clothes",
+    "meaning_id": "pakaian gaya barat",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "や",
+      "あ",
+      "は",
+      "か"
+    ]
+  },
+  "yoku": {
+    "jp_character": "よく",
+    "romanji": [
+      "yoku"
+    ],
+    "sound": "よく",
+    "meaning": "often, well",
+    "meaning_id": "sering, baik",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "や",
+      "か"
+    ]
+  },
+  "yokka": {
+    "jp_character": "よっか",
+    "romanji": [
+      "yokka"
+    ],
+    "sound": "よっか",
+    "meaning": "four days, the fourth",
+    "meaning_id": "tanggal empat, 4 hari",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "や",
+      "た",
+      "か"
+    ]
+  },
+  "yottsu": {
+    "jp_character": "よっつ",
+    "romanji": [
+      "yottsu"
+    ],
+    "sound": "よっつ",
+    "meaning": "four (things)",
+    "meaning_id": "empat",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "や",
+      "た"
+    ]
+  },
+  "raigetsu": {
+    "jp_character": "らいげつ",
+    "romanji": [
+      "raigetsu"
+    ],
+    "sound": "らいげつ",
+    "meaning": "next month",
+    "meaning_id": "bulan depan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ら",
+      "あ",
+      "が",
+      "た"
+    ]
+  },
+  "rippa": {
+    "jp_character": "りっぱ",
+    "romanji": [
+      "rippa"
+    ],
+    "sound": "りっぱ",
+    "meaning": "splendid, fine",
+    "meaning_id": "megah",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ら",
+      "た",
+      "ぱ"
+    ]
+  },
+  "ryuugakusei": {
+    "jp_character": "りゅうがくせい",
+    "romanji": [
+      "ryuugakusei"
+    ],
+    "sound": "りゅうがくせい",
+    "meaning": "international student",
+    "meaning_id": "Siswa internasional, siswa dari luar negeri",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ら",
+      "や",
+      "あ",
+      "が",
+      "か",
+      "さ"
+    ]
+  },
+  "ryoushin": {
+    "jp_character": "りょうしん",
+    "romanji": [
+      "ryoushin"
+    ],
+    "sound": "りょうしん",
+    "meaning": "parents",
+    "meaning_id": "kedua orang tua",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ら",
+      "や",
+      "あ",
+      "さ",
+      "わ"
+    ]
+  },
+  "rei": {
+    "jp_character": "れい",
+    "romanji": [
+      "rei"
+    ],
+    "sound": "れい",
+    "meaning": "zero",
+    "meaning_id": "nol",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ら",
+      "あ"
+    ]
+  },
+  "renshuu": {
+    "jp_character": "れんしゅう",
+    "romanji": [
+      "renshuu"
+    ],
+    "sound": "れんしゅう",
+    "meaning": "practice",
+    "meaning_id": "latihan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ら",
+      "わ",
+      "さ",
+      "や",
+      "あ"
+    ]
+  },
+  "rouka": {
+    "jp_character": "ろうか",
+    "romanji": [
+      "rouka"
+    ],
+    "sound": "ろうか",
+    "meaning": "corridor",
+    "meaning_id": "koridor",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "ら",
+      "あ",
+      "か"
+    ]
+  },
+  "wakaru": {
+    "jp_character": "わかる",
+    "romanji": [
+      "wakaru"
+    ],
+    "sound": "わかる",
+    "meaning": "to understand",
+    "meaning_id": "mengerti, memahami",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "わ",
+      "か",
+      "ら"
+    ]
+  },
+  "watashi": {
+    "jp_character": "わたし",
+    "romanji": [
+      "watashi"
+    ],
+    "sound": "わたし",
+    "meaning": "I, me",
+    "meaning_id": "saya",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "わ",
+      "た",
+      "さ"
+    ]
+  },
+  "watakushi": {
+    "jp_character": "わたくし",
+    "romanji": [
+      "watakushi"
+    ],
+    "sound": "わたくし",
+    "meaning": "I (formal)",
+    "meaning_id": "saya (sopan)",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "わ",
+      "た",
+      "か",
+      "さ"
+    ]
+  },
+  "watasu": {
+    "jp_character": "わたす",
+    "romanji": [
+      "watasu"
+    ],
+    "sound": "わたす",
+    "meaning": "to hand over",
+    "meaning_id": "memberikan, menyerahkan",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "わ",
+      "た",
+      "さ"
+    ]
+  },
+  "wataru": {
+    "jp_character": "わたる",
+    "romanji": [
+      "wataru"
+    ],
+    "sound": "わたる",
+    "meaning": "to cross",
+    "meaning_id": "menyeberangi",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "わ",
+      "た",
+      "ら"
+    ]
+  },
+  "warui": {
+    "jp_character": "わるい",
+    "romanji": [
+      "warui"
+    ],
+    "sound": "わるい",
+    "meaning": "bad",
+    "meaning_id": "buruk",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "わ",
+      "ら",
+      "あ"
+    ]
+  },
+  "kappu": {
+    "jp_character": "カップ",
+    "romanji": [
+      "kappu"
+    ],
+    "sound": "カップ",
+    "meaning": "cup",
+    "meaning_id": "cangkir",
+    "tags": [],
+    "katakana_groups": [
+      "カ",
+      "タ",
+      "パ"
+    ],
+    "hiragana_groups": []
+  },
+  "karee": {
+    "jp_character": "カレー",
+    "romanji": [
+      "karee"
+    ],
+    "sound": "カレー",
+    "meaning": "curry",
+    "meaning_id": "kari (makanan)",
+    "tags": [],
+    "katakana_groups": [
+      "カ",
+      "ラ"
+    ],
+    "hiragana_groups": []
+  },
+  "kiro": {
+    "jp_character": "キロ",
+    "romanji": [
+      "kiro"
+    ],
+    "sound": "キロ",
+    "meaning": "kilogram; kilometer",
+    "meaning_id": "kilogram; kilometer",
+    "tags": [],
+    "katakana_groups": [
+      "カ",
+      "ラ"
+    ],
+    "hiragana_groups": []
+  },
+  "guramu": {
+    "jp_character": "グラム",
+    "romanji": [
+      "guramu"
+    ],
+    "sound": "グラム",
+    "meaning": "gram",
+    "meaning_id": "gram",
+    "tags": [],
+    "katakana_groups": [
+      "ガ",
+      "ラ",
+      "マ"
+    ],
+    "hiragana_groups": []
+  },
+  "kopiisuru": {
+    "jp_character": "コピーする",
+    "romanji": [
+      "kopiisuru"
+    ],
+    "sound": "コピーする",
+    "meaning": "to copy",
+    "meaning_id": "untuk menyalin",
+    "tags": [],
+    "katakana_groups": [
+      "カ",
+      "パ"
+    ],
+    "hiragana_groups": [
+      "さ",
+      "ら"
+    ]
+  },
+  "zero": {
+    "jp_character": "ゼロ",
+    "romanji": [
+      "zero"
+    ],
+    "sound": "ゼロ",
+    "meaning": "zero",
+    "meaning_id": "nol",
+    "tags": [],
+    "katakana_groups": [
+      "ザ",
+      "ラ"
+    ],
+    "hiragana_groups": []
+  },
+  "supuun": {
+    "jp_character": "スプーン",
+    "romanji": [
+      "supuun"
+    ],
+    "sound": "スプーン",
+    "meaning": "spoon",
+    "meaning_id": "Spoon, sendok",
+    "tags": [],
+    "katakana_groups": [
+      "サ",
+      "パ",
+      "ワ"
+    ],
+    "hiragana_groups": []
+  },
+  "surippa": {
+    "jp_character": "スリッパ",
+    "romanji": [
+      "surippa"
+    ],
+    "sound": "スリッパ",
+    "meaning": "slippers",
+    "meaning_id": "sandal",
+    "tags": [],
+    "katakana_groups": [
+      "サ",
+      "ラ",
+      "タ",
+      "パ"
+    ],
+    "hiragana_groups": []
+  },
+  "teepu": {
+    "jp_character": "テープ",
+    "romanji": [
+      "teepu"
+    ],
+    "sound": "テープ",
+    "meaning": "tape",
+    "meaning_id": "tape",
+    "tags": [],
+    "katakana_groups": [
+      "タ",
+      "パ"
+    ],
+    "hiragana_groups": []
+  },
+  "teepurekoodaa": {
+    "jp_character": "テープレコーダー",
+    "romanji": [
+      "teepurekoodaa"
+    ],
+    "sound": "テープレコーダー",
+    "meaning": "tape recorder",
+    "meaning_id": "alat perekam",
+    "tags": [],
+    "katakana_groups": [
+      "タ",
+      "パ",
+      "ラ",
+      "カ",
+      "ダ"
+    ],
+    "hiragana_groups": []
+  },
+  "naifu": {
+    "jp_character": "ナイフ",
+    "romanji": [
+      "naifu"
+    ],
+    "sound": "ナイフ",
+    "meaning": "knife",
+    "meaning_id": "pisau",
+    "tags": [],
+    "katakana_groups": [
+      "ナ",
+      "ア",
+      "ハ"
+    ],
+    "hiragana_groups": []
+  },
+  "paateii": {
+    "jp_character": "パーティー",
+    "romanji": [
+      "paateii"
+    ],
+    "sound": "パーティー",
+    "meaning": "party",
+    "meaning_id": "pesta",
+    "tags": [],
+    "katakana_groups": [
+      "パ",
+      "タ",
+      "ア"
+    ],
+    "hiragana_groups": []
+  },
+  "fyirumu": {
+    "jp_character": "フィルム",
+    "romanji": [
+      "fyirumu"
+    ],
+    "sound": "フィルム",
+    "meaning": "film (camera)",
+    "meaning_id": "film, rol film",
+    "tags": [],
+    "katakana_groups": [
+      "ハ",
+      "ア",
+      "ラ",
+      "マ"
+    ],
+    "hiragana_groups": []
+  },
+  "fuooku": {
+    "jp_character": "フォーク",
+    "romanji": [
+      "fuooku"
+    ],
+    "sound": "フォーク",
+    "meaning": "fork",
+    "meaning_id": "garpu",
+    "tags": [],
+    "katakana_groups": [
+      "ハ",
+      "ア",
+      "カ"
+    ],
+    "hiragana_groups": []
+  },
+  "petto": {
+    "jp_character": "ペット",
+    "romanji": [
+      "petto"
+    ],
+    "sound": "ペット",
+    "meaning": "pet",
+    "meaning_id": "Pets, hewan peliharaan",
+    "tags": [],
+    "katakana_groups": [
+      "パ",
+      "タ"
+    ],
+    "hiragana_groups": []
+  },
+  "boorupen": {
+    "jp_character": "ボールペン",
+    "romanji": [
+      "boorupen"
+    ],
+    "sound": "ボールペン",
+    "meaning": "ballpoint pen",
+    "meaning_id": "pulpen",
+    "tags": [],
+    "katakana_groups": [
+      "バ",
+      "ラ",
+      "パ",
+      "ワ"
+    ],
+    "hiragana_groups": []
+  },
+  "posuto": {
+    "jp_character": "ポスト",
+    "romanji": [
+      "posuto"
+    ],
+    "sound": "ポスト",
+    "meaning": "mailbox, post",
+    "meaning_id": "pos",
+    "tags": [],
+    "katakana_groups": [
+      "パ",
+      "サ",
+      "タ"
+    ],
+    "hiragana_groups": []
+  },
+  "matchi": {
+    "jp_character": "マッチ",
+    "romanji": [
+      "matchi"
+    ],
+    "sound": "マッチ",
+    "meaning": "match (for fire)",
+    "meaning_id": "Match, pertandingan",
+    "tags": [],
+    "katakana_groups": [
+      "マ",
+      "タ"
+    ],
+    "hiragana_groups": []
+  },
+  "meetoru": {
+    "jp_character": "メートル",
+    "romanji": [
+      "meetoru"
+    ],
+    "sound": "メートル",
+    "meaning": "meter",
+    "meaning_id": "meter",
+    "tags": [],
+    "katakana_groups": [
+      "マ",
+      "タ",
+      "ラ"
+    ],
+    "hiragana_groups": []
+  },
+  "rajikase": {
+    "jp_character": "ラジカセ",
+    "romanji": [
+      "rajikase"
+    ],
+    "sound": "ラジカセ",
+    "meaning": "radio-cassette player",
+    "meaning_id": "pemutar kaset radio",
+    "tags": [],
+    "katakana_groups": [
+      "ラ",
+      "ザ",
+      "カ",
+      "サ"
+    ],
+    "hiragana_groups": []
+  },
+  "rekoodo": {
+    "jp_character": "レコード",
+    "romanji": [
+      "rekoodo"
+    ],
+    "sound": "レコード",
+    "meaning": "record (vinyl)",
+    "meaning_id": "catatan, rekor, piringan hitam",
+    "tags": [],
+    "katakana_groups": [
+      "ラ",
+      "カ",
+      "ダ"
+    ],
+    "hiragana_groups": []
+  },
+  "waishatsu": {
+    "jp_character": "ワイシャツ",
+    "romanji": [
+      "waishatsu"
+    ],
+    "sound": "ワイシャツ",
+    "meaning": "dress shirt",
+    "meaning_id": "kemeja bisnis",
+    "tags": [],
+    "katakana_groups": [
+      "ワ",
+      "ア",
+      "サ",
+      "ヤ",
+      "タ"
+    ],
+    "hiragana_groups": []
+  },
+  "yori": {
+    "jp_character": "より",
+    "romanji": [
+      "yori"
+    ],
+    "sound": "より",
+    "meaning": "used for comparison",
+    "meaning_id": "Digunakan untuk perbandingan.",
+    "tags": [],
+    "katakana_groups": [],
+    "hiragana_groups": [
+      "や",
+      "ら"
+    ]
   }
 }

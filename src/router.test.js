@@ -26,6 +26,7 @@ beforeAll(() => Promise.all([
   import('./pages/InGame'),
   import('./pages/Dictionary'),
   import('./pages/Materi'),
+  import('./pages/Chat'),
   import('./NotFound'),
 ]));
 
@@ -61,6 +62,8 @@ beforeEach(() => {
   localStorage.clear();
   // The Dictionary keeps its search here
   sessionStorage.clear();
+  // jsdom has no scrollIntoView; the Chat tab scrolls its thread on mount
+  window.HTMLElement.prototype.scrollIntoView = () => { };
   practiceCharacters(['あ']);
 });
 
@@ -940,6 +943,23 @@ describe('tabs', () => {
     fireEvent.click(screen.getByRole('radio', { name: translate('en', 'materiBunpou') }));
     expect(document.querySelector('.materi-list')).toHaveTextContent('〜です');
     expect(screen.getByRole('radio', { name: translate('en', 'materiBunpou') })).toHaveAttribute('aria-checked', 'true');
+  });
+
+  test('the navbar links to the Chat tab, next to the Materials', async () => {
+    await open('/');
+    const chat = screen.getByRole('link', { name: translate('en', 'tabChat') });
+    await act(async () => {
+      fireEvent.click(chat);
+    });
+    expect(path()).toBe('/chat');
+    expect(screen.getByRole('link', { name: translate('en', 'tabChat') })).toHaveAttribute('aria-current', 'page');
+    expect(document.title).toBe(translate('en', 'seoTitleChat'));
+    expect(document.querySelector('meta[name="robots"]').content).toBe('index, follow');
+
+    // The chat of the tab, not a section of the Materials any more
+    expect(document.querySelector('.materi-chat')).not.toBeNull();
+    expect(document.querySelector('.materi-list')).toBeNull();
+    expect(screen.getByPlaceholderText(translate('en', 'chatInputPlaceholder'))).toBeInTheDocument();
   });
 
   test('the dictionary searches and filters', async () => {

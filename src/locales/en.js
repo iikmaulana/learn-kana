@@ -36,6 +36,7 @@ export const en = {
   tabGames: 'Games',
   tabDictionary: 'Dictionary',
   tabMateri: 'Materials',
+  tabChat: 'Chat',
 
   // Dictionary
   dictionaryTitle: 'Dictionary',
@@ -102,6 +103,27 @@ export const en = {
   materiParticleNe: 'At the end: asking the listener to agree (…ですね = …, right?).',
   materiBunpouDesu: 'です is the polite “to be”: AはBです says A is B (これは水です).',
   materiBunpouDeshita: 'でした is the past of です: AはBでした (きのうは雨でした).',
+
+  // Chat (the conversation practice of the Chat tab)
+  chatAiNoKeyNotice: 'The AI tutor needs a Google AI Studio key in .env (VITE_GEMINI_API_KEY).',
+  chatOpeningMeaning: 'Hello! What is your name?',
+  chatTyping: 'Tutor is typing…',
+  chatInputPlaceholder: 'Type romaji (auto-converts to kana)…',
+  chatHelp: 'Help',
+  chatHelpShow: 'Show help',
+  chatHelpHide: 'Hide help',
+  chatHelpShowAll: 'Show romaji & translation for all messages',
+  chatHelpHideAll: 'Hide romaji & translation for all messages',
+  chatHelpPanelTitle: 'Conversation & Typing Help',
+  chatHelpQuickPhrases: 'Quick phrases (tap to insert)',
+  chatHelpTypingGuide: 'How to type romaji to kana',
+  chatHelpTypingDetail: 'Type standard romaji and it automatically turns into hiragana (e.g. "watashi" → わたし, "desu" → です). Type "nn" for ん. Small "っ": double consonants like "chotto" → ちょっと. Katakana: uppercase letters like "KO-HI-" → コーヒー.',
+  chatReset: 'Start over',
+  chatSend: 'Send',
+  chatErrorGeneral: 'The AI tutor did not answer. Try again.',
+  chatErrorSlow: 'The AI tutor is busy or slow to respond. Try again.',
+  chatErrorBadKey: 'The AI key was refused. Check VITE_GEMINI_API_KEY in .env.',
+  chatErrorNetwork: 'Could not reach the AI tutor. Check your connection.',
 
   // Menu
   menuTitle: 'Select a group to learn',
@@ -344,8 +366,10 @@ export const en = {
   seoTitleNotFound: 'Page not found · Learn Kana',
   seoTitleDictionary: 'Japanese Dictionary: Kana, N5 / N4 Kanji & Words · Learn Kana',
   seoTitleMateri: 'Japanese Particles & Grammar: は, を, 〜ます, 〜です · Learn Kana',
+  seoTitleChat: 'Japanese Conversation Practice with an AI Tutor · Learn Kana',
   seoDescriptionDictionary: 'Look up every hiragana, katakana, N5 / N4 kanji (with on / kun readings) and 1,400+ words taught in Learn Kana, by Japanese, romaji or meaning.',
   seoDescriptionMateri: 'Learn the Japanese particles (は, が, を, に, へ, で, と, も, の, か, より) and the polite grammar forms (〜です, 〜ます, 〜ました, 〜ています) with real example sentences, in Learn Kana.',
+  seoDescriptionChat: 'Chat freely in beginner Japanese with an AI tutor: type in romaji or kana, hear every line aloud, and open the romaji and meaning only when you need help.',
   seoDescription: 'Free Japanese practice in your browser: hiragana and katakana drills, N5 / N4 kanji with spaced repetition, 1,400+ words (including IT and workplace vocabulary) and 1,400+ JLPT N5 / N4 sentences. Type the romaji, track your progress, works offline.',
   notFoundTitle: 'Oops!',
   notFoundMessage: 'Page not found',

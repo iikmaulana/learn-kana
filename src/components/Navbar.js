@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { LANGUAGES, useLanguage } from '../i18n';
 import { ROUTES } from '../routes';
@@ -10,6 +10,7 @@ const NAVBAR_TABS = [
   { to: ROUTES.menu, icon: 'gamepad', label: 'tabGames' },
   { to: ROUTES.dictionary, icon: 'book-open', label: 'tabDictionary' },
   { to: ROUTES.materi, icon: 'graduation-cap', label: 'tabMateri' },
+  { to: ROUTES.chat, icon: 'message-square', label: 'tabChat' },
 ];
 
 export default function Navbar({ theme, toggleTheme }) {
@@ -17,6 +18,23 @@ export default function Navbar({ theme, toggleTheme }) {
   const darkMode = theme === 'dark';
   const [aboutOpen, setAboutOpen] = useState(false);
   const closeAbout = useCallback(() => setAboutOpen(false), []);
+
+  // The navbar stays on screen (sticky, see App.css): pages start their own
+  // sticky blocks below its measured height, through --navbar-height
+  const navRef = useRef(null);
+  useLayoutEffect(() => {
+    const nav = navRef.current;
+    if (!nav) return undefined;
+    const measure = () =>
+      document.documentElement.style.setProperty('--navbar-height', `${nav.offsetHeight}px`);
+    measure();
+    // jsdom has no ResizeObserver; browsers get the remount on font loading,
+    // text wrapping and rotations through it
+    if (typeof ResizeObserver === 'undefined') return () => { };
+    const observer = new ResizeObserver(measure);
+    observer.observe(nav);
+    return () => observer.disconnect();
+  }, []);
 
   // Code snippet for the PWA install button
   const [deferredPrompt, setDeferredPrompt] = useState(null);
@@ -44,7 +62,7 @@ export default function Navbar({ theme, toggleTheme }) {
 
   return (
     <>
-      <nav className='navbar'>
+      <nav className='navbar' ref={navRef}>
         <div className='navbar-brand'>
           <span className='navbar-title'>日本語</span>
         </div>

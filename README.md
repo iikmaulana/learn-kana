@@ -55,6 +55,13 @@ Practice hiragana, katakana, N5 / N4 kanji, words and real sentences right in th
 **Materials**
 - A *Materials* tab next to *Games* and *Dictionary* with the lessons: the particles (は, を, が, に, で, か, へ, の, と, も, より, ね) and the polite grammar forms (〜です, 〜ます, 〜ました, 〜ません, 〜ませんでした, 〜ましょう, 〜たいです, 〜て/でください, 〜て/でいます), each with what it does and two real example sentences from the practice, with their romaji and meaning.
 
+**Chat**
+- A *Chat* tab next to *Materials* in the navbar to practise a conversation:
+  - Chats directly with an AI Japanese conversation tutor (powered by Google AI Studio / Gemini).
+  - Keeps to polite beginner Japanese (JLPT N5/N4), answers in Japanese, romaji, and your language (English or Indonesian), and reads lines aloud.
+  - Romaji and translation are hidden by default to encourage reading Japanese; tap **Bantuan** (Help) on any message to reveal them.
+  - Fast response using streaming and optimized flash-lite models (`gemini-3.1-flash-lite` with fallback). Needs `VITE_GEMINI_API_KEY` in `.env`.
+
 **Mobile**
 - Works with on-screen keyboards (Android and iOS) and keeps the answer above the keyboard.
 - Touch friendly layout, safe-area support for notched phones, installable as an app (PWA).
@@ -98,6 +105,18 @@ Run the tests once (they also run on GitHub Actions for every push to `main` and
 ```bash
 npm test           # Vitest, every test once (npm run test:watch to re-run on changes)
 ```
+
+### AI tutor in the Chat tab (optional)
+
+The free-chat mode of the *Chat* tab talks to [Google AI Studio](https://aistudio.google.com/apikey) (Gemini). Set your key in `.env`:
+
+```bash
+VITE_GEMINI_API_KEY=your-gemini-key
+```
+
+It is read at build time, so restart `npm start` (or rebuild) after changing it. The Chat tab needs it: left empty, the chat shows a notice and the input stays off.
+
+The app has no backend, so the key is shipped inside the built JavaScript and is visible to anyone who opens the site. Use a key you are happy to expose: Google AI Studio lets you set a spending limit and revoke the key at any time.
 
 ## Running with Docker
 
