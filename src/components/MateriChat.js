@@ -101,14 +101,17 @@ export default function MateriChat() {
     return () => {
       stopElevenLabsAudio();
       document.body.classList.remove('chat-keyboard-open');
+      document.documentElement.classList.remove('chat-keyboard-open');
     };
   }, []);
 
   useEffect(() => {
     if (isFocused) {
       document.body.classList.add('chat-keyboard-open');
+      document.documentElement.classList.add('chat-keyboard-open');
     } else {
       document.body.classList.remove('chat-keyboard-open');
+      document.documentElement.classList.remove('chat-keyboard-open');
     }
   }, [isFocused]);
 
@@ -801,6 +804,7 @@ export default function MateriChat() {
           className='materi-chat-send-btn'
           disabled={!input.trim() || loading || !aiAvailable}
           aria-label={t('chatSend')}
+          onMouseDown={(e) => e.preventDefault()}
         >
           <Icon name='send' />
         </button>

@@ -4097,7 +4097,7 @@ Navbar tabs: Games, Dictionary
    thumb; the pages leave room for it (--tab-bar-height) */
 @media (max-width: 655px) {
   :root {
-    --tab-bar-height: calc(3.6em + env(safe-area-inset-bottom));
+    --tab-bar-height: calc(4.8em + env(safe-area-inset-bottom));
   }
 
   .app-shell.has-navbar .app-body {
@@ -4121,7 +4121,7 @@ Navbar tabs: Games, Dictionary
     display: flex;
     box-sizing: border-box;
     height: var(--tab-bar-height);
-    padding: 0.35em calc(0.3em + env(safe-area-inset-right)) calc(0.35em + env(safe-area-inset-bottom)) calc(0.3em + env(safe-area-inset-left));
+    padding: 0.45em calc(0.3em + env(safe-area-inset-right)) calc(0.45em + env(safe-area-inset-bottom)) calc(0.3em + env(safe-area-inset-left));
     border-top: 1px solid #ff9a3c33;
     border-radius: 0;
     background: #155263;
@@ -4160,7 +4160,7 @@ Navbar tabs: Games, Dictionary
     align-items: center;
     gap: 0.15em;
     border-radius: 10px;
-    padding: 0.25em 0.1em;
+    padding: 0.35em 0.1em;
     margin: 0 2px;
     border: 1px solid #ff9a3c30;
     box-sizing: border-box;
@@ -4196,8 +4196,8 @@ Navbar tabs: Games, Dictionary
     height: 4.2em;
     max-width: 4.2em;
     border-radius: 50% !important;
-    align-self: flex-start;
-    margin-top: -1.2em;
+    align-self: center;
+    margin-top: -0.5em;
     margin-left: 4px;
     margin-right: 4px;
     background: #155263;
@@ -4246,6 +4246,48 @@ Navbar tabs: Games, Dictionary
 
   html[data-theme='dark'] .navbar-tabs.segmented-control {
     background: #2a373d;
+  }
+
+  /* Full screen chat on mobile (Image 2):
+     Hide the top app header so Sora-chan header sits at the top */
+  .chat-page-active .navbar {
+    padding: 0;
+    border-bottom: none;
+    background: transparent;
+    height: 0;
+    min-height: 0;
+    overflow: visible;
+    pointer-events: none;
+  }
+
+  .chat-page-active .navbar .navbar-brand,
+  .chat-page-active .navbar .navbar-actions {
+    display: none !important;
+  }
+
+  .chat-page-active .navbar .navbar-tabs {
+    pointer-events: auto;
+  }
+
+  .chat-page-active .materi-chat-header {
+    padding-top: calc(0.6em + env(safe-area-inset-top, 0px));
+  }
+
+  /* When typing on mobile (Image 1):
+     Hide the bottom navbar above the keyboard and expand chat to full viewport */
+  body.chat-keyboard-open .navbar-tabs.segmented-control,
+  body.chat-page-active:has(.materi-chat-input:focus) .navbar-tabs.segmented-control {
+    display: none !important;
+  }
+
+  body.chat-keyboard-open .app-shell.has-navbar .app-body,
+  body.chat-page-active:has(.materi-chat-input:focus) .app-shell.has-navbar .app-body {
+    margin-bottom: 0 !important;
+  }
+
+  body.chat-keyboard-open .materi-chat-composer,
+  body.chat-page-active:has(.materi-chat-input:focus) .materi-chat-composer {
+    padding-bottom: 0.5em;
   }
 }
 
