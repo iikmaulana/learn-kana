@@ -8,10 +8,10 @@ import SettingsDialog from './SettingsDialog';
 import AboutDialog, { GitHubMark } from './AboutDialog';
 
 const NAVBAR_TABS = [
-  { to: ROUTES.menu, icon: 'gamepad', label: 'tabGames' },
-  { to: ROUTES.dictionary, icon: 'book-open', label: 'tabDictionary' },
-  { to: ROUTES.materi, icon: 'graduation-cap', label: 'tabMateri' },
-  { to: ROUTES.chat, icon: 'message-square', label: 'tabChat' },
+  { to: ROUTES.menu, icon: 'gamepad', label: 'tabGames', mobileText: 'Game', key: 'games' },
+  { to: ROUTES.dictionary, icon: 'book-open', label: 'tabDictionary', key: 'dictionary' },
+  { to: ROUTES.materi, icon: 'graduation-cap', label: 'tabMateri', key: 'materi' },
+  { to: ROUTES.chat, icon: 'message-square', label: 'tabChat', key: 'chat' },
 ];
 
 export default function Navbar({ theme, toggleTheme }) {
@@ -76,10 +76,19 @@ export default function Navbar({ theme, toggleTheme }) {
               key={tab.to}
               to={tab.to}
               end
-              className={({ isActive }) => 'segmented-option navbar-tab' + (isActive ? ' active' : '')}
+              className={({ isActive }) =>
+                'segmented-option navbar-tab navbar-tab-' + tab.key + (isActive ? ' active' : '')
+              }
             >
               <Icon name={tab.icon} />
-              <span>{t(tab.label)}</span>
+              {tab.mobileText ? (
+                <>
+                  <span className='navbar-tab-label-desktop'>{t(tab.label)}</span>
+                  <span className='navbar-tab-label-mobile'>{tab.mobileText}</span>
+                </>
+              ) : (
+                <span>{t(tab.label)}</span>
+              )}
             </NavLink>
           ))}
           {/* Mobile only: Settings tab in bottom bar. Hidden on desktop via CSS */}
@@ -90,7 +99,7 @@ export default function Navbar({ theme, toggleTheme }) {
             onClick={() => setSettingsOpen(true)}
           >
             <Icon name='settings' />
-            <span>{t('navbarSettings')}</span>
+            <span>Setting</span>
           </button>
         </div>
         <div className='navbar-actions'>

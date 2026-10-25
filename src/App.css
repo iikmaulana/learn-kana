@@ -4077,6 +4077,14 @@ Navbar tabs: Games, Dictionary
   font-size: 0.9em;
 }
 
+.navbar-tab-label-mobile {
+  display: none;
+}
+
+.navbar-tab-label-desktop {
+  display: inline;
+}
+
 .navbar-tab.segmented-option {
   display: inline-flex;
   align-items: center;
@@ -4096,6 +4104,14 @@ Navbar tabs: Games, Dictionary
     margin-bottom: var(--tab-bar-height);
   }
 
+  .navbar-tab-label-desktop {
+    display: none !important;
+  }
+
+  .navbar-tab-label-mobile {
+    display: inline !important;
+  }
+
   .navbar-tabs.segmented-control {
     position: fixed;
     right: 0;
@@ -4110,16 +4126,55 @@ Navbar tabs: Games, Dictionary
     border-radius: 0;
     background: #155263;
     font-size: 0.8em;
+    overflow: visible;
   }
 
+  /* Reorder tabs on mobile to match the concept:
+     1: Kamus | 2: Materi | 3: Game (center circle) | 4: Chat | 5: Setting */
+  .navbar-tab-dictionary {
+    order: 1;
+  }
+
+  .navbar-tab-materi {
+    order: 2;
+  }
+
+  .navbar-tab-games {
+    order: 3;
+  }
+
+  .navbar-tab-chat {
+    order: 4;
+  }
+
+  .navbar-tab-settings-mobile {
+    order: 5;
+  }
+
+  /* Side tabs: rounded box model matching the wireframe */
   .navbar-tab.segmented-option {
     flex: 1;
     min-width: 0;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     gap: 0.15em;
-    border-radius: 12px;
+    border-radius: 10px;
     padding: 0.25em 0.1em;
+    margin: 0 2px;
+    border: 1px solid #ff9a3c30;
+    box-sizing: border-box;
+    transition: background-color 0.18s, color 0.18s, border-color 0.18s;
+  }
+
+  .navbar-tab.segmented-option.active {
+    background-color: #ff9a3c;
+    color: #155263;
+    border-color: #ff9a3c;
+  }
+
+  html[data-theme='dark'] .navbar-tab.segmented-option.active {
+    color: #2a373d;
   }
 
   .navbar-tab span {
@@ -4132,6 +4187,56 @@ Navbar tabs: Games, Dictionary
 
   .navbar-tab .icon {
     font-size: 1.3em;
+  }
+
+  /* Center Game tab: elevated circle */
+  .navbar-tab.navbar-tab-games {
+    flex: 0 0 4.2em;
+    width: 4.2em;
+    height: 4.2em;
+    max-width: 4.2em;
+    border-radius: 50% !important;
+    align-self: flex-start;
+    margin-top: -1.2em;
+    margin-left: 4px;
+    margin-right: 4px;
+    background: #155263;
+    border: 3px solid #ff9a3c;
+    box-shadow: 0 -3px 12px rgba(0, 0, 0, 0.35);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.1em;
+    padding: 0;
+    z-index: 20;
+    text-decoration: none;
+  }
+
+  html[data-theme='dark'] .navbar-tab.navbar-tab-games {
+    background: #2a373d;
+    border-color: #ff9a3c;
+    box-shadow: 0 -3px 14px rgba(0, 0, 0, 0.6);
+  }
+
+  .navbar-tab.navbar-tab-games.active {
+    background: #ff9a3c !important;
+    color: #155263 !important;
+    border-color: #ffe0b2 !important;
+    box-shadow: 0 -2px 16px rgba(255, 154, 60, 0.65);
+  }
+
+  html[data-theme='dark'] .navbar-tab.navbar-tab-games.active {
+    color: #2a373d !important;
+  }
+
+  .navbar-tab.navbar-tab-games .icon {
+    font-size: 1.45em;
+  }
+
+  .navbar-tab.navbar-tab-games span {
+    font-size: 0.85em;
+    font-weight: 700;
   }
 
   /* The Start bar stays just above the tab bar */
